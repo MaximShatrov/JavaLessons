@@ -16,10 +16,10 @@ public class Medium {
         float B = lvlChoose.nextFloat();
         //добавить проверку на ввод чисел ??
 
-        Main.summary(A,B);
-        Main.difference(A,B);
-        Main.composition(A,B);
-        Main.ratio(A,B);
+        Math.summary(A,B);
+        Math.difference(A,B);
+        Math.composition(A,B);
+        Math.ratio(A,B);
     }
 
     public static void main(String[] args){

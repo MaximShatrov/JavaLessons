@@ -3,10 +3,10 @@ public class Easy {
         float A = 60; //не смог без float, потому что в таком случае деление без остатка происходит :(
         float B = 9;
         System.out.println("Easy task :)");
-        Main.summary(A,B);
-        Main.difference(A,B);
-        Main.composition(A,B);
-        Main.ratio(A,B);
+        Math.summary(A,B);
+        Math.difference(A,B);
+        Math.composition(A,B);
+        Math.ratio(A,B);
 
     }
 

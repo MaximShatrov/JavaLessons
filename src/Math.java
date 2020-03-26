@@ -8,7 +8,13 @@ public class Math {
 
     public static String scannerInput(){
         Scanner input = new Scanner(System.in);
-        float nextFloat = input.nextFloat();
+        float nextFloat;
+        try {
+            nextFloat = input.nextFloat();
+        }
+        catch (Exception) {
+
+        }
 
         //добавить проверку на ввод чисел ??
 
