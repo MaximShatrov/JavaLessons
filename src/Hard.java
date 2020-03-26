@@ -1,94 +1,65 @@
-/*import java.util.Scanner;
-
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Hard {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         hardTask();
     }
 
     public static void hardTask() {
-
-        inputAB();
+        System.out.println("Hard task :)" + "\n");
+        System.out.println("Введите число a");
+        float A = ScanInput.scanInputNumbers();
+        System.out.println("\n" + "Введите число b");
+        float B = ScanInput.scanInputNumbers();
         Hard.menuPrint();
-        Scanner userInput = new Scanner(System.in);
-        while (userInput.hasNext()) {
-            menuChoice(userInput.nextInt());
-            }
-
-            System.out.println("\n" + "1 - посчитать с новыми числами?");
-            System.out.println("2 - Вернуться в главное меню?");
-            System.out.println("\n" + "Ваш выбор:");
-            menuChoice2(userInput.nextInt());
-        }
+        menuChoice(A, B);
+    }
 
 
-        public static void inputAB () {
-            System.out.println("Hard task :)" + "\n");
-            Scanner in3 = new Scanner(System.in);
-            System.out.println("Введите число a");
-            float A = in3.nextFloat(); //читаем float с клавиатуры
-            //System.out.println(A);
+    public static void menuPrint() {
+        System.out.println("\n" + "Выберите действие:");
+        System.out.println("1. Сложить      a+b;");
+        System.out.println("2. Вычесть      a-b;");
+        System.out.println("3. Перемножить  a*b;");
+        System.out.println("4. Поделить     a/b;");
+        System.out.println("Ваш выбор:");
+    }
 
-            //добавить проверку на ввод чисел
-
-            System.out.println("\n" + "Введите число b");
-            float B = in3.nextFloat(); //читаем float с клавиатуры
-            //System.out.println(A);
-
-            //добавить проверку на ввод чисел
-        }
-
-
-        public static void menuPrint () {
-            System.out.println("\n" + "Выберите действие:");
-            System.out.println("1. Сложить      a+b;");
-            System.out.println("2. Вычесть      a-b;");
-            System.out.println("3. Перемножить  a*b;");
-            System.out.println("4. Поделить     a/b;");
-            System.out.println("Ваш выбор:");
-        }
-
-        public static float menuChoice ( int numMenu){
+    public static void menuChoice(float A, float B) {
+        boolean menuChoiceCheck = true;
+        Scanner numMenuSelectScanner = new Scanner(System.in);
+        while (menuChoiceCheck) {
+            int numMenu = ScanInput.scanInputMenuSelect();
+            //numMenuSelectScanner.next();
             switch (numMenu) {
-                case 1: {
-                    Main.summary(A, B);
-                }
-                break;
-                case 2: {
-                    Main.difference(A, B);
-                }
-                break;
-                case 3: {
-                    Main.composition(A, B);
-                }
-                break;
-                case 4: {
-                    Main.ratio(A, B);
-                }
-                break;
-                default:
-                    System.out.println("Ошибка!");
-
-            }
-
-        }
-
-        public static void menuChoice2 ( int numMenu2){
-            switch (numMenu2) {
                 case 1:
-                    System.out.println("123"); //main();
+                    Math.summary(A, B);
+                    menuChoiceCheck = false;
+
                     break;
                 case 2:
-                    System.out.println("321"); //Main.main();
+                    Math.difference(A, B);
+                    menuChoiceCheck = false;
+
+                    break;
+                case 3:
+                    Math.composition(A, B);
+                    menuChoiceCheck = false;
+
+                    break;
+                case 4:
+                    Math.ratio(A, B);
+                    menuChoiceCheck = false;
                     break;
                 default:
-                    System.out.println("Ошибка!");
+                    System.out.println("Ошибка! Выбери снова.");
 
             }
-
         }
-
-
+    }
+}
+/*
         public static void summ () {
             System.out.println("\n" + "Выбрал Сложить");
         }
@@ -105,44 +76,4 @@ public class Hard {
             System.out.println("\n" + "Выбрал Поделить");
         }
     }
-
-
-
-/*
-import java.util.Scanner;
- 
-public class InfoSys {
- 
-    public static void adresPrint() {
-        System.out.println("Пушкина 9, кв. 8");
-    }
- 
-    public static void telephPrint() {
-        System.out.println("901-010-22-33");
-    }
- 
-    public static void menuPrint() {
-        System.out.println("1 - адрес;");
-        System.out.println("2 - телефон;");
-    }
- 
-    public static void menuChoice(int numMenu) {
-        switch (numMenu) {
-            case 1 : adresPrint();
-            break;
-            case 2 : telephPrint();
-            break;
-            default:
-                System.out.println("Не понятно!");
-        }
-    }
- 
-    public static void main(String[] args) {
-        Scanner userInput = new Scanner(System.in);
-        menuPrint();
-        while (userInput.hasNext()){
-            menuChoice(userInput.nextInt());
-        }
-    }
-}
 */

@@ -7,25 +7,7 @@ public class Math {
 
     }
 
-    public static float scanInput(){
-        boolean inputFloatCheck = true;
-        Scanner input = new Scanner(System.in);
-        float nextFloat = 0;
-        while (inputFloatCheck) {
-            try {
 
-                nextFloat = input.nextFloat();
-                inputFloatCheck = false;
-            }
-            catch (InputMismatchException e) {
-                //System.out.println("NumberFormatException: " + e.getMessage());
-                System.out.println("Это не число... вводи по новой:");
-                input.next();
-            }
-        }
-
-        return nextFloat;
-    }
 
     public static void summary(float a, float b) {
         System.out.println("Сумма       a+b = " + (a + b));

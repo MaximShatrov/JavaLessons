@@ -1,15 +1,10 @@
-import java.io.IOException;
-import java.io.*;
-import java.util.Scanner;
-
-
 public class Medium {
     public static void mediumTask() {
         System.out.println("\n" + "Medium task :)");
         System.out.println("Введите число a");
-        float A = Math.scanInput();
+        float A = ScanInput.scanInputNumbers();
         System.out.println("Введите число b");
-        float B = Math.scanInput();
+        float B = ScanInput.scanInputNumbers();
         Math.summary(A,B);
         Math.difference(A,B);
         Math.composition(A,B);

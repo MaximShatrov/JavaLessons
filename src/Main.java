@@ -20,12 +20,15 @@ public class Main {
             switch (lvlSet) {
                 case EASY_LEVEL:
                     Easy.easyTask();
+                    menuExit = false;
                     break;
                 case MEDIUM_LEVEL:
                     Medium.mediumTask();
+                    menuExit = false;
                     break;
                 case HARD_LEVEL:
-                    //Hard.hardTask();
+                    Hard.hardTask();
+                    menuExit = false;
                     break;
                 case EXIT:
                     menuExit = false;
