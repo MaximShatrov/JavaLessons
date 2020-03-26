@@ -1,5 +1,5 @@
 public class Easy {
-    public static void main(String[] args) {
+    public static void easyTask() {
         float A = 60; //не смог без float, потому что в таком случае деление без остатка происходит :(
         float B = 9;
         System.out.println("Easy task :)");
@@ -10,5 +10,7 @@ public class Easy {
 
     }
 
-
+    public static void main(String[] args){
+    easyTask();
+    }
 }

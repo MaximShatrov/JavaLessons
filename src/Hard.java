@@ -2,9 +2,11 @@ import java.util.Scanner;
 
 
 public class Hard {
-    //float A;
-    //float B;
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        hardTask();
+    }
+
+    public static void hardTask() {
 
         inputAB();
         Hard.menuPrint();
@@ -25,12 +27,15 @@ public class Hard {
             Scanner in3 = new Scanner(System.in);
             System.out.println("Введите число a");
             float A = in3.nextFloat(); //читаем float с клавиатуры
-            System.out.println(A);
-            //добавить проверку на ввод чисел ??
+            //System.out.println(A);
+
+            //добавить проверку на ввод чисел
 
             System.out.println("\n" + "Введите число b");
             float B = in3.nextFloat(); //читаем float с клавиатуры
-            System.out.println(A);
+            //System.out.println(A);
+
+            //добавить проверку на ввод чисел
         }
 
 
@@ -43,7 +48,7 @@ public class Hard {
             System.out.println("Ваш выбор:");
         }
 
-        public static menuChoice ( int numMenu){
+        public static float menuChoice ( int numMenu){
             switch (numMenu) {
                 case 1: {
                     Main.summary(A, B);

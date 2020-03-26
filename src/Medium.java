@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Medium {
-    public static void main(String[] args) {
+    public static void mediumTask() {
         System.out.println("\n" + "Medium task :)");
         Scanner lvlChoose = new Scanner(System.in);
         System.out.println("Введите число a");
@@ -22,4 +22,7 @@ public class Medium {
         Main.ratio(A,B);
     }
 
+    public static void main(String[] args){
+        mediumTask();
+    }
 }
