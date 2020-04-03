@@ -2,20 +2,21 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ScanInput {
+    private static Scanner input = new Scanner(System.in);
     public static float scanInputNumbers(){
         boolean inputFloatCheck = true;
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         float nextFloat = 0;
         while (inputFloatCheck) {
             try {
-
                 nextFloat = input.nextFloat();
+                //input.nextLine();
                 inputFloatCheck = false;
             }
             catch (InputMismatchException e) {
                 //System.out.println("NumberFormatException: " + e.getMessage());
                 System.out.println("Это не число... вводи по новой:");
-                input.next();
+                input.nextLine();
             }
         }
 
@@ -23,22 +24,14 @@ public class ScanInput {
     }
 
     public static int scanInputMenuSelect(){
-        boolean inputFloatCheck = true;
-        Scanner input = new Scanner(System.in);
         int nextInt = 0;
-        while (inputFloatCheck) {
-            try {
-
+        try {
                 nextInt = input.nextInt();
-                inputFloatCheck = false;
+                input.nextLine();
             }
             catch (InputMismatchException e) {
-                //System.out.println("NumberFormatException: " + e.getMessage());
-                System.out.println("Это не число. Пробуй еще:");
-                input.next();
+                input.nextLine();
             }
-        }
-
         return nextInt;
     }
 }

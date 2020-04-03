@@ -23,7 +23,6 @@ public class Main {
                     menuExit = false;
                     break;
                 case MEDIUM_LEVEL:
-                    Medium.mediumTask();
                     menuExit = false;
                     break;
                 case HARD_LEVEL:

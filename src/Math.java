@@ -22,8 +22,7 @@ public class Math {
     }
 
     public static void ratio(float a, float b) {
-        if (b == 0)
-        {
+        if (b == 0) {
             System.out.println("Частное     a/b = Бесконечность");
         }
         else{

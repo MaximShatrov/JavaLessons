@@ -1,7 +1,8 @@
-import java.util.Scanner;
-import java.util.InputMismatchException;
-
 public class Hard {
+    private static final int SUMMARY_SELECT = 1;
+    private static final int DIFFERENCE_SELECT = 2;
+    private static final int COMPOSITION_SELECT = 3;
+    private static final int RATIO_SELECT = 4;
     public static void main(String[] args) {
         hardTask();
     }
@@ -28,27 +29,22 @@ public class Hard {
 
     public static void menuChoice(float A, float B) {
         boolean menuChoiceCheck = true;
-        Scanner numMenuSelectScanner = new Scanner(System.in);
         while (menuChoiceCheck) {
             int numMenu = ScanInput.scanInputMenuSelect();
-            //numMenuSelectScanner.next();
             switch (numMenu) {
-                case 1:
+                case SUMMARY_SELECT:
                     Math.summary(A, B);
                     menuChoiceCheck = false;
-
                     break;
-                case 2:
+                case DIFFERENCE_SELECT:
                     Math.difference(A, B);
                     menuChoiceCheck = false;
-
                     break;
-                case 3:
+                case COMPOSITION_SELECT:
                     Math.composition(A, B);
                     menuChoiceCheck = false;
-
                     break;
-                case 4:
+                case RATIO_SELECT:
                     Math.ratio(A, B);
                     menuChoiceCheck = false;
                     break;
@@ -59,21 +55,3 @@ public class Hard {
         }
     }
 }
-/*
-        public static void summ () {
-            System.out.println("\n" + "Выбрал Сложить");
-        }
-
-        public static void diff () {
-            System.out.println("\n" + "Выбрал Вычесть");
-        }
-
-        public static void prod () {
-            System.out.println("\n" + "Выбрал Перемножить");
-        }
-
-        public static void ratio () {
-            System.out.println("\n" + "Выбрал Поделить");
-        }
-    }
-*/
