@@ -10,8 +10,7 @@ public class Main {
         boolean menuExit = true;
         Console.printMainMenu();
         while (menuExit) {
-            Scanner lvlChoose = new Scanner(System.in);
-            int lvlSet = lvlChoose.nextInt();
+            int lvlSet = Console.scanInputMenuSelect();
             switch (lvlSet) {
                 case EASY_LEVEL:
                     Easy.easyTask();
