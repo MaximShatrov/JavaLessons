@@ -8,10 +8,10 @@ public class Hard {
     }
 
     public static void hardTask() {
-        System.out.println("Hard task :)" + "\n");
-        System.out.println("Введите число a");
+        Console.print("Hard task :)" + "\n");
+        Console.print("Введите число a");
         float A = Console.scanInputNumbers();
-        System.out.println("\n" + "Введите число b");
+        Console.print("\n" + "Введите число b");
         float B = Console.scanInputNumbers();
         Hard.menuPrint();
         menuChoice(A, B);
@@ -19,12 +19,12 @@ public class Hard {
 
 
     public static void menuPrint() {
-        System.out.println("\n" + "Выберите действие:");
-        System.out.println("1. Сложить      a+b;");
-        System.out.println("2. Вычесть      a-b;");
-        System.out.println("3. Перемножить  a*b;");
-        System.out.println("4. Поделить     a/b;");
-        System.out.println("Ваш выбор:");
+        Console.print("\n" + "Выберите действие:");
+        Console.print("1. Сложить      a+b;");
+        Console.print("2. Вычесть      a-b;");
+        Console.print("3. Перемножить  a*b;");
+        Console.print("4. Поделить     a/b;");
+        Console.print("Ваш выбор:");
     }
 
     public static void menuChoice(float A, float B) {
@@ -49,7 +49,7 @@ public class Hard {
                     menuChoiceCheck = false;
                     break;
                 default:
-                    System.out.println("Ошибка! Выбери снова.");
+                    Console.print("Ошибка! Выбери снова.");
 
             }
         }

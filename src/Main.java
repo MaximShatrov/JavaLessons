@@ -8,12 +8,12 @@ public class Main {
 
     public static void main(String[] args) {
         boolean menuExit = true;
-        System.out.println("Выберите нужное задание:");
-        System.out.println("1. Изи");
-        System.out.println("2. Медиум");
-        System.out.println("3. Хард");
-        System.out.println("4. Выход");
-        System.out.println("\n" + "Ваш выбор:");
+        Console.print("Выберите нужное задание:");
+        Console.print("1. Изи");
+        Console.print("2. Медиум");
+        Console.print("3. Хард");
+        Console.print("4. Выход");
+        Console.print("\n" + "Ваш выбор:");
         while (menuExit) {
             Scanner lvlChoose = new Scanner(System.in);
             int lvlSet = lvlChoose.nextInt();
@@ -33,7 +33,7 @@ public class Main {
                     menuExit = false;
                     break;
                 default:
-                    System.out.println("Некорректный пункт! Повторите ввод:");
+                    Console.print("Некорректный пункт! Повторите ввод:");
             }
         }
 

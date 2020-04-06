@@ -15,7 +15,7 @@ public class Console {
             }
             catch (InputMismatchException e) {
                 //System.out.println("NumberFormatException: " + e.getMessage());
-                System.out.println("Это не число... вводи по новой:");
+                Console.print("Это не число... вводи по новой:");
                 input.nextLine();
             }
         }

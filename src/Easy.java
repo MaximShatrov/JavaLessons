@@ -2,7 +2,7 @@ public class Easy {
     public static void easyTask() {
         float A = 60; //не смог без float, потому что в таком случае деление без остатка происходит :(
         float B = 9;
-        System.out.println("Easy task :)");
+        Console.print("Easy task :)");
         Math.summary(A,B);
         Math.difference(A,B);
         Math.composition(A,B);
