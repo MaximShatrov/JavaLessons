@@ -10,9 +10,9 @@ public class Hard {
     public static void hardTask() {
         System.out.println("Hard task :)" + "\n");
         System.out.println("Введите число a");
-        float A = ScanInput.scanInputNumbers();
+        float A = Console.scanInputNumbers();
         System.out.println("\n" + "Введите число b");
-        float B = ScanInput.scanInputNumbers();
+        float B = Console.scanInputNumbers();
         Hard.menuPrint();
         menuChoice(A, B);
     }
@@ -30,7 +30,7 @@ public class Hard {
     public static void menuChoice(float A, float B) {
         boolean menuChoiceCheck = true;
         while (menuChoiceCheck) {
-            int numMenu = ScanInput.scanInputMenuSelect();
+            int numMenu = Console.scanInputMenuSelect();
             switch (numMenu) {
                 case SUMMARY_SELECT:
                     Math.summary(A, B);
