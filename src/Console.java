@@ -5,21 +5,20 @@ public class Console {
     private static Scanner input = new Scanner(System.in);
     public static float scanInputNumbers(){
         boolean inputFloatCheck = true;
-        //Scanner input = new Scanner(System.in);
         float nextFloat = 0;
         while (inputFloatCheck) {
             try {
                 nextFloat = input.nextFloat();
-                //input.nextLine();
+                input.nextLine();
                 inputFloatCheck = false;
             }
             catch (InputMismatchException e) {
                 //System.out.println("NumberFormatException: " + e.getMessage());
                 Console.print("Это не число... вводи по новой:");
                 input.nextLine();
+
             }
         }
-
         return nextFloat;
     }
 

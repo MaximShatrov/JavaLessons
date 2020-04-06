@@ -10,7 +10,6 @@ public class Medium {
         Math.composition(A,B);
         Math.ratio(A,B);
     }
-
     /*public static void main(String[] args){
         mediumTask();
     }*/

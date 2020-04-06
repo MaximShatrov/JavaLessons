@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main {
     private static final int EASY_LEVEL = 1;
     private static final int MEDIUM_LEVEL = 2;
@@ -28,16 +26,14 @@ public class Main {
                     Console.printMainMenu();
                     break;
                 case EXIT:
+                    Console.print("\n" + "Завершение работы.");
                     menuExit = false;
                     break;
                 default:
                     Console.print("Некорректный пункт! Повторите ввод:");
             }
         }
-
     }
-
-
 }
 
 

@@ -17,7 +17,6 @@ public class Hard {
         menuChoice(A, B);
     }
 
-
     public static void menuPrint() {
         Console.print("\n" + "Выберите действие:");
         Console.print("1. Сложить      a+b;");
@@ -50,7 +49,6 @@ public class Hard {
                     break;
                 default:
                     Console.print("Ошибка! Выбери снова.");
-
             }
         }
     }

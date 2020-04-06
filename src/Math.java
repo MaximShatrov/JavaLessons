@@ -7,8 +7,6 @@ public class Math {
 
     }*/
 
-
-
     public static void summary(float a, float b) {
         Console.print("Сумма       a+b = " + (a + b));
     }
@@ -29,6 +27,4 @@ public class Math {
             Console.print("Частное     a/b = " + a / b);
         }
     }
-
-
 }
