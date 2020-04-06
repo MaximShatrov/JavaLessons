@@ -8,26 +8,25 @@ public class Main {
 
     public static void main(String[] args) {
         boolean menuExit = true;
-        Console.print("Выберите нужное задание:");
-        Console.print("1. Изи");
-        Console.print("2. Медиум");
-        Console.print("3. Хард");
-        Console.print("4. Выход");
-        Console.print("\n" + "Ваш выбор:");
+        Console.printMainMenu();
         while (menuExit) {
             Scanner lvlChoose = new Scanner(System.in);
             int lvlSet = lvlChoose.nextInt();
             switch (lvlSet) {
                 case EASY_LEVEL:
                     Easy.easyTask();
-                    menuExit = false;
+                    Console.print("Уровень Easy выполнен." + "\n");
+                    Console.printMainMenu();
                     break;
                 case MEDIUM_LEVEL:
-                    menuExit = false;
+                    Medium.mediumTask();
+                    Console.print("Уровень Medium выполнен." + "\n");
+                    Console.printMainMenu();
                     break;
                 case HARD_LEVEL:
                     Hard.hardTask();
-                    menuExit = false;
+                    Console.print("Уровень Hard выполнен." + "\n");
+                    Console.printMainMenu();
                     break;
                 case EXIT:
                     menuExit = false;

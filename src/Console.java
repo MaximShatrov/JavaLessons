@@ -38,4 +38,13 @@ public class Console {
     public static void print(String text){
         System.out.println(text);
     }
+
+    public static void printMainMenu() {
+        Console.print("Выберите нужный уровень:");
+        Console.print("1. Изи");
+        Console.print("2. Медиум");
+        Console.print("3. Хард");
+        Console.print("4. Выход");
+        Console.print("\n" + "Ваш выбор:");
+    }
 }

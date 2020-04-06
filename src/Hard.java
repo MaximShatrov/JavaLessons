@@ -3,9 +3,9 @@ public class Hard {
     private static final int DIFFERENCE_SELECT = 2;
     private static final int COMPOSITION_SELECT = 3;
     private static final int RATIO_SELECT = 4;
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         hardTask();
-    }
+    }*/
 
     public static void hardTask() {
         Console.print("Hard task :)" + "\n");
