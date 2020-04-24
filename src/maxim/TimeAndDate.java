@@ -16,7 +16,7 @@ public class TimeAndDate {
     }
 
     public static void printDate(){
-        System.out.println(DATE_FORMAT.format(DATE.getTime()));                                              //вывод даты в консоль
+        System.out.println("\n"+ DATE_FORMAT.format(DATE.getTime()));                                              //вывод даты в консоль
     }
 
     public static void changeDate(int day){
@@ -36,6 +36,12 @@ public class TimeAndDate {
         int hour = DATE.get(Calendar.HOUR);
         return hour;
     }
+
+    public static int getDay(){                                                                            //
+        int day = DATE.get(Calendar.DAY_OF_MONTH);
+        return day;
+    }
+
 
     public static void main(String[] args){
         TimeAndDate.setTime();

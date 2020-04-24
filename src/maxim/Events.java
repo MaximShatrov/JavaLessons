@@ -42,10 +42,11 @@ public class Events {
                 Events.demography();
                 break;
             case 3: case 4:
-                ///System.out.println("Ничего не произошло");
+                System.out.println(Color.BLUE + "Ничего не произошло"+ Color.RESET);
+                break;
             default:
                 System.out.println(Color.RED + "Что-то пошло не так" + Color.RESET);
-
+                break;
         }
 
     }
