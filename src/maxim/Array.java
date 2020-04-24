@@ -17,9 +17,9 @@ public class Array {
     }
 
     public static void streetFilling(){
-        for (int i = 1; i < unnamedStreet.length; i++) {
+        for (int i = 0; i < unnamedStreet.length; i++) {                    //Дома от 0 до unnamedStreet.length
             //System.out.println("House #" +i +":");
-            for (int j = 1; j < unnamedStreet[i].length; j++) {
+            for (int j = 1; j < unnamedStreet[i].length; j++) {             //Квартиры 1 до unnamedStreet[i].length
                 for (int k = 0; k < unnamedStreet[i][j].length; k++) {
                     switch (k){
                         case 0:
@@ -43,23 +43,8 @@ public class Array {
         //some code
     }
 
-    public static void main(String[] args){                                 //метод для отладки
-        System.out.println("Количество домов = " + QUANTITY_OF_HOUSES);
-        Array.streetCreation();
-        Array.streetFilling();
-        for (int i = 1; i < unnamedStreet.length; i++) {
-            System.out.println("House #" +i +":");
-            for (int j = 0; j < unnamedStreet[i].length; j++) {
-
-                for (int k = 0; k < unnamedStreet[i][j].length; k++) {
-                    System.out.print(unnamedStreet[i][j][k] +" ");
-                }
-                System.out.print("  ");
+    public static void main(String[] args){
             }
-            System.out.println("\n");
-        }
-        System.out.println("Ending");
-    }
 }
 
 

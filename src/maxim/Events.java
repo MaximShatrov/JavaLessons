@@ -20,4 +20,14 @@ public class Events {
     public static void demography(){
 
     }
+
+    public static void salary(){
+
+    }
+
+    public static void payment(){
+
+    }
+
+
 }

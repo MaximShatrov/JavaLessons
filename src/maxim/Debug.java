@@ -1,10 +1,17 @@
 // Класс только для отладки!
 package maxim;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 @Deprecated
 public class Debug {
     public static void main(String[] args){
-        Debug.printStreet();
+        //Debug.printStreet();
+        Debug.printDate();
     }
 
     public static void printStreet(){
@@ -34,5 +41,23 @@ public class Debug {
             System.out.println("\n");
         }
         System.out.println("Ending");
+    }
+
+    public static void printDate(){
+         Calendar calendar = new GregorianCalendar();                    //создание календаря
+        /*calendar.set(TimeAndDate.YEAR, 2017);
+        calendar.set(TimeAndDate.MONTH, 0);
+        calendar.set(TimeAndDate.DAY_OF_MONTH, 25);
+        calendar.set(TimeAndDate.HOUR_OF_DAY, 19);
+        calendar.set(TimeAndDate.MINUTE, 42);
+        calendar.set(TimeAndDate.SECOND, 12);
+        */
+        Date todayTime = GregorianCalendar.getInstance().getTime();     //получение текущей даты
+        calendar.setTime(todayTime);                                    //установка текущей даты в календарь
+        DateFormat df = new SimpleDateFormat("dd MMMM yyy");   //формат даты
+        System.out.println(df.format(calendar.getTime()));
+        calendar.add(Calendar.DAY_OF_MONTH, 3);
+        System.out.println(df.format(calendar.getTime()));
+
     }
 }
