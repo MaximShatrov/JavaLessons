@@ -21,6 +21,7 @@ public class TimeAndDate {
 
     public static void changeDate(int day){
         DATE.add(Calendar.DAY_OF_MONTH, day);                                                               //
+
     }
 
     public static void incrementDate(){

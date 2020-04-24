@@ -28,10 +28,14 @@
 package maxim;
 
 public class Main {
-
+    private static final int SIMULATE_DAY = 1;
+    private static final int SIMULATE_WEEK = 2;
+    private static final int SIMULATE_MONTH = 3;
     public static void main(String[] args) {
         Array.streetCreation();
         Array.streetFilling();
+        boolean menuExit = true;
+
         System.out.println(Color.GREEN_BOLD_BRIGHT + "Добро пожаловать в Сити 17! Сами вы его выбрали или его выбрали за вас — это лучший город из оставшихся." + Color.RESET);
         System.out.println("Выберите желаемый пункт меню:");
         System.out.println("1. Смоделировать 1 день;");
@@ -39,7 +43,25 @@ public class Main {
         System.out.println("3. Смоделировать 1 месяц;");
         System.out.println("\n" + "Ваш выбор:");
 
+        while (menuExit) {
+            int lvlSet = Console.scanInputMenuSelect();
+            switch (lvlSet) {
+                case SIMULATE_DAY:
+                    Simulation.main(1);
+                    break;
+                case SIMULATE_WEEK:
+                    Simulation.main(7);
+                    break;
+                case SIMULATE_MONTH:
+                    Simulation.main(31);           //переделать под DATE.add(Calendar.MONTH, 1);
+                    break;
+                default:
+                    System.out.println("Некорректный пункт! Повторите ввод:");
+            }
 
+
+        }
+    }
 
         //Меню
         //1.Открыть "карту" Безымянной улицы;
