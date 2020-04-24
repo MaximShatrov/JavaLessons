@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 @Deprecated
 public class Debug {
     public static void main(String[] args){
-        //Debug.printStreet();
+        Debug.printStreet();
         Debug.printDate();
     }
 

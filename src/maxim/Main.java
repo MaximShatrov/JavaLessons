@@ -33,11 +33,14 @@ public class Main {
         Array.streetCreation();
         Array.streetFilling();
         System.out.println(Color.GREEN_BOLD_BRIGHT + "Добро пожаловать в Сити 17! Сами вы его выбрали или его выбрали за вас — это лучший город из оставшихся." + Color.RESET);
-        System.out.println("\n");
         System.out.println("Выберите желаемый пункт меню:");
-        System.out.println("1. Смоделировать 1 день");
-        System.out.println("2. Смоделировать 1 неделю");
-        System.out.println("3. Смоделировать 1 месяц");
+        System.out.println("1. Смоделировать 1 день;");
+        System.out.println("2. Смоделировать 1 неделю;");
+        System.out.println("3. Смоделировать 1 месяц;");
+        System.out.println("\n" + "Ваш выбор:");
+
+
+
         //Меню
         //1.Открыть "карту" Безымянной улицы;
         //2.Посмотреть данные конкретной квартиры

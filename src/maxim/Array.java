@@ -11,7 +11,7 @@ public class Array {
     public static void streetCreation(){
         //unnamedStreet = new int[10][8][3];      //Постоянные параметры для упрощения отладки
         unnamedStreet = new int[QUANTITY_OF_HOUSES][][];
-        for (int i = 1; i < unnamedStreet.length; i++) {
+        for (int i = 0; i < unnamedStreet.length; i++) {
             unnamedStreet[i] = new int [RandomizeValues.getRandomInt4(MIN_FLOOR,MAX_FLOOR)][3];
         }
     }

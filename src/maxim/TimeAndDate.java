@@ -16,7 +16,7 @@ public class TimeAndDate {
     }
 
     public static void printDate(){
-        System.out.println(DATE_FORMAT.format(DATE.getTime()))                                              //вывод даты в консоль
+        System.out.println(DATE_FORMAT.format(DATE.getTime()));                                              //вывод даты в консоль
     }
 
     public static void changeDate(int day){
