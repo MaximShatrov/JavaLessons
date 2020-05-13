@@ -1,6 +1,6 @@
 // Класс только для отладки!
 package maxim;
-
+/*
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,9 +11,47 @@ import java.util.GregorianCalendar;
 public class Debug {
     public static void main(String[] args){
         Debug.printStreet();
-        Debug.printDate();
+        //Debug.printDate();
     }
+    public static void printDate(){
+         Calendar calendar = new GregorianCalendar();                    //создание календаря
+        /*calendar.set(TimeAndDate.YEAR, 2017);
+        calendar.set(TimeAndDate.MONTH, 0);
+        calendar.set(TimeAndDate.DAY_OF_MONTH, 25);
+        calendar.set(TimeAndDate.HOUR_OF_DAY, 19);
+        calendar.set(TimeAndDate.MINUTE, 42);
+        calendar.set(TimeAndDate.SECOND, 12);
+        */
+/*
+        Date todayTime = GregorianCalendar.getInstance().getTime();     //получение текущей даты
+        calendar.setTime(todayTime);                                    //установка текущей даты в календарь
+        DateFormat df = new SimpleDateFormat("dd MMMM yyy");   //формат даты
+        System.out.println(df.format(calendar.getTime()));
+        calendar.add(Calendar.DAY_OF_MONTH, 3);
+        System.out.println(df.format(calendar.getTime()));
 
+    }
+*/
+/**
+    public static void printStreet(){
+        Array.streetCreation();
+        Array.streetFilling();
+        for (int i = 0; i < Array.unnamedStreet.length; i++) {
+            System.out.println(Color.BLUE_BOLD + "Дом #" +(i+1) +":" + Color.RESET);
+            for (int j = 0; j < Array.unnamedStreet[i].length; j++) {
+                System.out.print(Color.YELLOW + "Квартира #" +(j+1) +": " + Color.RESET);
+                System.out.println("\n" + "Человек " + (Array.unnamedStreet[i][j]).getHumans());
+                System.out.println("Денег " + (Array.unnamedStreet[i][j]).getBudget());
+                System.out.println("Долги " + (Array.unnamedStreet[i][j]).getBills());
+                System.out.println("Работает " + (Array.unnamedStreet[i][j]).getWorking());
+                System.out.println("\n");
+                }
+            }
+            System.out.println("Конец");
+
+        }
+
+        /*
     public static void printStreet(){
         Array.streetCreation();
         Array.streetFilling();
@@ -42,22 +80,6 @@ public class Debug {
         }
         System.out.println("Ending");
     }
-
-    public static void printDate(){
-         Calendar calendar = new GregorianCalendar();                    //создание календаря
-        /*calendar.set(TimeAndDate.YEAR, 2017);
-        calendar.set(TimeAndDate.MONTH, 0);
-        calendar.set(TimeAndDate.DAY_OF_MONTH, 25);
-        calendar.set(TimeAndDate.HOUR_OF_DAY, 19);
-        calendar.set(TimeAndDate.MINUTE, 42);
-        calendar.set(TimeAndDate.SECOND, 12);
-        */
-        Date todayTime = GregorianCalendar.getInstance().getTime();     //получение текущей даты
-        calendar.setTime(todayTime);                                    //установка текущей даты в календарь
-        DateFormat df = new SimpleDateFormat("dd MMMM yyy");   //формат даты
-        System.out.println(df.format(calendar.getTime()));
-        calendar.add(Calendar.DAY_OF_MONTH, 3);
-        System.out.println(df.format(calendar.getTime()));
-
     }
-}
+
+**/

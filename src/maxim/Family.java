@@ -2,8 +2,34 @@ package maxim;
 
 class Family{
     private int humans;
-    private int money;
+    private int budget;
     private int bills;
+    private int salary;
+    private boolean onWork;
+//Конструкторы
+
+    Family(int humans, int budget, int bills){
+        this.humans = humans;
+        this.budget = budget;
+        this.bills = bills;
+    }
+
+    Family(){
+        this.humans = RandomizeValues.getRandInt(0,3);
+        this.budget = (RandomizeValues.getRandInt(5,15))*1000;
+        this.salary = (RandomizeValues.getRandInt(10,30))*1000;
+        this.bills = (RandomizeValues.getRandInt(1,6))*1000;
+    }
+
+    @Override
+    public String toString() {
+        return "Family{" +
+                "humans=" + humans +
+                ", budget=" + budget +
+                ", bills=" + bills +
+                ", onWork=" + onWork +
+                '}';
+    }
 
     public void setHumans(int humans){
         this.humans = humans;
@@ -13,12 +39,32 @@ class Family{
         return humans;
     }
 
-    public void setMoney(int money){
-        this.money = money;
+    public void killHuman(){
+        this.humans = this.humans-1;
     }
 
-    public int getMoney(){
-        return money;
+    public void birthHuman(){
+        this.humans = this.humans+1;
+    }
+
+    public void setBudget(int budget){
+        this.budget = budget;
+    }
+
+    public void salaryDay(){
+        this.budget = this.budget+salary;
+    }
+
+    public void decreaseBudget(int budget){
+        this.budget = this.budget-budget;
+    }
+
+    public void payday(){
+        this.budget = this.budget-bills;
+    }
+
+    public int getBudget(){
+        return budget;
     }
 
     public void setBills(int bills){
@@ -29,5 +75,11 @@ class Family{
         return bills;
     }
 
+    public boolean getOnWork(){
+        return onWork;
+    }
 
-}
+    public void setOnWork(boolean set){
+        this.onWork = set;
+        }
+    }
