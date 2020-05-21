@@ -1,6 +1,6 @@
 package maxim;
 
-class Family{
+class Family {
     private int humans;
     private int budget;
     private int bills;
@@ -8,17 +8,17 @@ class Family{
     private boolean onWork;
 //Конструкторы
 
-    Family(int humans, int budget, int bills){
+    Family(int humans, int budget, int bills) {
         this.humans = humans;
         this.budget = budget;
         this.bills = bills;
     }
 
-    Family(){
-        this.humans = RandomizeValues.getRandInt(0,3);
-        this.budget = (RandomizeValues.getRandInt(5,15))*1000;
-        this.salary = (RandomizeValues.getRandInt(10,30))*1000;
-        this.bills = (RandomizeValues.getRandInt(1,6))*1000;
+    Family() {
+        this.humans = RandomizeValues.getRandInt(0, 3);
+        this.budget = (RandomizeValues.getRandInt(5, 15)) * 1000;
+        this.salary = (RandomizeValues.getRandInt(10, 30)) * 1000;
+        this.bills = (RandomizeValues.getRandInt(1, 6)) * 1000;
     }
 
     @Override
@@ -31,55 +31,55 @@ class Family{
                 '}';
     }
 
-    public void setHumans(int humans){
+    public void setHumans(int humans) {
         this.humans = humans;
     }
 
-    public int getHumans(){
+    int getHumans() {
         return humans;
     }
 
-    public void killHuman(){
-        this.humans = this.humans-1;
+    void killHuman() {
+        this.humans = this.humans - 1;
     }
 
-    public void birthHuman(){
-        this.humans = this.humans+1;
+    void birthHuman() {
+        this.humans = this.humans + 1;
     }
 
-    public void setBudget(int budget){
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 
-    public void salaryDay(){
-        this.budget = this.budget+salary;
+    void salaryDay() {
+        this.budget = this.budget + salary;
     }
 
-    public void decreaseBudget(int budget){
-        this.budget = this.budget-budget;
+    void decreaseBudget(int budget) {
+        this.budget = this.budget - budget;
     }
 
-    public void payday(){
-        this.budget = this.budget-bills;
+    void payday() {
+        this.budget = this.budget - bills;
     }
 
-    public int getBudget(){
+    int getBudget() {
         return budget;
     }
 
-    public void setBills(int bills){
+    public void setBills(int bills) {
         this.bills = bills;
     }
 
-    public int getBills(){
+    int getBills() {
         return bills;
     }
 
-    public boolean getOnWork(){
+    boolean getOnWork() {
         return onWork;
     }
 
-    public void setOnWork(boolean set){
+    void setOnWork(boolean set) {
         this.onWork = set;
-        }
     }
+}

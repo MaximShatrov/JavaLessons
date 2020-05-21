@@ -1,7 +1,7 @@
 package maxim;
 
-public class Simulation {
-    public static void main(int days) {
+class Simulation {
+    static void startLife(int days) {
         System.out.println("На Безымянной улице " + (Array.unnamedStreet.length) + " дома(ов)");
         for (int d = 0; d < days; d++) {
             TimeAndDate.printDate();
@@ -13,13 +13,13 @@ public class Simulation {
             int today = TimeAndDate.getDay();
             if (today == 25) {
                 Events.salary();
-            } else { }
-            if (today == 10){
-               Events.payment();
-            } else  { }
+            }
+            if (today == 10) {
+                Events.payment();
+            }
             Events.doTheRandomEvent();
             TimeAndDate.incrementDate();
         }
-        System.out.println("\n"+ "Симуляция закончена.");
+        System.out.println("\n" + "Симуляция закончена.");
     }
 }

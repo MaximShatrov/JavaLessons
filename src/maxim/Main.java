@@ -31,29 +31,48 @@ public class Main {
     private static final int SIMULATE_DAY = 1;
     private static final int SIMULATE_WEEK = 2;
     private static final int SIMULATE_MONTH = 3;
-    public static void main(String[] args) {
-        Array.streetCreation();
-        Array.streetFilling();
-        boolean menuExit = true;
+    private static final int MENU_EXIT = 4;
 
+    static void mainMenu() {
         System.out.println(Color.GREEN_BOLD_BRIGHT + "Добро пожаловать в Сити 17! Сами вы его выбрали или его выбрали за вас — это лучший город из оставшихся." + Color.RESET);
         System.out.println("Выберите желаемый пункт меню:");
         System.out.println("1. Смоделировать 1 день;");
         System.out.println("2. Смоделировать 1 неделю;");
         System.out.println("3. Смоделировать 1 месяц;");
+        System.out.println("4. Завершить программу.");
         System.out.println("\n" + "Ваш выбор:");
+    }
 
+    static void secondMenu() {
+        System.out.println("\n" + "1. Смоделировать еще 1 день;");
+        System.out.println("2. Смоделировать еще 1 неделю;");
+        System.out.println("3. Смоделировать еще 1 месяц;");
+        System.out.println("4. Завершить программу.");
+        System.out.println("\n" + "Ваш выбор:");
+    }
+
+    public static void main(String[] args) {
+        Array.streetCreation();
+        Array.streetFilling();
+        boolean menuExit = true;
+        mainMenu();
         while (menuExit) {
             int lvlSet = Console.scanInputMenuSelect();
             switch (lvlSet) {
                 case SIMULATE_DAY:
-                    Simulation.main(1);
+                    Simulation.startLife(1);
+                    secondMenu();
                     break;
                 case SIMULATE_WEEK:
-                    Simulation.main(7);
+                    Simulation.startLife(7);
+                    secondMenu();
                     break;
                 case SIMULATE_MONTH:
-                    Simulation.main(31);           //переделать под DATE.add(Calendar.MONTH, 1);
+                    Simulation.startLife(31);                               //переделать под DATE.add(Calendar.MONTH, 1);
+                    secondMenu();
+                    break;
+                case MENU_EXIT:
+                    menuExit = false;
                     break;
                 default:
                     System.out.println("Некорректный пункт! Повторите ввод:");
