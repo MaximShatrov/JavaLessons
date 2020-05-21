@@ -1,12 +1,13 @@
 package maxim;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Console {
     private static Scanner input = new Scanner(System.in);
 
-    public static float scanInputNumbers() {
+    static float scanInputNumbers() {
         boolean inputFloatCheck = true;
         float nextFloat = 0;
         while (inputFloatCheck) {
@@ -22,6 +23,23 @@ public class Console {
         }
         return nextFloat;
     }
+
+    static String scanInputString() {
+        boolean inputCheck = true;
+        String nextString = null;
+        while (inputCheck) {
+            try {
+                nextString = input.next();
+                input.nextLine();
+                inputCheck = false;
+            } catch (NoSuchElementException e) {
+                System.err.println("ERROR");
+                input.nextLine();
+            }
+        }
+        return nextString;
+    }
+
 
     static int scanInputMenuSelect() {
         int nextInt = 0;
