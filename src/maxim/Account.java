@@ -3,13 +3,13 @@ package maxim;
 import java.util.Arrays;
 
 class Account {
-    private String fullName;
-    private String eMail;
-    private String birthDate;
+    private StringBuilder fullName;
+    private StringBuilder login;
+    private StringBuilder birthDate;
     private String city;
     private String passportSerial;
-    private String passportInfo;
-    private int mobileNumber;
+    private StringBuilder passportInfo;
+    private String mobileNumber;
     private String site;
     private String workInfo;
     private String info;
@@ -20,27 +20,32 @@ class Account {
         this.existsFlag = false;
     }
 
-    public String getFullName() {
+    public StringBuilder getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullName(StringBuilder fullName) {
+        if (fullName != null){
+            this.fullName = fullName;
+        }
+        else{
+
+        }
     }
 
-    public String geteMail() {
-        return eMail;
+    public StringBuilder getLogin() {
+        return login;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setLogin(StringBuilder login) {
+        this.login = login;
     }
 
-    public String getBirthDate() {
+    public StringBuilder getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(StringBuilder birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -60,19 +65,19 @@ class Account {
         this.passportSerial = passportSerial;
     }
 
-    public String getPassportInfo() {
+    public StringBuilder getPassportInfo() {
         return passportInfo;
     }
 
-    public void setPassportInfo(String passportInfo) {
+    public void setPassportInfo(StringBuilder passportInfo) {
         this.passportInfo = passportInfo;
     }
 
-    public int getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(int mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
@@ -120,7 +125,7 @@ class Account {
     public String toString() {
         return "Account{" +
                 "ФИО: '" + fullName + '\'' +
-                ", eMail: '" + eMail + '\'' +
+                ", login: '" + login + '\'' +
                 ", ДР: '" + birthDate + '\'' +
                 ", Город: '" + city + '\'' +
                 ", Серя,номер пасспорта:'" + passportSerial + '\'' +
