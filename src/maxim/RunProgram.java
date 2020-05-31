@@ -49,7 +49,7 @@ class RunProgram {
                 System.out.println("Введите свою дату рождения в формате ДД.ММ.ГГГГ :");
                 dataBase[i].setBirthDate(Console.scanInputBirthdate());
                 System.out.println("Укажите город проживания:");
-                dataBase[i].setCity(Console.scanInputString());
+                dataBase[i].setCity(Console.scanInputCity());
                 System.out.println("Введите паспортные данные; \n Серию и номер в формате ХХХХ ХХХХХХ:");
                 dataBase[i].setPassportSerial(Console.scanInputSerial());
                 System.out.println("Кем и когда выдан:");

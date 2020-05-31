@@ -1,12 +1,13 @@
 package maxim;
 
 import java.util.Arrays;
+import java.util.Date;
 
 class Account {
     private StringBuilder fullName;
     private StringBuilder login;
-    private StringBuilder birthDate;
-    private String city;
+    private Date birthDate;
+    private StringBuilder city;
     private String passportSerial;
     private StringBuilder passportInfo;
     private String mobileNumber;
@@ -41,19 +42,19 @@ class Account {
         this.login = login;
     }
 
-    public StringBuilder getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(StringBuilder birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public String getCity() {
+    public StringBuilder getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(StringBuilder city) {
         this.city = city;
     }
 

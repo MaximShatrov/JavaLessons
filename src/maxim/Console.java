@@ -1,5 +1,8 @@
 package maxim;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -56,23 +59,19 @@ public class Console {
 
     public static StringBuilder scanInputLogin() {
         boolean lenghtCheck = false;
-        boolean nullCheck = false;
         String nextString = null;
-        while (!lenghtCheck | !nullCheck) {
+        while (!lenghtCheck | nextString == null) {
             try {
                 nextString = input.next();
                 input.nextLine();
                 if (nextString.length() >= 6) {
                     lenghtCheck = true;
                 }
-                if (nextString != null) {
-                    nullCheck = true;
-                }
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
             }
-            if (!lenghtCheck | !nullCheck) {
+            if (!lenghtCheck | nextString == null) {
                 System.err.println("Логин не удовлетворяет условиям! Повторите ввод.");
             }
         }
@@ -112,7 +111,6 @@ public class Console {
                 if (!wordsCheck && !numAndMarksCheck) {
                     System.out.println("Повторите ввод:");
                 }
-
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
@@ -123,33 +121,82 @@ public class Console {
         return sb;
     }
 
-    static StringBuilder scanInputBirthdate() {
-        boolean inputCheck = true;
+    static Date scanInputBirthdate() {
         String nextString = null;
-        while (inputCheck) {
+        boolean contentCheck = false;
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("dd.MM.yyyy");
+        format.setLenient(false);
+        Date bDate = null;
+        while (nextString == null | !contentCheck) {
             try {
-                nextString = input.next();
-                input.nextLine();
-                inputCheck = false;
+                nextString = input.nextLine();
+                //nextString = "04.05.1994";
+                bDate = format.parse(nextString);
+                contentCheck = true;
+            } catch (ParseException e) {
+                contentCheck = false;
+                System.err.println("Неправильная дата! Повторите ввод:");
+                //e.printStackTrace();
+            }
+        }
+        return bDate;
+    }
+
+    static StringBuilder scanInputCity() {
+        String[] numsAndmarks = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "?", "=", "+", "@", "#", "$", "%", "^", "&", "*", ":", ";", "~", "|", "/"};
+        String nextString = null;
+        boolean numAndMarksCheck = false;
+        while (nextString == null | !numAndMarksCheck) {
+            try {
+                nextString = input.nextLine();
+                for (int i = 0; i < numsAndmarks.length; i++) {
+                    if (nextString.contains(numsAndmarks[i])) {
+                        System.err.println("Поле ГОРОД не должно содержать недопустимые знаки! Повторите ввод:");
+                        numAndMarksCheck = false;
+                        break;
+                    } else {
+                        numAndMarksCheck = true;
+                    }
+                }
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
             }
         }
-        StringBuilder sb = new StringBuilder(10);
+        StringBuilder sb = new StringBuilder();
         sb.append(nextString);
         return sb;
     }
 
-
-    public static String scanInputSerial() {
-        boolean inputCheck = true;
+    static String scanInputSerial() {
+        String nums = "0123456789 ";
         String nextString = null;
-        while (inputCheck) {
+        boolean contentCheck = false;
+        boolean formatCheck = false;
+        while (nextString == null | !contentCheck | !formatCheck) {
             try {
-                nextString = input.next();
-                input.nextLine();
-                inputCheck = false;
+                nextString = input.nextLine();
+                int firstDot = nextString.indexOf(" ");
+                int secondDot = nextString.indexOf(" ", firstDot + 1);
+                if (firstDot == 4 && secondDot == -1 && nextString.length() == 11) {
+                    formatCheck = true;
+                } else {
+                    System.err.println("Серия и номер паспорта имеют формат отличный от XXXX XXXXXXX!");
+                }
+                char[] stringtoChar = nextString.toCharArray();
+                for (int i = 0; i < stringtoChar.length; i++) {
+                    if (nums.contains("" + stringtoChar[i])) {
+                        contentCheck = true;
+                    } else {
+                        contentCheck = false;
+                        System.err.println("Поле содержит недопустимые знаки!");
+                        break;
+                    }
+                }
+                if (!contentCheck | !formatCheck) {
+                    System.out.println("Повторите ввод:");
+                }
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
