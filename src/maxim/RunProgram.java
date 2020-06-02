@@ -84,9 +84,10 @@ class RunProgram {
         id = Console.scanInputSB();
         for (int i = 0; i < dataBase.length; i++) {
             if (dataBase[i].isExistsFlag() & dataBase[i].getLogin().toString().equals(id.toString())) {
-                System.out.println("Аккаунт с таким логином найден");
+                System.out.println("Аккаунт с таким логином найден \n");
                 findAccount = true;
                 System.out.println(dataBase[i].toString());
+                System.out.println("\n");
                 break;
             }
         }
