@@ -1,6 +1,6 @@
 package maxim;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 class Account {
@@ -80,6 +80,9 @@ class Account {
     private boolean existsFlag;
 
     Account() {
+        StringBuilder empty = new StringBuilder("EMPTY");
+        this.setLogin(empty);
+        this.avatar = empty;
         this.existsFlag = false;
     }
 
@@ -182,22 +185,26 @@ class Account {
         System.out.println(bart);
         System.out.println("4.");
         System.out.println(shrek);
-        boolean menuExit = true;
+        boolean selection = false;
         this.avatar.delete(0,this.avatar.length());
-        while (avatar.length() < 1) {
+        while (!selection) {
             int lvlSet = Console.scanInputMenuSelect();
             switch (lvlSet) {
                 case 1:
                     this.avatar.append(plane);
+                    selection = true;
                     break;
                 case 2:
                     this.avatar.append(bat);
+                    selection = true;
                     break;
                 case 3:
                     this.avatar.append(bart);
+                    selection = true;
                     break;
                 case 4:
                     this.avatar.append(shrek);
+                    selection = true;
                     break;
                 default:
                     System.out.println("Некорректный пункт! Повторите ввод:");
@@ -213,20 +220,23 @@ class Account {
         this.existsFlag = existsFlag;
     }
 
+    public boolean equals(StringBuilder id) {
+        return this.login == id;
+    }
+
     @Override
     public String toString() {
-        return "Account{" +
-                "ФИО: '" + fullName + '\'' +
-                "Логин: '" + login + '\'' +
-                "День рождения: '" + birthDate + '\'' +
-                "Город: '" + city + '\'' +
-                "Серия и номер пасспорта:'" + passportSerial + '\'' +
-                "Кем и когда выдан: '" + passportInfo + '\'' +
-                "Моб.телефон: " + mobileNumber +
-                "Сайт: '" + site + '\'' +
-                "Работа: '" + workInfo + '\'' +
-                "О себе: '" + info + '\'' +
-                "Аватар: " + avatar +
-                '}';
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        return "Аккаунт " + login + "\n" +
+                "ФИО: " + fullName + "\n" +
+                "День рождения: " + format.format(birthDate) + "\n" +
+                "Город: " + city + "\n" +
+                "Серия и номер пасспорта: " + passportSerial + "\n" +
+                "Кем и когда выдан: " + passportInfo + "\n" +
+                "Моб.телефон: " + mobileNumber + "\n" +
+                "Сайт: " + site + "\n" +
+                "Работа: " + workInfo + "\n" +
+                "О себе: " + info + "\n" +
+                "Аватар: "+ "\n"  + avatar;
     }
 }

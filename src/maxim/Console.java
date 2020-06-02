@@ -21,29 +21,11 @@ public class Console {
         return nextInt;
     }
 
-    /*static float scanInputNumbers() {
-        boolean inputFloatCheck = true;
-        float nextFloat = 0;
-        while (inputFloatCheck) {
-            try {
-                nextFloat = input.nextFloat();
-                input.nextLine();
-                inputFloatCheck = false;
-            } catch (InputMismatchException e) {
-                //System.out.println("NumberFormatException: " + e.getMessage());
-                System.out.println("Это не число... вводи по новой:");
-                input.nextLine();
-            }
-        }
-        return nextFloat;
-    }*/
-
     static String scanInputString() {
         String nextString = null;
         while (nextString == null) {
             try {
                 nextString = input.nextLine();
-                input.nextLine();
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
@@ -176,7 +158,7 @@ public class Console {
             }
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(nextString);
+        sb.append(firstUpperCase(nextString.toLowerCase()));
         return sb;
     }
 
@@ -254,7 +236,7 @@ public class Console {
         String nextString = null;
         while (nextString == null | !inputCheck | !contentCheck) {
             try {
-                nextString = input.next();
+                nextString = input.nextLine();
                 if (!nextString.isEmpty()) {
                     inputCheck = true;
                 } else {
@@ -269,6 +251,8 @@ public class Console {
                 inputCheck = false;
                 System.out.println(" имеет неверный формат! Повторите вод:");
                 continue;
+            } else {
+                System.out.println();
             }
             char[] stringtoChar = nextString.toCharArray();
             for (int i = 0; i < stringtoChar.length; i++) {
