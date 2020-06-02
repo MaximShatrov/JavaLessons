@@ -42,7 +42,7 @@ class RunProgram {
         for (int i = 0; i < dataBase.length; i++) {
             if (!dataBase[i].isExistsFlag()) {
                 //создание аккаунта00
-                System.out.println("Введите логин (минимум 6 знаков):");
+                System.out.println("Придумайте логин (минимум 6 знаков):");
                 dataBase[i].setLogin(Console.scanInputLogin());
                 System.out.println("Введите свои Фамилию Имя и Отчество (через пробел):");
                 dataBase[i].setFullName(Console.scanInputFullName());
@@ -54,18 +54,18 @@ class RunProgram {
                 dataBase[i].setPassportSerial(Console.scanInputSerial());
                 System.out.println("Кем и когда выдан:");
                 dataBase[i].setPassportInfo(Console.scanInputPassportInfo());
-                System.out.println("Укажите номер телефона в формате +79ХХХХХХХХХ:");
+                System.out.println("Укажите номер телефона в формате +7ХХХХХХХХХХ:");
                 dataBase[i].setMobileNumber(Console.scanInputMobileNumber());
                 System.out.println("Укажите адрес сайта:");
-                dataBase[i].setSite(Console.scanInputSite());
+                dataBase[i].setSite(Console.scanInputString());
                 System.out.println("Укажите место работы и должность:");
                 dataBase[i].setWorkInfo(Console.scanInputString());
                 System.out.println("Напишите немного о себе:");
                 dataBase[i].setInfo(Console.scanInputString());
                 System.out.println("Выберите аватар:");
-                dataBase[i].setInfo(Console.scanInputString());
+                dataBase[i].setAvatar();
+                System.out.println("Поздравляем! Ваш аккаунт успешно создан.");
                 dataBase[i].setExistsFlag(true);                    //аккаунт создан
-
             }
         }
     }

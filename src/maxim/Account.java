@@ -4,17 +4,79 @@ import java.util.Arrays;
 import java.util.Date;
 
 class Account {
+
+    final String plane = new String("            __/\\__\n" +
+            "           `==/\\==`\n" +
+            " ____________/__\\____________\n" +
+            "/____________________________\\\n" +
+            "  __||__||__/.--.\\__||__||__\n" +
+            " /__|___|___( >< )___|___|__\\\n" +
+            "           _/`--`\\_\n" +
+            "          (/------\\)");
+    final String bat = new String("              *         *      *         *\n" +
+            "          ***          **********          ***\n" +
+            "       *****           **********           *****\n" +
+            "     *******           **********           *******\n" +
+            "   **********         ************         **********\n" +
+            "  ****************************************************\n" +
+            " ******************************************************\n" +
+            "********************************************************\n" +
+            "********************************************************\n" +
+            "********************************************************\n" +
+            " ******************************************************\n" +
+            "  ********      ************************      ********\n" +
+            "   *******       *     *********      *       *******\n" +
+            "     ******             *******              ******\n" +
+            "       *****             *****              *****\n" +
+            "          ***             ***              ***\n" +
+            "            **             *              **");
+    final String bart = new String("         ,\\ ,'\\,'\\ ,'\\ ,\\ ,\n" +
+            "    ;\\/ \\' `'     `   '  /|\n" +
+            "   |\\/                      |\n" +
+            "   :                        |\n" +
+            "   :                        |\n" +
+            "    |                       |\n" +
+            "    |                       |\n" +
+            "    :               -.     _|\n" +
+            "     :                \\     `.\n" +
+            "     |         ________:______\\\n" +
+            "     :       ,'o       / o    ;\n" +
+            "     :       \\       ,'-----./\n" +
+            "      \\_      `--.--'        )\n" +
+            "     ,` `.              ,---'|\n" +
+            "     : `                     |\n" +
+            "      `,-'                   |\n" +
+            "      /      ,---.          ,'\n" +
+            "   ,-'            `-,------'\n" +
+            "  '   `.        ,--'\n" +
+            "        `-.____/\n" +
+            "               \\");
+    final String shrek = new String("⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ \n" +
+            "⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ \n" +
+            "⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ \n" +
+            "⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n" +
+            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉");
     private StringBuilder fullName;
     private StringBuilder login;
     private Date birthDate;
     private StringBuilder city;
     private String passportSerial;
     private StringBuilder passportInfo;
-    private String mobileNumber;
+    private StringBuilder mobileNumber;
     private String site;
     private String workInfo;
     private String info;
-    private char[][] avatar;
+    private StringBuilder avatar;
     private boolean existsFlag;
 
     Account() {
@@ -26,10 +88,9 @@ class Account {
     }
 
     public void setFullName(StringBuilder fullName) {
-        if (fullName != null){
+        if (fullName != null) {
             this.fullName = fullName;
-        }
-        else{
+        } else {
 
         }
     }
@@ -74,11 +135,11 @@ class Account {
         this.passportInfo = passportInfo;
     }
 
-    public String getMobileNumber() {
+    public StringBuilder getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(String mobileNumber) {
+    public void setMobileNumber(StringBuilder mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
@@ -106,12 +167,42 @@ class Account {
         this.info = info;
     }
 
-    public char[][] getAvatar() {
+    public StringBuilder getAvatar() {
+        System.out.println(this.avatar);
         return avatar;
     }
 
-    public void setAvatar(char[][] avatar) {
-        this.avatar = avatar;
+    public void setAvatar() {
+        System.out.println("Выберите аватар:");
+        System.out.println("1.");
+        System.out.println(plane);
+        System.out.println("2.");
+        System.out.println(bat);
+        System.out.println("3.");
+        System.out.println(bart);
+        System.out.println("4.");
+        System.out.println(shrek);
+        boolean menuExit = true;
+        this.avatar.delete(0,this.avatar.length());
+        while (avatar.length() < 1) {
+            int lvlSet = Console.scanInputMenuSelect();
+            switch (lvlSet) {
+                case 1:
+                    this.avatar.append(plane);
+                    break;
+                case 2:
+                    this.avatar.append(bat);
+                    break;
+                case 3:
+                    this.avatar.append(bart);
+                    break;
+                case 4:
+                    this.avatar.append(shrek);
+                    break;
+                default:
+                    System.out.println("Некорректный пункт! Повторите ввод:");
+            }
+        }
     }
 
     public boolean isExistsFlag() {
@@ -126,17 +217,16 @@ class Account {
     public String toString() {
         return "Account{" +
                 "ФИО: '" + fullName + '\'' +
-                ", login: '" + login + '\'' +
-                ", ДР: '" + birthDate + '\'' +
-                ", Город: '" + city + '\'' +
-                ", Серя,номер пасспорта:'" + passportSerial + '\'' +
-                ", Кем выдан: '" + passportInfo + '\'' +
-                ", Моб.телефон: " + mobileNumber +
-                ", Сайт: '" + site + '\'' +
-                ", Работа: '" + workInfo + '\'' +
-                ", О себе: '" + info + '\'' +
-                ", Аватар: " + Arrays.toString(avatar) +
-                ", existsFlag=" + existsFlag +
+                "Логин: '" + login + '\'' +
+                "День рождения: '" + birthDate + '\'' +
+                "Город: '" + city + '\'' +
+                "Серия и номер пасспорта:'" + passportSerial + '\'' +
+                "Кем и когда выдан: '" + passportInfo + '\'' +
+                "Моб.телефон: " + mobileNumber +
+                "Сайт: '" + site + '\'' +
+                "Работа: '" + workInfo + '\'' +
+                "О себе: '" + info + '\'' +
+                "Аватар: " + avatar +
                 '}';
     }
 }

@@ -21,7 +21,7 @@ public class Console {
         return nextInt;
     }
 
-    static float scanInputNumbers() {
+    /*static float scanInputNumbers() {
         boolean inputFloatCheck = true;
         float nextFloat = 0;
         while (inputFloatCheck) {
@@ -36,13 +36,13 @@ public class Console {
             }
         }
         return nextFloat;
-    }
+    }*/
 
     static String scanInputString() {
         String nextString = null;
         while (nextString == null) {
             try {
-                nextString = input.next();
+                nextString = input.nextLine();
                 input.nextLine();
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
@@ -80,17 +80,25 @@ public class Console {
         return sb;
     }
 
+    private static String firstUpperCase(String word) {
+        if (word == null || word.isEmpty()) return "";
+        return word.substring(0, 1).toUpperCase() + word.substring(1);
+    }
+
     static StringBuilder scanInputFullName() {
         String[] numsAndmarks = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "?", "=", "+", "@", "#", "$", "%", "^", "&", "*", ":", ";", "_", "~", "|", "/"};
         String nextString = null;
         boolean wordsCheck = false;
         boolean numAndMarksCheck = false;
+        int firstSpace = 0;
+        int secondSpace = 0;
+        int thirdSpace = 0;
         while (nextString == null | !wordsCheck | !numAndMarksCheck) {
             try {
                 nextString = input.nextLine();
-                int firstSpace = nextString.indexOf(" ");
-                int secondSpace = nextString.indexOf(" ", firstSpace + 1);
-                int thirdSpace = nextString.indexOf(" ", secondSpace + 1);
+                firstSpace = nextString.indexOf(" ");
+                secondSpace = nextString.indexOf(" ", firstSpace + 1);
+                thirdSpace = nextString.indexOf(" ", secondSpace + 1);
                 if (secondSpace != -1 && thirdSpace == -1) {
                     wordsCheck = true;
                 } else {
@@ -114,10 +122,13 @@ public class Console {
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
+
             }
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(nextString);
+        String lastName = firstUpperCase(nextString.substring(0, firstSpace).toLowerCase());
+        String firstName = firstUpperCase(nextString.substring(firstSpace + 1, secondSpace).toLowerCase());
+        String fatherName = firstUpperCase(nextString.substring(secondSpace + 1).toLowerCase());
+        StringBuilder sb = new StringBuilder(lastName + " " + firstName + " " + fatherName);
         return sb;
     }
 
@@ -182,7 +193,8 @@ public class Console {
                 if (firstDot == 4 && secondDot == -1 && nextString.length() == 11) {
                     formatCheck = true;
                 } else {
-                    System.err.println("Серия и номер паспорта имеют формат отличный от XXXX XXXXXXX!");
+                    System.err.println("Серия и номер паспорта имеют формат отличный от XXXX XXXXXXX! Повторите ввод:");
+                    continue;
                 }
                 char[] stringtoChar = nextString.toCharArray();
                 for (int i = 0; i < stringtoChar.length; i++) {
@@ -190,12 +202,9 @@ public class Console {
                         contentCheck = true;
                     } else {
                         contentCheck = false;
-                        System.err.println("Поле содержит недопустимые знаки!");
+                        System.err.println("Поле содержит недопустимые знаки! Повторите ввод:");
                         break;
                     }
-                }
-                if (!contentCheck | !formatCheck) {
-                    System.out.println("Повторите ввод:");
                 }
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
@@ -205,14 +214,24 @@ public class Console {
         return nextString;
     }
 
+    private static StringBuilder findAndReplace(StringBuilder sb, String filter) {
+        if (sb.indexOf(filter) != -1) {
+            sb.replace(sb.indexOf(filter), (sb.indexOf(filter) + filter.length()), filter.toUpperCase());
+        }
+        return sb;
+    }
+
     public static StringBuilder scanInputPassportInfo() {
-        boolean inputCheck = true;
+        boolean inputCheck = false;
         String nextString = null;
-        while (inputCheck) {
+        while (nextString == null | !inputCheck) {
             try {
-                nextString = input.next();
-                input.nextLine();
-                inputCheck = false;
+                nextString = input.nextLine();
+                if (!nextString.isEmpty()) {
+                    inputCheck = true;
+                } else {
+                    System.err.println("Поле не должно быть пустым!  Повторите ввод:");
+                }
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
@@ -220,26 +239,51 @@ public class Console {
         }
         StringBuilder sb = new StringBuilder();
         sb.append(nextString);
+        sb = findAndReplace(sb, " ровд ");
+        sb = findAndReplace(sb, " увд ");
+        sb = findAndReplace(sb, " гровд ");
+        sb = findAndReplace(sb, " уфмс ");
+        sb = findAndReplace(sb, " оуфмс ");
         return sb;
     }
 
-    public static String scanInputMobileNumber() {
+    public static StringBuilder scanInputMobileNumber() {
+        String nums = "0123456789 ";
         boolean inputCheck = true;
+        boolean contentCheck = false;
         String nextString = null;
-        while (inputCheck) {
+        while (nextString == null | !inputCheck | !contentCheck) {
             try {
                 nextString = input.next();
-                input.nextLine();
-                inputCheck = false;
+                if (!nextString.isEmpty()) {
+                    inputCheck = true;
+                } else {
+                    System.err.println("Поле не должно быть пустым!  Повторите ввод:");
+                }
             } catch (NoSuchElementException e) {
                 System.err.println("ERROR");
                 input.nextLine();
             }
+            System.out.print("Ваш номер: +7" + nextString);
+            if (nextString.length() != 10) {
+                inputCheck = false;
+                System.out.println(" имеет неверный формат! Повторите вод:");
+                continue;
+            }
+            char[] stringtoChar = nextString.toCharArray();
+            for (int i = 0; i < stringtoChar.length; i++) {
+                if (nums.contains("" + stringtoChar[i])) {
+                    contentCheck = true;
+                } else {
+                    contentCheck = false;
+                    System.out.println(" содержит недопустимые знаки! Повторите ввод:");
+                    break;
+                }
+            }
         }
-        return nextString;
+        StringBuilder sb = new StringBuilder("+7");
+        sb.append(nextString);
+        return sb;
     }
 
-    public static String scanInputSite() {
-    }
-}
 }
