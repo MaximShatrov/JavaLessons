@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Flavors {
+public class Flavors {/*
     public static final String[][] flavorsList = new String[][]{{"Шоколадный", "Клубничный", "Банановый", "Вишнёвый", "Фисташковый"}, {"30", "30", "35", "40", "30"}};
 
     public static void main(String[] args) {
@@ -65,7 +65,7 @@ public class Flavors {
         /*for (int i = 0; i < flavourSelected[0].length; i++) {
             if (flavourSelected[0][i] != null)
                 System.out.println((i + 1) + ". " + flavourSelected[0][i] + " вкус. Стоимость " + flavourSelected[1][i] + "руб.");
-        }*/
+        }
         return flavourSelected;
     }
 
@@ -77,6 +77,6 @@ public class Flavors {
         flavourSelected[0][0] = flavorsList[0][pos];
         flavourSelected[1][0] = flavorsList[1][pos];
         return flavourSelected;
-    }
+    }*/
 }
 

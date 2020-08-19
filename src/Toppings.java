@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Toppings {
+public class Toppings {/*
     public static final String[][] toppingsList = new String[][]{{"Орехи", "Шоколад", "Фрукты", "Сироп", "Сгущёнка", "Ликер"}, {"30", "20", "15", "20", "25", "45"}};
 
     public static void main(String[] args) {
@@ -81,5 +81,5 @@ public class Toppings {
         toppingsSelected[0][1] = toppingsList[0][pos];
         toppingsSelected[1][1] = toppingsList[1][pos];
         return toppingsSelected;
-    }
+    }*/
 }

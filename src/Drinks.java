@@ -1,4 +1,4 @@
-public class Drinks {
+public class Drinks {/*
 
     public static final String[][] drinksList = new String[][]{{"Кола", "Пепси", "Лимонад", "Компот", "Липтон"}, {"45", "45", "35", "30", "50"}};
 
@@ -54,6 +54,6 @@ public class Drinks {
         }
         return drinkSelected;
     }
-
+*/
 }
 
