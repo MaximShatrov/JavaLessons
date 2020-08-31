@@ -9,12 +9,6 @@ public class Addons {
     final String[][] drinksList = new String[][]{{"Кола", "Пепси", "Лимонад", "Компот", "Липтон"}, {"45", "45", "35", "30", "50"}};
     private Scanner input = new Scanner(System.in);
 
-    /*public void main(String[] args) {
-        getFlavourList();
-        chooseFlavour(4);
-    }
-    */
-
     public void getFlavourList() {
         for (int i = 0; i < flavorsList[0].length; i++) {
             System.out.println((i + 1) + ". " + flavorsList[0][i] + " вкус. Стоимость " + flavorsList[1][i] + "руб.");
@@ -69,10 +63,6 @@ public class Addons {
             }
 
         }
-        /*for (int i = 0; i < flavourSelected[0].length; i++) {
-            if (flavourSelected[0][i] != null)
-                System.out.println((i + 1) + ". " + flavourSelected[0][i] + " вкус. Стоимость " + flavourSelected[1][i] + "руб.");
-        }*/
         return flavourSelected;
     }
 
@@ -92,7 +82,6 @@ public class Addons {
         }
         System.out.println((toppingsList[0].length + 1) + ". " + "Закончить выбор топпингов. \n");
     }
-
 
     public String[][] chooseToppings(int toppingsCount) {  //toppingsCount - максимальное кол-во топпингов в мороженном
         getToppingsList();
@@ -166,7 +155,6 @@ public class Addons {
             System.out.println((i + 1) + ". " + drinksList[0][i] + ". Стоимость " + drinksList[1][i] + "руб.");
         }
     }
-
 
     public String[][] chooseDrink() {
         System.out.println("Выберите напиток");

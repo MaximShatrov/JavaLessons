@@ -14,19 +14,19 @@ public class ExtraIcecream extends BaseIcecream {
 
     @Override
     public String toString() {
-        System.out.print("\n" + name + containerType + ". \n" +
+        String string = ("\n" + name + containerType + ". \n" +
                 "Вкусы: ");
         for (int i = 0; i < flavor.length; i++) {
             if (flavor[i] != null) {
                 if (i == 0) {
-                    System.out.print(flavor[i]);
-                } else System.out.print(", " + flavor[i]);
+                    string += (flavor[i]);
+                } else string += (", " + flavor[i]);
             }
         }
-        System.out.print(".");
-        System.out.println("\n" + "Напиток: " + drink[0] + ".");
-        System.out.println("\n" + "Итоговая стоимость: " + this.cost + " руб.");
-        return null;
+        string += (".");
+        string += ("\n" + "Напиток: " + drink[0] + ".");
+        string += ("\n" + "Итоговая стоимость: " + this.cost + " руб.");
+        return string;
     }
 }
 

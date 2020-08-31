@@ -6,7 +6,6 @@ public class BaseIcecream {
     String[] toppings;
 
 
-
     public BaseIcecream() {
 
     }
@@ -25,26 +24,26 @@ public class BaseIcecream {
 
     @Override
     public String toString() {
-        System.out.print("\n" + name + containerType + ". \n" +
+        String string = (name + containerType + ". \n" +
                 "Вкусы: ");
         for (int i = 0; i < flavor.length; i++) {
             if (flavor[i] != null) {
                 if (i == 0) {
-                    System.out.print(flavor[i]);
-                } else System.out.print(", " + flavor[i]);
+                    string += flavor[i];
+                } else string += (", " + flavor[i]);
             }
         }
-        System.out.print(".");
-        System.out.print("\n" + "Топпинги: ");
+        string += (".");
+        string += ("\n" + "Топпинги: ");
         for (int i = 0; i < toppings.length; i++) {
             if (toppings[i] != null) {
                 if (i == 0) {
-                    System.out.print(toppings[i]);
-                } else System.out.print(", " + toppings[i]);
+                    string += (toppings[i]);
+                } else string += (", " + toppings[i]);
             }
         }
-        System.out.print(".");
-        System.out.println("\n" + "Итоговая стоимость: " + this.cost + " руб.");
-        return null;
+        string += (".");
+        string += ("\n" + "Итоговая стоимость: " + this.cost + " руб.");
+        return string;
     }
 }

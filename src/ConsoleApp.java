@@ -1,50 +1,57 @@
 import java.util.Random;
 
 public class ConsoleApp {
-    //private static final int FIRST_ITEM = 1;
-    //private final int THIRD_ITEM = 3;
-    static Addons terminal = new Addons();
-    //private Scanner input = new Scanner(System.in);
-    private static String containerType;
+    private static final int FIRST_ITEM = 1;
+    private static final int SECOND_ITEM = 2;
+    private static final int THIRD_ITEM = 3;
     private static int cost = 0;
     private static Random randomValue = new Random();
+    private String containerType = null;
 
     public static void main(String[] args) {
-        //Addons terminal = new Addons();
-        System.out.println("Добро пожаловать в конструктор мороженного IcecreamApp! \n");
-        System.out.println("Какое мороженное вы хотите 'собрать'?");
-        System.out.println("1. Обычное мороженное - рожок или стаканчик, до четырёх вкусов и до четырёх топпингов;");
-        System.out.println("2. Мороженное-сюрприз - случайный выбор составляющих;");
-        System.out.println("3. Мороженное-экстра  - обычное мороженное без топпинга и напиток на выбор;");
+        Addons terminal = new Addons();
+        ConsoleApp console = new ConsoleApp();
+        System.out.println("Добро пожаловать в конструктор мороженного IcecreamApp! \n" +
+                "Какое мороженное вы хотите 'собрать'? \n");
         boolean chooseMenu = true;
         while (chooseMenu) {
+            System.out.println("1. Обычное мороженное - рожок или стаканчик, до четырёх вкусов и до четырёх топпингов; \n" +
+                    "2. Мороженное-сюрприз - случайный выбор составляющих; \n" + "3. Мороженное-экстра  - обычное мороженное без топпинга и напиток на выбор;");
             int containerSelect = terminal.scanInputMenuSelect();
             switch (containerSelect) {
-                case 1:
-                    makeBaseIcecream();
-                    chooseMenu = false;
+                case FIRST_ITEM:
+                    console.makeBaseIcecream(terminal);
                     break;
-                case 2:
-                    makeSurpriseIcecream();
-                    chooseMenu = false;
+                case SECOND_ITEM:
+                    console.makeSurpriseIcecream(terminal);
                     break;
-                case 3:
-                    makeExtraIcecream();
-                    chooseMenu = false;
+                case THIRD_ITEM:
+                    console.makeExtraIcecream(terminal);
                     break;
                 default:
                     System.err.println("Выберите пункт меню!");
             }
-
-
+            System.out.println("\nХотите собрать еще одно мороженное?" +
+                            "\n1.Да \n2.Нет");
+            containerSelect = terminal.scanInputMenuSelect();
+            switch (containerSelect) {
+                case FIRST_ITEM:
+                    System.out.println("Какое мороженное вы хотите 'собрать' cейчас? \n");
+                    break;
+                case SECOND_ITEM:
+                    chooseMenu = false;
+                    System.out.println("Завершение сеанса IcecreamApp.");
+                    break;
+            }
         }
     }
 
-    private static void makeBaseIcecream() {
+    private void makeBaseIcecream(Addons terminal) {
+        containerType = null;
         String[][] flavoursAndCost;
         String[][] toppingsAndCost;
         System.out.println("Определимся с выбором стаканчика или рожка:");
-        chooseContainerType();
+        chooseContainerType(terminal);
         System.out.println("\n" + "Пора выбирать вкусы:");
         flavoursAndCost = terminal.chooseFlavour(4);
         BaseIcecream baseIcecream = new BaseIcecream(containerType, extractAddon(flavoursAndCost), cost += extractCost(flavoursAndCost));
@@ -52,10 +59,11 @@ public class ConsoleApp {
         toppingsAndCost = terminal.chooseToppings(4);
         baseIcecream.addToppings(extractAddon(toppingsAndCost), extractCost(toppingsAndCost));
         System.out.println("Ваше мороженное из конструктора:");
-        baseIcecream.toString();
+        System.out.println(baseIcecream.toString());
     }
 
-    private static void makeSurpriseIcecream() {
+    private void makeSurpriseIcecream(Addons terminal) {
+        containerType = null;
         String[][] flavoursAndCost;
         String[][] toppingsAndCost;
         int value = 1 + randomValue.nextInt(2);
@@ -70,23 +78,25 @@ public class ConsoleApp {
         toppingsAndCost = terminal.chooseRandomToppings();
         SurpriseIcecream surpriseIcecream = new SurpriseIcecream(containerType, extractAddon(flavoursAndCost), cost += extractCost(flavoursAndCost));
         surpriseIcecream.addToppings(extractAddon(toppingsAndCost), extractCost(toppingsAndCost));
-        surpriseIcecream.toString();
+        System.out.println(surpriseIcecream.toString());
+
     }
 
-    private static void makeExtraIcecream() {
+    private void makeExtraIcecream(Addons terminal) {
+        containerType = null;
         String[][] flavoursAndCost;
         String[][] drinkAndCost;
         System.out.println("Определимся с выбором стаканчика или рожка:");
-        chooseContainerType();
+        chooseContainerType(terminal);
         System.out.println("\n" + "Пора выбирать вкусы:");
         flavoursAndCost = terminal.chooseFlavour(4);
         drinkAndCost = terminal.chooseDrink();
         ExtraIcecream extraIcecream = new ExtraIcecream(containerType, extractAddon(flavoursAndCost), extractAddon(drinkAndCost), cost += (extractCost(flavoursAndCost) + extractCost(drinkAndCost)));
         System.out.println("Ваше мороженное из конструктора:");
-        extraIcecream.toString();
+        System.out.println(extraIcecream.toString());
     }
 
-    private static String[] extractAddon(String[][] inputMassive) {
+    private String[] extractAddon(String[][] inputMassive) {
         String[] flavours = new String[4];
         for (int i = 0; i < inputMassive[0].length; i++) {
             flavours[i] = inputMassive[0][i];
@@ -94,7 +104,7 @@ public class ConsoleApp {
         return flavours;
     }
 
-    private static int extractCost(String[][] inputMassive) {
+    private int extractCost(String[][] inputMassive) {
         int toppingsCost = 0;
         for (int i = 0; i < inputMassive[0].length; i++) {
             if (inputMassive[1][i] != null) {
@@ -104,7 +114,7 @@ public class ConsoleApp {
         return toppingsCost;
     }
 
-    private static void chooseContainerType() {
+    private void chooseContainerType(Addons terminal) {
         System.out.println("1.Стаканчик     5 руб. \n" +
                 "2.Рожок        15 руб.");
         while (containerType == null) {
@@ -123,15 +133,4 @@ public class ConsoleApp {
             }
         }
     }
-
-    /*static int scanInputMenuSelect() {
-        int nextInt = 0;
-        try {
-            nextInt = input.nextInt();
-            input.nextLine();
-        } catch (InputMismatchException e) {
-            input.nextLine();
-        }
-        return nextInt;
-    }*/
 }
