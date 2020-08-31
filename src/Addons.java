@@ -17,10 +17,10 @@ public class Addons {
     }
 
 
-    public String[][] chooseFlavour(int flavoursCount) {  //flavoursCount - максимальное кол-во вкусов в мороженном
+    public String[][] chooseFlavour() {  //flavoursCount - максимальное кол-во вкусов в мороженном
         getFlavourList();
         String[][] flavourSelected;
-        flavourSelected = new String[2][flavoursCount];
+        flavourSelected = new String[2][4];
         boolean endSelection = true;
         for (int i = 0; i < flavourSelected[0].length; i++) {
             boolean selectorCorrect = true;
@@ -83,10 +83,10 @@ public class Addons {
         System.out.println((toppingsList[0].length + 1) + ". " + "Закончить выбор топпингов. \n");
     }
 
-    public String[][] chooseToppings(int toppingsCount) {  //toppingsCount - максимальное кол-во топпингов в мороженном
+    public String[][] chooseToppings() {  //toppingsCount - максимальное кол-во топпингов в мороженном
         getToppingsList();
         String[][] toppingsSelected;
-        toppingsSelected = new String[2][toppingsCount];
+        toppingsSelected = new String[2][4];
         boolean endSelection = true;
         for (int i = 0; i < toppingsSelected[0].length; i++) {
             boolean selectorCorrect = true;

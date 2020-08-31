@@ -1,5 +1,5 @@
 public class BaseIcecream {
-    String name;
+    String name = "Мороженное ";
     String containerType;
     String[] flavor;
     int cost;
@@ -14,7 +14,13 @@ public class BaseIcecream {
         this.containerType = type;
         this.flavor = flavor;
         this.cost = cost;
-        this.name = "Мороженное ";
+    }
+
+    public BaseIcecream(String type, String[] flavor, int cost, String name) {
+        this.containerType = type;
+        this.flavor = flavor;
+        this.cost = cost;
+        this.name = name;
     }
 
     public void addToppings(String[] toppings, int cost) {
@@ -24,7 +30,7 @@ public class BaseIcecream {
 
     @Override
     public String toString() {
-        String string = (name + containerType + ". \n" +
+        String string = (this.name + containerType + ". \n" +
                 "Вкусы: ");
         for (int i = 0; i < flavor.length; i++) {
             if (flavor[i] != null) {

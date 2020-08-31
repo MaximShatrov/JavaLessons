@@ -53,13 +53,12 @@ public class ConsoleApp {
         System.out.println("Определимся с выбором стаканчика или рожка:");
         chooseContainerType(terminal);
         System.out.println("\n" + "Пора выбирать вкусы:");
-        flavoursAndCost = terminal.chooseFlavour(4);
+        flavoursAndCost = terminal.chooseFlavour();
         BaseIcecream baseIcecream = new BaseIcecream(containerType, extractAddon(flavoursAndCost), cost += extractCost(flavoursAndCost));
         System.out.println("\n" + "Осталось только выбрать топпинги:");
-        toppingsAndCost = terminal.chooseToppings(4);
+        toppingsAndCost = terminal.chooseToppings();
         baseIcecream.addToppings(extractAddon(toppingsAndCost), extractCost(toppingsAndCost));
-        System.out.println("Ваше мороженное из конструктора:");
-        System.out.println(baseIcecream.toString());
+        System.out.println("Ваше мороженное из конструктора:\n" + baseIcecream.toString());
     }
 
     private void makeSurpriseIcecream(Addons terminal) {
@@ -78,7 +77,7 @@ public class ConsoleApp {
         toppingsAndCost = terminal.chooseRandomToppings();
         SurpriseIcecream surpriseIcecream = new SurpriseIcecream(containerType, extractAddon(flavoursAndCost), cost += extractCost(flavoursAndCost));
         surpriseIcecream.addToppings(extractAddon(toppingsAndCost), extractCost(toppingsAndCost));
-        System.out.println(surpriseIcecream.toString());
+        System.out.println("Ваше мороженное из конструктора:\n" + surpriseIcecream.toString());
 
     }
 
@@ -89,11 +88,10 @@ public class ConsoleApp {
         System.out.println("Определимся с выбором стаканчика или рожка:");
         chooseContainerType(terminal);
         System.out.println("\n" + "Пора выбирать вкусы:");
-        flavoursAndCost = terminal.chooseFlavour(4);
+        flavoursAndCost = terminal.chooseFlavour();
         drinkAndCost = terminal.chooseDrink();
         ExtraIcecream extraIcecream = new ExtraIcecream(containerType, extractAddon(flavoursAndCost), extractAddon(drinkAndCost), cost += (extractCost(flavoursAndCost) + extractCost(drinkAndCost)));
-        System.out.println("Ваше мороженное из конструктора:");
-        System.out.println(extraIcecream.toString());
+        System.out.println("Ваше мороженное из конструктора:\n" + extraIcecream.toString());
     }
 
     private String[] extractAddon(String[][] inputMassive) {
