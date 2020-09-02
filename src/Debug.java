@@ -4,8 +4,8 @@ public class Debug {
     static Random random = new Random();
 
     public static void main(String[] args) {
-       Squad alphaSquad = new Squad(10,"Alpha");
-       alphaSquad.squadList(alphaSquad);
+        Squad alphaSquad = new Squad(10, "Alpha");
+        alphaSquad.squadList(alphaSquad);
     }
 
     private static int value() {

@@ -1,6 +1,6 @@
 package Units;
 
-public class Viking implements Warrior{
+public class Viking implements Warrior {
     private int health = 150;
     private int damage = 15;
     private String squadName;
@@ -15,6 +15,10 @@ public class Viking implements Warrior{
     @Override
     public int attack() {
         return damage;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class Viking implements Warrior{
     @Override
     public String toString() {      //Переопределить метод toString() класса Object для бойца, чтобы он выводил его
         // имя, класс и принадлежность к отряду.
-        return ("Викинг " + warriorName + "из отряда " + squadName + ".");
+        return ("Викинг " + warriorName + " из отряда " + squadName + ".");
     }
 
 

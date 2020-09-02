@@ -62,9 +62,9 @@ public class Squad {
         return generatedUnit;
     }
 
-    public void squadList(Squad squad){
-        for (int i=0;i<squad.massive.length;i++){
-            System.out.println(squad.massive.toString());
+    public void squadList(Squad squad) {
+        for (int i = 0; i < squad.massive.length; i++) {
+            System.out.println((i + 1) + ". " + squad.massive[i].toString() + " Здоровье: " + squad.massive[i].getHealth() );
         }
     }
 

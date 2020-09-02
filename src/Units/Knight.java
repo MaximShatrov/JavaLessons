@@ -1,6 +1,6 @@
 package Units;
 
-public class Knight implements Warrior{
+public class Knight implements Warrior {
     private int health = 110;
     private int damage = 10;
     private String squadName;
@@ -15,6 +15,10 @@ public class Knight implements Warrior{
     @Override
     public int attack() {
         return damage;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class Knight implements Warrior{
     @Override
     public String toString() {      //Переопределить метод toString() класса Object для бойца, чтобы он выводил его
         // имя, класс и принадлежность к отряду.
-        return ("Рыцарь " + warriorName + "из отряда " + squadName + ".");
+        return ("Рыцарь " + warriorName + " из отряда " + squadName + ".");
     }
 
 

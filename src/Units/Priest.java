@@ -17,6 +17,10 @@ public class Priest implements Warrior {
         return damage;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     @Override
     public void takeDamage(int damage) {
         this.health -= damage;
@@ -37,7 +41,7 @@ public class Priest implements Warrior {
     @Override
     public String toString() {      //Переопределить метод toString() класса Object для бойца, чтобы он выводил его
         // имя, класс и принадлежность к отряду.
-        return ("Прист " + warriorName + "из отряда " + squadName + ".");
+        return ("Прист " + warriorName + " из отряда " + squadName + ".");
     }
 
 
