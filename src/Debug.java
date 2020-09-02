@@ -2,10 +2,13 @@ import java.util.Random;
 
 public class Debug {
     static Random random = new Random();
+    private int first = 100;
 
     public static void main(String[] args) {
-        Squad alphaSquad = new Squad(10, "Alpha");
-        alphaSquad.squadList(alphaSquad);
+        Debug debug = new Debug();
+        int first = 100;
+        debug.sample(first);
+        System.out.println(first);
     }
 
     private static int value() {
@@ -15,5 +18,10 @@ public class Debug {
         randomInt = random.nextInt(4);
         System.out.println(randomInt);
         return randomInt;
+    }
+
+    private int sample(int input){
+        return input -=10;
+
     }
 }

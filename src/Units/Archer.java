@@ -41,7 +41,7 @@ public class Archer implements Warrior {
     @Override
     public String toString() {      //Переопределить метод toString() класса Object для бойца, чтобы он выводил его
         // имя, класс и принадлежность к отряду.
-        return ("Лучник " + warriorName + " из отряда " + squadName + ".");
+        return ("Лучник " + warriorName + " из отряда " + squadName);
     }
 
 

@@ -6,46 +6,63 @@
 команды и так далее до победы. В конце вывести имя победившего отряда и общее время поединка.
 */
 
+import Units.Warrior;
+
 import java.util.Scanner;
 
 public class Battle {
     private Squad alpha;
     private Squad omega;
-    private Scanner input = new Scanner();
+
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Warrior attackWarrior1;
+        Warrior attackWarrior2;
         //System.out.println("Симулятор битвы v1.0. \nВведите численность отряда Альфа:");
-        int alphaQntty = 10;
+        int alphaQntty = 5;
         //System.out.println("\nВведите численность отряда Омега:");
-        int omegaQntty = 10;
+        int omegaQntty = 5;
         Squad alpha = new Squad(alphaQntty, "Альфа");
         Squad omega = new Squad(omegaQntty, "Омега");
         DateHelper timeLine = new DateHelper();
 
-        System.out.println("Битва началась " + timeLine.getFormattedStartDate()+" года.");
+        System.out.println("Битва началась в " + timeLine.getFormattedStartDate() + " года.");
         while (alpha.hasAliveWarriors(alpha) && omega.hasAliveWarriors(omega)) {       // T && T = T
-            omega.getRandomWarrior(omega).takeDamage(alpha.getRandomWarrior(alpha).attack());
-            if (!omega.hasAliveWarriors(omega)) {
-                System.out.println("Победил отряд " + alpha.toString() + "!!!\nПродолжительность битвы составила: "
-                        + timeLine.getFormattedDiff() + " минут.");
-            }
-            System.out.println("Для следующей атаки нажмите ENTER.");
+            if (attack(alpha, omega, timeLine)) break;
+            /*System.out.println("Для следующей атаки нажмите ENTER.");
+            input.nextLine();*/
 
             timeLine.skipTime();
-            alpha.getRandomWarrior(alpha).takeDamage(alpha.getRandomWarrior(omega).attack());
-            if (!alpha.hasAliveWarriors(alpha)) {
-                System.out.println("Победил отряд " + omega.toString() + "!!!\nПродолжительность битвы составила: "
-                        + timeLine.getFormattedDiff() + " минут.");
-            }
+            if (attack(alpha, omega, timeLine)) break;
+            System.out.println("\n\n" + timeLine.getFormattedCurrentTime());
             timeLine.skipTime();
+            /*System.out.println("Для следующей атаки нажмите ENTER.");
+            input.nextLine();*/
+
 
         }
     }
 
-    /*private Squad squadAttack(Squad squad1, Squad squad2){
-        squad2.getRandomWarrior(squad2).takeDamage(squad1.getRandomWarrior(squad1).attack());
-        if (!squad2.hasAliveWarriors(squad2)){
-            System.out.println("Победил отряд " + squad1.toString() + "!!!");
+    private static boolean attack(Squad alpha, Squad omega, DateHelper timeLine) {
+        Warrior attackWarrior1;
+        Warrior attackWarrior2;
+        attackWarrior1 = alpha.getRandomWarrior(alpha);
+        attackWarrior2 = omega.getRandomWarrior(omega);
+        attackWarrior2.takeDamage(attackWarrior1.attack());
+        System.out.print("\n" + attackWarrior1.toString() + " проводит атаку, нанося " + attackWarrior1.attack() + " очков урона.\n"
+                + attackWarrior2.toString());
+        if (attackWarrior2.getHealth() > 0) {
+            System.out.print(" защишается. Его здоровье составляет " + attackWarrior2.getHealth() + "HP.");
+        } else {
+            System.out.print(" получает смертельный урон.");
         }
-        return
-    }*/
+        alpha.returnRandomWarrior(alpha, attackWarrior1);
+        omega.returnRandomWarrior(omega, attackWarrior2);
+        if (!omega.hasAliveWarriors(omega)) {
+            System.out.println("\n\nПобедил отряд " + alpha.toString() + "!!!\nПродолжительность битвы составила: "
+                    + timeLine.getFormattedDiff() + " минут.");
+            return true;
+        }
+        return false;
+    }
 }

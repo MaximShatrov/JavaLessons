@@ -1,4 +1,3 @@
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +10,10 @@ public class DateHelper {
     private Date battleTime;
     private Date battleBeginTime;
     private Calendar calendar = Calendar.getInstance();
-    private DateFormat df = new SimpleDateFormat("dd MMMM YYY");
+    private DateFormat dfFull = new SimpleDateFormat("HH:mm, dd MMMM YYY");
+    private DateFormat dfTimeOnly = new SimpleDateFormat("HH:mm");
+    //private DateFormat dfFull = new SimpleDateFormat("dd MMMM YYY");
+
 
     {
         calendar.add(Calendar.YEAR, -1500);
@@ -27,7 +29,7 @@ public class DateHelper {
         //возвращает отформатированную
         //(в формате на ваш выбор) дату и время начала сражения.
         //Дата должна соответствовать текущей минус 1500 лет.
-        return df.format(battleBeginTime);
+        return dfFull.format(battleBeginTime);
     }
 
     public void skipTime() {
@@ -35,6 +37,13 @@ public class DateHelper {
         battleTime = calendar.getTime();
         //проматывает константное время (длительность)
         // одного раунда сражения, например, 45 минут
+    }
+
+    public String getFormattedCurrentTime() {
+        //возвращает отформатированную
+        //(в формате на ваш выбор) дату и время начала сражения.
+        //Дата должна соответствовать текущей минус 1500 лет.
+        return dfTimeOnly.format(battleTime);
     }
 
     public long getFormattedDiff() {                //Возвращает значение равное колличеству прошедших минут боя
