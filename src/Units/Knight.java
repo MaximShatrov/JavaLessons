@@ -41,7 +41,7 @@ public class Knight implements Warrior {
     @Override
     public String toString() {      //Переопределить метод toString() класса Object для бойца, чтобы он выводил его
         // имя, класс и принадлежность к отряду.
-        return ("Рыцарь " + warriorName + " из отряда " + squadName + ".");
+        return ("Рыцарь " + warriorName + " из отряда " + squadName);
     }
 
 

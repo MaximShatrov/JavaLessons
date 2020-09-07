@@ -33,33 +33,33 @@ public class Squad {
     }
 */
 
-    public Warrior getRandomWarrior(Squad squad) {
-        int randomUnit = random.nextInt(squad.massive.length - 1);
+    public Warrior getRandomWarrior() {
+        int randomUnit = random.nextInt(massive.length - 1);
         while (true) {
-            if (squad.massive[randomUnit].isAlive()) {
-                squad.massive[squad.massive.length - 1] = squad.massive[randomUnit];
-                squad.massive[randomUnit] = null;
-                return squad.massive[squad.massive.length - 1];
+            if (massive[randomUnit].isAlive()) {
+                massive[massive.length - 1] = massive[randomUnit];
+                massive[randomUnit] = null;
+                return massive[massive.length - 1];
             } else {
-                randomUnit = random.nextInt(squad.massive.length-1);
+                randomUnit = random.nextInt(massive.length-1);
             }
         }
 
     }
 
-    public void returnRandomWarrior(Squad squad, Warrior warrior){
-        for (int i=0; i<squad.massive.length - 1;i++){
-            if (squad.massive[i]==null){
-                squad.massive[i] = warrior;
-                squad.massive[squad.massive.length-1] = null;
+    public void returnRandomWarrior(Warrior warrior){
+        for (int i=0; i<massive.length - 1;i++){
+            if (massive[i]==null){
+                massive[i] = warrior;
+                massive[massive.length-1] = null;
             }
         }
     }
 
 
-    public boolean hasAliveWarriors(Squad squad) {
-        for (int i = 0; i < squad.massive.length-1; i++) {
-            if (squad.massive[i].isAlive()) {
+    public boolean hasAliveWarriors() {
+        for (int i = 0; i < massive.length-1; i++) {
+            if (massive[i].isAlive()) {
                 return true;
             }
         }
@@ -88,9 +88,9 @@ public class Squad {
         return generatedUnit;
     }
 
-    public void squadList(Squad squad) {
-        for (int i = 0; i < squad.massive.length-1; i++) {
-            System.out.println((i + 1) + ". " + squad.massive[i].toString() + " Здоровье: " + squad.massive[i].getHealth());
+    public void squadList( ) {
+        for (int i = 0; i < massive.length-1; i++) {
+            System.out.println((i + 1) + ". " + massive[i].toString() + " Здоровье: " + massive[i].getHealth());
         }
     }
 
