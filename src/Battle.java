@@ -28,12 +28,15 @@ public class Battle {
 
         System.out.println("Битва началась в " + timeLine.getFormattedStartDate() + " года.");
         while (alpha.hasAliveWarriors(alpha) && omega.hasAliveWarriors(omega)) {       // T && T = T
-            if (attack(alpha, omega, timeLine)) break;
+            Battle battle = new Battle();
+            if (battle.attack(alpha, omega, timeLine)) break;
             /*System.out.println("Для следующей атаки нажмите ENTER.");
             input.nextLine();*/
 
             timeLine.skipTime();
-            if (attack(alpha, omega, timeLine)) break;
+            if (battle.attack(alpha, omega, timeLine)) {
+                break;
+            }
             System.out.println("\n\n" + timeLine.getFormattedCurrentTime());
             timeLine.skipTime();
             /*System.out.println("Для следующей атаки нажмите ENTER.");
@@ -43,7 +46,7 @@ public class Battle {
         }
     }
 
-    private static boolean attack(Squad alpha, Squad omega, DateHelper timeLine) {
+    private boolean attack(Squad alpha, Squad omega, DateHelper timeLine) {
         Warrior attackWarrior1;
         Warrior attackWarrior2;
         attackWarrior1 = alpha.getRandomWarrior(alpha);
@@ -54,7 +57,7 @@ public class Battle {
         if (attackWarrior2.getHealth() > 0) {
             System.out.print(" защишается. Его здоровье составляет " + attackWarrior2.getHealth() + "HP.");
         } else {
-            System.out.print(" получает смертельный урон.");
+            System.err.print(" получает смертельный урон.");
         }
         alpha.returnRandomWarrior(alpha, attackWarrior1);
         omega.returnRandomWarrior(omega, attackWarrior2);
