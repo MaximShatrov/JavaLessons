@@ -1,10 +1,9 @@
 public class ExtraIcecream extends BaseIcecream {
-    String[] drink;
+    private String[] drink;
 
     public ExtraIcecream(String type, String[] flavor, String[] drink, int cost) {
-        super(type, flavor, cost);
+        super(type, flavor, cost, "Мороженое-экстра ");
         this.drink = drink;
-        this.name = "Мороженое-экстра ";
     }
 
     @Override
@@ -14,8 +13,9 @@ public class ExtraIcecream extends BaseIcecream {
 
     @Override
     public String toString() {
-        String string = ("\n" + name + containerType + ". \n" +
+        String string = ("\n" + getName() + getContainerType() + ". \n" +
                 "Вкусы: ");
+        String[] flavor = getFlavor();
         for (int i = 0; i < flavor.length; i++) {
             if (flavor[i] != null) {
                 if (i == 0) {
@@ -25,7 +25,7 @@ public class ExtraIcecream extends BaseIcecream {
         }
         string += (".");
         string += ("\n" + "Напиток: " + drink[0] + ".");
-        string += ("\n" + "Итоговая стоимость: " + this.cost + " руб.");
+        string += ("\n" + "Итоговая стоимость: " + getCost() + " руб.");
         return string;
     }
 }

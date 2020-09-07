@@ -1,10 +1,9 @@
 public class BaseIcecream {
-    String name = "Мороженное ";
-    String containerType;
-    String[] flavor;
-    int cost;
-    String[] toppings;
-
+    private String name;
+    private String containerType;
+    private String[] flavor;
+    private int cost;
+    private String[] toppings;
 
     public BaseIcecream() {
 
@@ -14,18 +13,39 @@ public class BaseIcecream {
         this.containerType = type;
         this.flavor = flavor;
         this.cost = cost;
+        setName("Мороженное ");
     }
 
     public BaseIcecream(String type, String[] flavor, int cost, String name) {
         this.containerType = type;
         this.flavor = flavor;
         this.cost = cost;
-        this.name = name;
+        setName(name);
     }
 
     public void addToppings(String[] toppings, int cost) {
         this.toppings = toppings;
         this.cost = this.cost + cost;
+    }
+
+    public String getContainerType() {
+        return containerType;
+    }
+
+    public String[] getFlavor() {
+        return flavor;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

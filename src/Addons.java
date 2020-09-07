@@ -4,10 +4,17 @@ import java.util.Scanner;
 
 public class Addons {
 
-    final String[][] flavorsList = new String[][]{{"Шоколадный", "Клубничный", "Банановый", "Вишнёвый", "Фисташковый"}, {"30", "30", "35", "40", "30"}};
-    final String[][] toppingsList = new String[][]{{"Орехи", "Шоколад", "Фрукты", "Сироп", "Сгущёнка", "Ликер"}, {"30", "20", "15", "20", "25", "45"}};
-    final String[][] drinksList = new String[][]{{"Кола", "Пепси", "Лимонад", "Компот", "Липтон"}, {"45", "45", "35", "30", "50"}};
+    private final String[][] flavorsList = new String[][]{{"Шоколадный", "Клубничный", "Банановый", "Вишнёвый", "Фисташковый"}, {"30", "30", "35", "40", "30"}};
+    private final String[][] toppingsList = new String[][]{{"Орехи", "Шоколад", "Фрукты", "Сироп", "Сгущёнка", "Ликер"}, {"30", "20", "15", "20", "25", "45"}};
+    private final String[][] drinksList = new String[][]{{"Кола", "Пепси", "Лимонад", "Компот", "Липтон"}, {"45", "45", "35", "30", "50"}};
     private Scanner input = new Scanner(System.in);
+    private final int FIRST_CASE_SELECT = 1;
+    private final int SECOND_CASE_SELECT = 2;
+    private final int THIRD_CASE_SELECT = 3;
+    private final int FOURTH_CASE_SELECT = 4;
+    private final int FIFTH_CASE_SELECT = 5;
+    private final int SIX_CASE_SELECT = 6;
+    private final int SEVEN_CASE_SELECT = 7;
 
     public void getFlavourList() {
         for (int i = 0; i < flavorsList[0].length; i++) {
@@ -28,32 +35,32 @@ public class Addons {
                 System.out.println("Выберите " + (i + 1) + "й вкус");
                 int containerSelect = scanInputMenuSelect();
                 switch (containerSelect) {
-                    case 1:
+                    case FIRST_CASE_SELECT:
                         flavourSelected[0][i] = flavorsList[0][0];
                         flavourSelected[1][i] = flavorsList[1][0];
                         selectorCorrect = false;
                         break;
-                    case 2:
+                    case SECOND_CASE_SELECT:
                         flavourSelected[0][i] = flavorsList[0][1];
                         flavourSelected[1][i] = flavorsList[1][1];
                         selectorCorrect = false;
                         break;
-                    case 3:
+                    case THIRD_CASE_SELECT:
                         flavourSelected[0][i] = flavorsList[0][2];
                         flavourSelected[1][i] = flavorsList[1][2];
                         selectorCorrect = false;
                         break;
-                    case 4:
+                    case FOURTH_CASE_SELECT:
                         flavourSelected[0][i] = flavorsList[0][3];
                         flavourSelected[1][i] = flavorsList[1][3];
                         selectorCorrect = false;
                         break;
-                    case 5:
+                    case FIFTH_CASE_SELECT:
                         flavourSelected[0][i] = flavorsList[0][4];
                         flavourSelected[1][i] = flavorsList[1][4];
                         selectorCorrect = false;
                         break;
-                    case 6:
+                    case SIX_CASE_SELECT:
                         System.out.println("Выбор вкусов завершён. \n");
                         endSelection = false;
                         break;
@@ -83,7 +90,7 @@ public class Addons {
         System.out.println((toppingsList[0].length + 1) + ". " + "Закончить выбор топпингов. \n");
     }
 
-    public String[][] chooseToppings() {  //toppingsCount - максимальное кол-во топпингов в мороженном
+    public String[][] chooseToppings() {
         getToppingsList();
         String[][] toppingsSelected;
         toppingsSelected = new String[2][4];
@@ -94,37 +101,37 @@ public class Addons {
                 System.out.println("Выберите " + (i + 1) + "й топпинг:");
                 int containerSelect = scanInputMenuSelect();
                 switch (containerSelect) {
-                    case 1:
+                    case FIRST_CASE_SELECT:
                         toppingsSelected[0][i] = toppingsList[0][0];
                         toppingsSelected[1][i] = toppingsList[1][0];
                         selectorCorrect = false;
                         break;
-                    case 2:
+                    case SECOND_CASE_SELECT:
                         toppingsSelected[0][i] = toppingsList[0][1];
                         toppingsSelected[1][i] = toppingsList[1][1];
                         selectorCorrect = false;
                         break;
-                    case 3:
+                    case THIRD_CASE_SELECT:
                         toppingsSelected[0][i] = toppingsList[0][2];
                         toppingsSelected[1][i] = toppingsList[1][2];
                         selectorCorrect = false;
                         break;
-                    case 4:
+                    case FOURTH_CASE_SELECT:
                         toppingsSelected[0][i] = toppingsList[0][3];
                         toppingsSelected[1][i] = toppingsList[1][3];
                         selectorCorrect = false;
                         break;
-                    case 5:
+                    case FIFTH_CASE_SELECT:
                         toppingsSelected[0][i] = toppingsList[0][4];
                         toppingsSelected[1][i] = toppingsList[1][4];
                         selectorCorrect = false;
                         break;
-                    case 6:
+                    case SIX_CASE_SELECT:
                         toppingsSelected[0][i] = toppingsList[0][5];
                         toppingsSelected[1][i] = toppingsList[1][5];
                         selectorCorrect = false;
                         break;
-                    case 7:
+                    case SEVEN_CASE_SELECT:
                         System.out.println("Выбор топпингов завершён. \n");
                         endSelection = false;
                         break;
@@ -165,27 +172,27 @@ public class Addons {
         while (selectorCorrect) {
             int containerSelect = scanInputMenuSelect();
             switch (containerSelect) {
-                case 1:
+                case FIRST_CASE_SELECT:
                     drinkSelected[0][0] = drinksList[0][0];
                     drinkSelected[1][0] = drinksList[1][0];
                     selectorCorrect = false;
                     break;
-                case 2:
+                case SECOND_CASE_SELECT:
                     drinkSelected[0][0] = drinksList[0][1];
                     drinkSelected[1][0] = drinksList[1][1];
                     selectorCorrect = false;
                     break;
-                case 3:
+                case THIRD_CASE_SELECT:
                     drinkSelected[0][0] = drinksList[0][2];
                     drinkSelected[1][0] = drinksList[1][2];
                     selectorCorrect = false;
                     break;
-                case 4:
+                case FOURTH_CASE_SELECT:
                     drinkSelected[0][0] = drinksList[0][3];
                     drinkSelected[1][0] = drinksList[1][3];
                     selectorCorrect = false;
                     break;
-                case 5:
+                case FIFTH_CASE_SELECT:
                     drinkSelected[0][0] = drinksList[0][4];
                     drinkSelected[1][0] = drinksList[1][4];
                     selectorCorrect = false;
