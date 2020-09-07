@@ -19,21 +19,7 @@ public class Squad {
         }
     }
 
-/*
-    public Warrior getRandomWarrior(Squad squad) {
-        int randomUnit = random.nextInt(squad.massive.length);
-        while (true) {
-            if (squad.massive[randomUnit].isAlive()) {
-                return squad.massive[randomUnit];
-            } else {
-                randomUnit = random.nextInt(squad.massive.length);
-            }
-        }
-
-    }
-*/
-
-    public Warrior getRandomWarrior() {
+    Warrior getRandomWarrior() {
         int randomUnit = random.nextInt(massive.length - 1);
         while (true) {
             if (massive[randomUnit].isAlive()) {
@@ -47,7 +33,7 @@ public class Squad {
 
     }
 
-    public void returnRandomWarrior(Warrior warrior){
+    void returnRandomWarrior(Warrior warrior){
         for (int i=0; i<massive.length - 1;i++){
             if (massive[i]==null){
                 massive[i] = warrior;
@@ -57,7 +43,7 @@ public class Squad {
     }
 
 
-    public boolean hasAliveWarriors() {
+    boolean hasAliveWarriors() {
         for (int i = 0; i < massive.length-1; i++) {
             if (massive[i].isAlive()) {
                 return true;

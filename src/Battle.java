@@ -8,16 +8,9 @@
 
 import Units.Warrior;
 
-import java.util.Scanner;
-
 public class Battle {
-    private Squad alpha;
-    private Squad omega;
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Warrior attackWarrior1;
-        Warrior attackWarrior2;
         //System.out.println("Симулятор битвы v1.0. \nВведите численность отряда Альфа:");
         int alphaQntty = 3;
         //System.out.println("\nВведите численность отряда Омега:");

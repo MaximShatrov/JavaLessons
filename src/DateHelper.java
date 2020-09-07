@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class DateHelper {
+class DateHelper {
 
     private Date now = new Date();
     private Date battleTime;
@@ -21,32 +21,32 @@ public class DateHelper {
         battleBeginTime = battleTime;
     }
 
-    public DateHelper() {
+    DateHelper() {
 
     }
 
-    public String getFormattedStartDate() {
+    String getFormattedStartDate() {
         //возвращает отформатированную
         //(в формате на ваш выбор) дату и время начала сражения.
         //Дата должна соответствовать текущей минус 1500 лет.
         return dfFull.format(battleBeginTime);
     }
 
-    public void skipTime() {
+    void skipTime() {
         calendar.add(Calendar.MINUTE, 45);
         battleTime = calendar.getTime();
         //проматывает константное время (длительность)
         // одного раунда сражения, например, 45 минут
     }
 
-    public String getFormattedCurrentTime() {
+    String getFormattedCurrentTime() {
         //возвращает отформатированную
         //(в формате на ваш выбор) дату и время начала сражения.
         //Дата должна соответствовать текущей минус 1500 лет.
         return dfTimeOnly.format(battleTime);
     }
 
-    public long getFormattedDiff() {                //Возвращает значение равное колличеству прошедших минут боя
+    long getFormattedDiff() {                //Возвращает значение равное колличеству прошедших минут боя
         TimeUnit timeUnit = TimeUnit.MINUTES;
         //возвращает отформатированную (в формате на ваш выбор) длительность сражения, как разницу между
         //временем, на которое проматывалось время сражения, и временем начала сражения.
