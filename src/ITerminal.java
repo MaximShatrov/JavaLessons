@@ -1,6 +1,6 @@
 public interface ITerminal {
 
-    String getAccountInfo();
+    String getAccountBalance();
 
     void getMoney();
 

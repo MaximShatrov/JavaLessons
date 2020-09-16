@@ -1,7 +1,7 @@
 public class Console implements ITerminal {
 
     @Override
-    public String getAccountInfo() {
+    public String getAccountBalance() {
         return null;
     }
 
