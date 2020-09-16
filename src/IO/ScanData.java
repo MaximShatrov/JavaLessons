@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ScanData {
 
-    public static int inputInt(Scanner input) {
+    public int inputInt(Scanner input) {
         int nextInt = 0;
         boolean incorrectInputCheck = true;
         while(incorrectInputCheck){
