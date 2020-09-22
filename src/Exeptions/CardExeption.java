@@ -6,4 +6,3 @@ public class CardExeption extends Exception {
         super(message);
     }
 }
-/*я люблю тебя, малыш !!! */
