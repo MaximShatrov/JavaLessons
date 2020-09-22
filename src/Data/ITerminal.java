@@ -1,3 +1,7 @@
+package Data;
+
+import java.io.IOException;
+
 public interface ITerminal {
 
     String getAccountBalance();
@@ -6,7 +10,7 @@ public interface ITerminal {
 
     void addMoney();
 
-    void makeNewClient();
+    void makeNewClient() throws IOException;
 
     void deleteClient();
 

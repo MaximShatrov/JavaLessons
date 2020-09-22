@@ -1,6 +1,8 @@
 package Data;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     private String number;
     private String clientID;
 

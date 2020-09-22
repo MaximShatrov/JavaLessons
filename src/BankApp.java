@@ -1,3 +1,4 @@
+import Data.ITerminal;
 import IO.PrintData;
 import IO.ScanData;
 

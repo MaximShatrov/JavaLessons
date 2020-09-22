@@ -20,4 +20,23 @@ public class ScanData {
         }
         return nextInt;
     }
+
+    public String inputString(){
+        Scanner input = new Scanner(System.in);
+        String nextString = null;
+        boolean incorrectInputCheck = true;
+        while(incorrectInputCheck){
+            try {
+                nextString = input.next();
+                input.nextLine();
+                if (nextString != null){
+                    incorrectInputCheck = false;
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Что-то пошло не так...");
+                input.nextLine();
+            }
+        }
+        return nextString;
+    }
 }
