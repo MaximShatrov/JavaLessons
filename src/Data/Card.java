@@ -6,7 +6,8 @@ public class Card implements Serializable {
     private String number;
     private String clientID;
 
-    Card(String number, String clientID){
-
+    public Card(String number, String clientID) {
+        this.number = number;
+        this.clientID = clientID;
     }
 }
