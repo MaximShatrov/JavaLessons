@@ -1,22 +1,23 @@
 package Data;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public interface ITerminal {
 
-    String getAccountBalance();
+    void getAccountBalance();
 
-    void getMoney();
+    void getMoney(Scanner input);
 
-    void addMoney();
+    void addMoney(Scanner input);
 
-    void makeNewClient() throws IOException;
+    void makeNewClient();
 
-    void deleteClient();
+    boolean deleteClient(Scanner input);
 
     void addCard();
 
     void removeCard();
 
-
+    boolean clientAuthorization();
 }
