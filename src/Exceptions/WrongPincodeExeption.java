@@ -1,4 +1,4 @@
-package Exeptions;
+package Exceptions;
 
 public class WrongPincodeExeption extends CardExeption {
     public WrongPincodeExeption(int attempt) {
