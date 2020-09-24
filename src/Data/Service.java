@@ -23,18 +23,25 @@ public class Service implements ITerminal {
     public Service() {  //первичная инициализация массивов
         File cardDBFile = new File("./src/CardDataBase");
         File clientDBFile = new File("./src/ClientDataBase");
-        if (cardDBFile.length() == 0 || clientDBFile.length() == 0) {
+        if (cardDBFile.length() == 0) {
             cardDB = new ArrayList<Card>();
-            clientDB = new ArrayList<Client>();
-        } else if (cardDBFile.length() == 0 && clientDBFile.length() != 0) {
-            cardDB = new ArrayList<Card>();
-            //System.out.println("Файлы картДБ пусты. Созданы новые массивы.");   //debug msg
-        } else if (cardDBFile.length() != 0 && clientDBFile.length() == 0) {
+            //System.out.println("Файлы кардДБ пусты. Созданы новые массивы.");   //debug msg
+        } else {
+            try {
+                readCardDBfromFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                System.out.println("Class not found");
+                e.printStackTrace();
+            }
+        }
+        if (clientDBFile.length() == 0) {
             clientDB = new ArrayList<Client>();
             //System.out.println("Файлы клиентДБ пусты. Созданы новые массивы.");   //debug msg
         } else {
             try {
-                readDBfromFile();
+                readClientDBfromFile();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -62,16 +69,20 @@ public class Service implements ITerminal {
         }
     }
 
-    private void readDBfromFile() throws IOException, ClassNotFoundException {
-        FileInputStream clientDB_FIS = new FileInputStream("./src/ClientDataBase");
+    private void readCardDBfromFile() throws IOException, ClassNotFoundException {
         FileInputStream cardDBfile_FIS = new FileInputStream("./src/CardDataBase");
-        ObjectInputStream readDB_OIS = new ObjectInputStream(clientDB_FIS);
-        clientDB = (ArrayList<Client>) readDB_OIS.readObject();
-        readDB_OIS = new ObjectInputStream(cardDBfile_FIS);
+        ObjectInputStream readDB_OIS = new ObjectInputStream(cardDBfile_FIS);
         cardDB = (ArrayList<Card>) readDB_OIS.readObject();
         //System.out.println("Read db Ok.");      //debug msg
-        clientDB_FIS.close();
         cardDBfile_FIS.close();
+        readDB_OIS.close();
+    }
+    private void readClientDBfromFile() throws IOException, ClassNotFoundException {
+        FileInputStream clientDB_FIS = new FileInputStream("./src/ClientDataBase");
+        ObjectInputStream readDB_OIS = new ObjectInputStream(clientDB_FIS);
+        clientDB = (ArrayList<Client>) readDB_OIS.readObject();
+        //System.out.println("Read db Ok.");      //debug msg
+        clientDB_FIS.close();
         readDB_OIS.close();
     }
 

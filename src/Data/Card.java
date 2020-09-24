@@ -22,13 +22,7 @@ public class Card implements Serializable {
     }
 
     public boolean pinCodeCheck(int pinCode) {
-        boolean check;
-        if (this.pinCode == pinCode) {
-            check = true;
-        } else {
-            check = false;
-        }
-        return check;
+        return this.pinCode == pinCode;
     }
 
     @Override
