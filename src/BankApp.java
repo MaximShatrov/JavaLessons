@@ -20,51 +20,77 @@ public class BankApp {
         Scanner sourceScanner = new Scanner(System.in);
         PrintData printData = new PrintData();
         ScanData scanData = new ScanData();
-        printData.printString("Добро пожаловать в приложение DrinkoffBank." +
-                "\nВыберите нужный пункт меню:" +
-                "\n1. Войти в аккаунт" +
-                "\n2. Создать аккаунт" +
-                "\n\nВаш выбор: ");
-        int menuItem1Level = scanData.inputInt(sourceScanner);
-        int menuItem2Level;
-        if (menuItem1Level == bankApp.MENU_ITEM_1) {                        //Войти в аккаунт
-            if (iTerminal.clientAuthorization()) {                          //авторизация
-                printData.printString("\nВыберите нужный пункт меню:" +
-                        "\n\n1. Узнать баланс" +
-                        "\n2. Снять деньги со счета" +
-                        "\n3. Внести деньги на счет" +
-                        "\n4. Выпустить карту" +
-                        "\n5. Удалить карту с аккаунта" +
-                        "\n6. Удалить аккаунт(!)" +
-                        "\n7. Выйти из ЛК" +
-                        "\n\nВаш выбор: ");
-                menuItem2Level = scanData.inputInt(sourceScanner);
-                if (menuItem2Level == bankApp.MENU_ITEM_1) {            //баланс
-                    iTerminal.getAccountBalance();
-                } else if (menuItem2Level == bankApp.MENU_ITEM_2) {     //снять кэш
-                    iTerminal.getMoney(sourceScanner);
-                } else if (menuItem2Level == bankApp.MENU_ITEM_3) {     //внести кэш
-                    iTerminal.addMoney(sourceScanner);
-                } else if (menuItem2Level == bankApp.MENU_ITEM_4) {     //выпустить карту
-                    iTerminal.addCard();
-                } else if (menuItem2Level == bankApp.MENU_ITEM_5) {     //закрыть карту
-                    iTerminal.removeCard();
-                } else if (menuItem2Level == bankApp.MENU_ITEM_6) {     //удалить аккаунт клиента
-                    iTerminal.deleteClient();
-                } else if (menuItem2Level == bankApp.MENU_ITEM_7) {     //Выход
-                    //флаг выхода??
-                } else {
-                    printData.printString("Выберите корректный пункт меню!");
-                }
+        printData.printString("Добро пожаловать в приложение DrinkoffBank.");
+        while (true) {
+            printData.printString("\nВыберите нужный пункт меню:");
+            printData.printStringMenu("1. Войти в аккаунт" +
+                    "\n2. Создать аккаунт" +
+                    "\n3. Выйти из приложения");
+            printData.printString("\nВаш выбор: ");
+            int menuItem1Level = scanData.inputInt(sourceScanner);
+            int menuItem2Level;
+            if (menuItem1Level == bankApp.MENU_ITEM_1) {                        //Войти в аккаунт
+
+                if (iTerminal.clientAuthorization()) {                          //авторизация
+                    printData.printStringSuccess("Успешная авторизация.");
+                    while (true) {
+                        printData.printString("\nВыберите нужный пункт меню:");
+                        printData.printStringMenu("1. Узнать баланс" +
+                                "\n2. Снять деньги со счета" +
+                                "\n3. Внести деньги на счет" +
+                                "\n4. Привязать карту" +
+                                "\n5. Удалить карту с аккаунта" +
+                                "\n6. Удалить аккаунт(!)" +
+                                "\n7. Выйти из ЛК");
+                        printData.printString("Ваш выбор: ");
+                        menuItem2Level = scanData.inputInt(sourceScanner);
+                        if (menuItem2Level == bankApp.MENU_ITEM_1) {            //баланс
+                            iTerminal.getAccountBalance();
+                            //bankApp.menuDelay(2,printData);
+                        } else if (menuItem2Level == bankApp.MENU_ITEM_2) {     //снять кэш
+                            iTerminal.getMoney(sourceScanner);
+                            //bankApp.menuDelay(2,printData);
+                        } else if (menuItem2Level == bankApp.MENU_ITEM_3) {     //внести кэш
+                            iTerminal.addMoney(sourceScanner);
+                            //bankApp.menuDelay(2,printData);
+                        } else if (menuItem2Level == bankApp.MENU_ITEM_4) {     //выпустить карту
+                            iTerminal.addCard(sourceScanner);
+                            //bankApp.menuDelay(2,printData);
+                        } else if (menuItem2Level == bankApp.MENU_ITEM_5) {     //закрыть карту
+                            iTerminal.removeCard(sourceScanner);
+                            //bankApp.menuDelay(2,printData);
+                        } else if (menuItem2Level == bankApp.MENU_ITEM_6) {     //удалить аккаунт клиента
+                            if (iTerminal.deleteClient(sourceScanner)) {
+                                break;
+                            } else {
+                                printData.printDelay(3, "Неудачная попвтка удаления аккаунта. Выход из ЛК через");
+                                break;
+                            }
+                        } else if (menuItem2Level == bankApp.MENU_ITEM_7) {     //Выход
+                            break;
+                        } else {
+                            printData.printStringError("Выберите корректный пункт меню!");
+                        }
+                    }
+                } //else { printData.printStringError("Неудачная");}
+            } else if (menuItem1Level == bankApp.MENU_ITEM_2) {
+                iTerminal.makeNewClient();
+                continue;
+
+            } else if (menuItem1Level == bankApp.MENU_ITEM_3) {
+                break;
+            } else {
+                printData.printString("Выберите корректный пункт меню.");
+                continue;
             }
-
-
-        } else if (menuItem1Level == bankApp.MENU_ITEM_2) {
-            iTerminal.makeNewClient();
-
-        } else {
-            printData.printString("Выберите корректный пункт меню.");
         }
+
+    }
+
+    private void menuDelay(int delay, PrintData printData){
+        printData.printString("                                     "); //чтобы у printData.printStringSuccess() на предыдущей строке не "уходил" цвет.
+                                                                        // При debug'е такое не наблюдается.
+        printData.printDelay(delay, "Возврат в меню через");
     }
 
 }

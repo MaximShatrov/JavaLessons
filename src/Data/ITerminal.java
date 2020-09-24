@@ -15,9 +15,9 @@ public interface ITerminal {
 
     boolean deleteClient(Scanner input);
 
-    void addCard();
+    void addCard(Scanner input);
 
-    void removeCard();
+    void removeCard(Scanner input);
 
     boolean clientAuthorization();
 }

@@ -14,11 +14,27 @@ public class ScanData {
                 input.nextLine();
                 incorrectInputCheck = false;
             } catch (InputMismatchException e) {
-                System.err.println("Некорректное число! Повторите ввод:");
+                System.err.println("Некорректное число. Повторите ввод:");
                 input.nextLine();
             }
         }
         return nextInt;
+    }
+
+    public long inputLong(Scanner input){
+        long nextLong = 0;
+        boolean incorrectInputCheck = true;
+        while(incorrectInputCheck){
+            try {
+                nextLong = input.nextLong();
+                input.nextLine();
+                incorrectInputCheck = false;
+            } catch (InputMismatchException e) {
+                System.err.println("Некорректные данные. Повторите ввод:");
+                input.nextLine();
+            }
+        }
+        return nextLong;
     }
 
     public String inputString(){
