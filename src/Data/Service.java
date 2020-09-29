@@ -27,27 +27,13 @@ public class Service implements ITerminal {
             cardDB = new ArrayList<Card>();
             //System.out.println("Файлы кардДБ пусты. Созданы новые массивы.");   //debug msg
         } else {
-            try {
-                readCardDBfromFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                System.out.println("Class not found");
-                e.printStackTrace();
-            }
+            readCardDBfromFile();
         }
         if (clientDBFile.length() == 0) {
             clientDB = new ArrayList<Client>();
             //System.out.println("Файлы клиентДБ пусты. Созданы новые массивы.");   //debug msg
         } else {
-            try {
-                readClientDBfromFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                System.out.println("Class not found");
-                e.printStackTrace();
-            }
+            readClientDBfromFile();
         }
     }
 
@@ -69,34 +55,49 @@ public class Service implements ITerminal {
         }
     }
 
-    private void readCardDBfromFile() throws IOException, ClassNotFoundException {
-        FileInputStream cardDBfile_FIS = new FileInputStream("./src/CardDataBase");
-        ObjectInputStream readDB_OIS = new ObjectInputStream(cardDBfile_FIS);
-        cardDB = (ArrayList<Card>) readDB_OIS.readObject();
-        //System.out.println("Read db Ok.");      //debug msg
-        cardDBfile_FIS.close();
-        readDB_OIS.close();
-    }
-    private void readClientDBfromFile() throws IOException, ClassNotFoundException {
-        FileInputStream clientDB_FIS = new FileInputStream("./src/ClientDataBase");
-        ObjectInputStream readDB_OIS = new ObjectInputStream(clientDB_FIS);
-        clientDB = (ArrayList<Client>) readDB_OIS.readObject();
-        //System.out.println("Read db Ok.");      //debug msg
-        clientDB_FIS.close();
-        readDB_OIS.close();
+    private void readCardDBfromFile() {
+        try (FileInputStream cardDBfile_FIS = new FileInputStream("./src/CardDataBase");
+             ObjectInputStream readDB_OIS = new ObjectInputStream(cardDBfile_FIS)) {
+            cardDB = (ArrayList<Card>) readDB_OIS.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found");
+            e.printStackTrace();
+        }
     }
 
-    private void writeDBtoFile() throws IOException {
-        FileOutputStream clientDB_FOS = new FileOutputStream("./src/ClientDataBase");
-        FileOutputStream cardDB_FOS = new FileOutputStream("./src/CardDataBase");
-        ObjectOutputStream writeDB_OOS = new ObjectOutputStream(clientDB_FOS);
-        writeDB_OOS.writeObject(clientDB);
-        writeDB_OOS = new ObjectOutputStream(cardDB_FOS);
-        writeDB_OOS.writeObject(cardDB);
-        //System.out.println("write db ok");      //debug msg
-        clientDB_FOS.close();
-        cardDB_FOS.close();
-        writeDB_OOS.close();
+    private void readClientDBfromFile() {
+        try (FileInputStream clientDB_FIS = new FileInputStream("./src/ClientDataBase");
+             ObjectInputStream readDB_OIS = new ObjectInputStream(clientDB_FIS)) {
+            clientDB = (ArrayList<Client>) readDB_OIS.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found");
+            e.printStackTrace();
+        }
+    }
+
+    private void writeDBtoFile() {
+
+        try (FileOutputStream clientDB_FOS = new FileOutputStream("./src/ClientDataBase");
+             FileOutputStream cardDB_FOS = new FileOutputStream("./src/CardDataBase");
+             ObjectOutputStream writeDB_OOS = new ObjectOutputStream(clientDB_FOS)) {
+            writeDB_OOS.writeObject(clientDB);
+        } catch (IOException e) {
+            System.err.println("Failed to write clientDB. Сontact software distributor.");
+            e.printStackTrace();
+        }
+        try (FileOutputStream clientDB_FOS = new FileOutputStream("./src/ClientDataBase");
+             FileOutputStream cardDB_FOS = new FileOutputStream("./src/CardDataBase");
+             ObjectOutputStream writeDB_OOS = new ObjectOutputStream(cardDB_FOS)) {
+            writeDB_OOS.writeObject(cardDB);
+        } catch (IOException e) {
+            System.err.println("Failed to write cardDB. Сontact software distributor.");
+            e.printStackTrace();
+        }
+
     }
 
     private boolean isClientExists(String name) throws DuplicatedAccountException {
@@ -125,12 +126,7 @@ public class Service implements ITerminal {
 
     private void updateClientDB() {
         clientDB.set(clientDB.indexOf(openedClient), openedClient);
-        try {
-            writeDBtoFile();
-        } catch (IOException e) {
-            System.err.println("Failed to write DB. Сontact software distributor.");
-            e.printStackTrace();
-        }
+        writeDBtoFile();
     }
 
     /**
@@ -148,12 +144,7 @@ public class Service implements ITerminal {
     private void addClientToDB(String id, String clientName, String pswrd) {
         Client tempClient = new Client(id, clientName, pswrd);
         clientDB.add(tempClient);
-        try {
-            writeDBtoFile();
-        } catch (IOException e) {
-            System.err.println("Failed to write DB. Сontact software distributor.");
-            e.printStackTrace();
-        }
+        writeDBtoFile();
     }
 
     @Override
@@ -299,11 +290,7 @@ public class Service implements ITerminal {
                         }
                     }
                     openedClient = null;
-                    try {
-                        writeDBtoFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    writeDBtoFile();
                     printData.printStringSuccess("Аккаунт успешно удален.");
                     isDeleted = true;
                     break;
@@ -379,13 +366,7 @@ public class Service implements ITerminal {
         }
         cardDB.add(new Card(newCardNumber, openedClient.getClientID(), newPin));
         printData.printStringSuccess("Карта " + newCardNumber + " успешно привязана к аккаунту.");
-        try {
-            writeDBtoFile();
-        } catch (IOException e) {
-            System.out.println("Не удалось записать новую карту в файл");
-            e.printStackTrace();
-        }
-
+        writeDBtoFile();
     }
 
     @Override
@@ -417,13 +398,8 @@ public class Service implements ITerminal {
                         if (removedCard.pinCodeCheck(scanData.inputInt(input))) {
                             cardDB.remove(removedCard);
                             isBlocked = false;
-                            try {
-                                writeDBtoFile();
-                                break;
-                            } catch (IOException e) {
-                                System.out.println("Не смог обновить БД поле удаления карты!");
-                                e.printStackTrace();        //
-                            }
+                            writeDBtoFile();
+                            break;
                         } else {
                             try {
                                 throw new WrongPincodeException("Неверный пинкод! У вас осталось " + (2 - i) + " попыток ввода.");
