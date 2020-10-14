@@ -5,6 +5,10 @@ public class FLManager implements LeagueManager {
     private HashSet<Player> playerHashSet = new HashSet();
     private Random random = new Random();
 
+public FLManager(){
+    fillPlayerHashSet();
+    System.out.println(playerHashSet);
+}
 
     private void fillPlayerHashSet() {
 
