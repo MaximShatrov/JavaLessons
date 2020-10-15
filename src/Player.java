@@ -24,6 +24,20 @@ public class Player implements SockerPlayer {
     }
 
     @Override
+    //Имя каждого игрока уникально. Тезки не допустимы!
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(nickName, player.nickName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nickName);
+    }
+
+    @Override
     public String toString() {
         return "\nИмя: " + nickName + "\nРейтинг: " + ratingPoints + "\nСтрана: " + country + "\nЛига: " + league;
     }
@@ -31,20 +45,6 @@ public class Player implements SockerPlayer {
     @Override
     public String getNickName() {
         return nickName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return nickName.equals(player.nickName) &&
-                country == player.country;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nickName, country);
     }
 
     @Override
