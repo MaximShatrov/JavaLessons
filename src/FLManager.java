@@ -53,8 +53,8 @@ public class FLManager implements LeagueManager {
     @Override
     public SockerPlayer[] getAllPlayers() {
         TreeSet treeSet = new TreeSet(playerHashSet);
-        System.out.println(treeSet);
-        return new SockerPlayer[0];
+        //System.out.println(treeSet);
+        return (SockerPlayer[]) treeSet.toArray(new  SockerPlayer[treeSet.size()]);
     }
 
     //вывести рейтинг игроков лиги league
