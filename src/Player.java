@@ -39,7 +39,7 @@ public class Player implements SockerPlayer, Comparable<Player> {
 
     @Override
     public String toString() {
-        return "\nИмя: " + nickName + "\nРейтинг: " + ratingPoints + "\nСтрана: " + country + "\nЛига: " + league;
+        return "\n" + nickName + ": рейтинг - " + ratingPoints + ", страна - " + country + ", лига - " + league;
     }
 
     @Override
@@ -65,9 +65,9 @@ public class Player implements SockerPlayer, Comparable<Player> {
 
     public int compareTo(Player comparePlayer) {
         if (this.ratingPoints > comparePlayer.ratingPoints) {
-            return 1;
-        } else if (this.ratingPoints < comparePlayer.ratingPoints) {
             return -1;
+        } else if (this.ratingPoints < comparePlayer.ratingPoints) {
+            return 1;
         } else {
             return 0;
         }

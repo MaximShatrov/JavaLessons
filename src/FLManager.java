@@ -1,5 +1,6 @@
 import java.util.HashSet;
 import java.util.Random;
+import java.util.TreeSet;
 
 public class FLManager implements LeagueManager {
     private HashSet<SockerPlayer> playerHashSet = new HashSet();
@@ -8,7 +9,7 @@ public class FLManager implements LeagueManager {
 
     public FLManager() {
         fillPlayerHashSet();
-        System.out.println(playerHashSet);
+        //System.out.println(playerHashSet);
     }
 
     private void fillPlayerHashSet() {
@@ -51,6 +52,8 @@ public class FLManager implements LeagueManager {
     //вывести рейтинг всех игроков из базы
     @Override
     public SockerPlayer[] getAllPlayers() {
+        TreeSet treeSet = new TreeSet(playerHashSet);
+        System.out.println(treeSet);
         return new SockerPlayer[0];
     }
 
