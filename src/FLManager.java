@@ -84,6 +84,16 @@ public class FLManager implements LeagueManager {
     //поднять рейтинг игрока name на points очков
     @Override
     public void addPoints(String name, int points) {
-
+        SockerPlayer sockerPlayer = new Player(name, 0, null, null);
+        if (playerHashSet.contains(sockerPlayer)) {
+            for (SockerPlayer player : playerHashSet) {
+                if (player.equals(sockerPlayer)) {
+                    SockerPlayer updatePlayer = new Player(name, (player.getPoints() + points), player.getLeague(), player.getCountry());
+                    playerHashSet.add(updatePlayer);
+                }
+            }
+        } else {
+            System.out.println("Данного игрока нет ни в одной лиге!");
+        }
     }
 }
