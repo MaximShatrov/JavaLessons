@@ -1,7 +1,7 @@
 import java.util.Objects;
 import java.util.Random;
 
-public class Player implements SockerPlayer {
+public class Player implements SockerPlayer, Comparable {
     private String nickName;
     private int ratingPoints;
     private League league;
@@ -60,5 +60,16 @@ public class Player implements SockerPlayer {
     @Override
     public Country getCountry() {
         return country;
+    }
+
+    @Override
+    public int compareTo(Player comparePlayer) {
+        if (this.ratingPoints > comparePlayer.ratingPoints){
+            return 1;
+        } else if (this.ratingPoints < comparePlayer.ratingPoints){
+            return -1
+        } else {
+            return 0;
+        }
     }
 }
