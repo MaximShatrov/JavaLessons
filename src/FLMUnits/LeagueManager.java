@@ -1,3 +1,8 @@
+package FLMUnits;
+
+import Library.Country;
+import Library.League;
+
 public interface LeagueManager {
     //сгенерировать случайного игрока player и добавить в базу
     public void addPlayer(SockerPlayer player);

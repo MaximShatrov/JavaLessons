@@ -1,6 +1,8 @@
+package Library;
+
 import java.util.Random;
 
-enum Country {
+public enum Country {
     RU("Россия"),
     UK("Великобритания"),
     DE("Германия"),

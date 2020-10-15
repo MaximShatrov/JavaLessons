@@ -1,3 +1,8 @@
+package FLMUnits;
+
+import Library.Country;
+import Library.League;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.TreeSet;
@@ -15,7 +20,7 @@ public class FLManager implements LeagueManager {
     private void fillPlayerHashSet() {
 
         for (int i = 0; i < League.values().length; i++) {
-            //League cacheLeague = League.values()[i];
+            //Library.League cacheLeague = Library.League.values()[i];
             for (int j = 0; j < LEAGUE_SIZE; j++) {
                 playerHashSet.add(new Player(League.values()[i], Country.values()[random.nextInt(Country.values().length)]));
             }
@@ -34,8 +39,9 @@ public class FLManager implements LeagueManager {
 
     }
 
+    //Вывести инфу по игроку
     @Override
-    public SockerPlayer getPlayer(String name) {    //Вывести инфу по игроку.
+    public SockerPlayer getPlayer(String name) {
         SockerPlayer sockerPlayer = new Player(name, 0, null, null);
         if (playerHashSet.contains(sockerPlayer)) {
             for (SockerPlayer player : playerHashSet) {

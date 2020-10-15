@@ -1,4 +1,6 @@
-enum League {
+package Library;
+
+public enum League {
     EFL("Английская футбольная лига"),
     GFB("Немецкая футбольная Бундеслига"),
     SLL("Испанская Ла Лига");

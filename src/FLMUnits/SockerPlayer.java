@@ -1,3 +1,8 @@
+package FLMUnits;
+
+import Library.Country;
+import Library.League;
+
 public interface SockerPlayer {
     //  Получение ФИО игрока
     String getNickName();
