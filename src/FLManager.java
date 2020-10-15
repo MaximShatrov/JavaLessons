@@ -5,7 +5,7 @@ import java.util.TreeSet;
 public class FLManager implements LeagueManager {
     private HashSet<SockerPlayer> playerHashSet = new HashSet();
     private Random random = new Random();
-    private final int FLBASE_SIZE = 5;
+    private final int LEAGUE_SIZE = 20;
 
     public FLManager() {
         fillPlayerHashSet();
@@ -16,7 +16,7 @@ public class FLManager implements LeagueManager {
 
         for (int i = 0; i < League.values().length; i++) {
             //League cacheLeague = League.values()[i];
-            for (int j = 0; j < FLBASE_SIZE; j++) {
+            for (int j = 0; j < LEAGUE_SIZE; j++) {
                 playerHashSet.add(new Player(League.values()[i], Country.values()[random.nextInt(Country.values().length)]));
             }
         }
@@ -72,7 +72,13 @@ public class FLManager implements LeagueManager {
     //вывести рейтинг игроков страны country
     @Override
     public SockerPlayer[] getPlayers(Country country) {
-        return new SockerPlayer[0];
+        TreeSet treeSet = new TreeSet();
+        for (SockerPlayer p : playerHashSet) {
+            if (p.getCountry() == country) {
+                treeSet.add(p);
+            }
+        }
+        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
     }
 
     //поднять рейтинг игрока name на points очков
