@@ -48,21 +48,25 @@ public class FLManager implements LeagueManager {
         return null;
     }
 
+    //вывести рейтинг всех игроков из базы
     @Override
     public SockerPlayer[] getAllPlayers() {
         return new SockerPlayer[0];
     }
 
+    //вывести рейтинг игроков лиги league
     @Override
     public SockerPlayer[] getPlayers(League league) {
         return new SockerPlayer[0];
     }
 
+    //вывести рейтинг игроков страны country
     @Override
     public SockerPlayer[] getPlayers(Country country) {
         return new SockerPlayer[0];
     }
 
+    //поднять рейтинг игрока name на points очков
     @Override
     public void addPoints(String name, int points) {
 
