@@ -54,13 +54,19 @@ public class FLManager implements LeagueManager {
     public SockerPlayer[] getAllPlayers() {
         TreeSet treeSet = new TreeSet(playerHashSet);
         //System.out.println(treeSet);
-        return (SockerPlayer[]) treeSet.toArray(new  SockerPlayer[treeSet.size()]);
+        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
     }
 
     //вывести рейтинг игроков лиги league
     @Override
     public SockerPlayer[] getPlayers(League league) {
-        return new SockerPlayer[0];
+        TreeSet treeSet = new TreeSet();
+        for (SockerPlayer p : playerHashSet) {
+            if (p.getLeague() == league) {
+                treeSet.add(p);
+            }
+        }
+        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
     }
 
     //вывести рейтинг игроков страны country
