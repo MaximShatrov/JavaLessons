@@ -35,7 +35,16 @@ public class FLManager implements LeagueManager {
 
     @Override
     public SockerPlayer getPlayer(String name) {    //Вывести инфу по игроку.
-
+        SockerPlayer sockerPlayer = new Player(name, 0, null, null);
+        if (playerHashSet.contains(sockerPlayer)) {
+            for (SockerPlayer player : playerHashSet) {
+                if (player.equals(sockerPlayer)) {
+                    System.out.println(player);
+                }
+            }
+        } else {
+            System.out.println("Данного игрока нет ни в одной лиге!");
+        }
         return null;
     }
 
