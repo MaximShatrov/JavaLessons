@@ -72,10 +72,16 @@ public class Player implements SockerPlayer, Comparable<Player> {
     public int compareTo(Player comparePlayer) {
         if (this.ratingPoints > comparePlayer.ratingPoints) {
             return -1;
-        } else if (this.ratingPoints < comparePlayer.ratingPoints) {
+        } else if (this.ratingPoints < comparePlayer.ratingPoints & this.nickName.compareTo(comparePlayer.nickName) > 0) {
             return 1;
         } else {
-            return 0;
+            if (this.nickName.compareTo(comparePlayer.nickName) < 0) {
+                return 1;
+            } else if (this.nickName.compareTo(comparePlayer.nickName) > 0) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
     }
 }

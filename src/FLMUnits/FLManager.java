@@ -4,6 +4,7 @@ import Library.Country;
 import Library.League;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -25,7 +26,7 @@ public class FLManager implements LeagueManager {
                 playerHashSet.add(new Player(League.values()[i], Country.values()[random.nextInt(Country.values().length)]));
             }
         }
-        System.err.println("ОТЛАДКА.В базе игроков: " + playerHashSet.size());
+        System.err.println("ОТЛАДКА.В базе игроков: " + (playerHashSet.size()));
     }
 
     @Override
@@ -35,8 +36,12 @@ public class FLManager implements LeagueManager {
 
     @Override
     public void removePlayer(SockerPlayer player) {
-        playerHashSet.remove(player);
-
+        if (playerHashSet.contains(player)) {
+            playerHashSet.remove(player);
+            System.out.println("Игрок успешно удален из рейтинга.");
+        } else {
+            System.out.println("Данный игрок не найден в рейтинге.");
+        }
     }
 
     //Вывести инфу по игроку
@@ -72,6 +77,7 @@ public class FLManager implements LeagueManager {
                 treeSet.add(p);
             }
         }
+
         return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
     }
 
@@ -84,19 +90,29 @@ public class FLManager implements LeagueManager {
                 treeSet.add(p);
             }
         }
+        System.out.println(treeSet.size());
         return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
     }
 
     //поднять рейтинг игрока name на points очков
     @Override
     public void addPoints(String name, int points) {
-        SockerPlayer sockerPlayer = new Player(name, 0, null, null);
-        if (playerHashSet.contains(sockerPlayer)) {
-            for (SockerPlayer player : playerHashSet) {
-                if (player.equals(sockerPlayer)) {
-                    SockerPlayer updatePlayer = new Player(name, (player.getPoints() + points), player.getLeague(), player.getCountry());
-                    playerHashSet.add(updatePlayer);
+        Iterator<SockerPlayer> iterator = playerHashSet.iterator();
+        SockerPlayer updatePlayer = new Player(name, 0, null, null);
+        if (playerHashSet.contains(updatePlayer)) {
+            while (iterator.hasNext()) {
+                SockerPlayer player = iterator.next();
+                if (player.equals(updatePlayer)) {
+                    if ((player.getPoints() + points) > 100) {
+                        updatePlayer = new Player(player.getNickName(), (100), player.getLeague(), player.getCountry());
+                    } else {
+                        updatePlayer = new Player(player.getNickName(), (player.getPoints() + points), player.getLeague(), player.getCountry());
+                    }
                 }
+            }
+            playerHashSet.remove(updatePlayer);
+            if (playerHashSet.add(updatePlayer)){
+                System.out.println("Рейтинг игрока " + updatePlayer.getNickName() + " обновлен!");
             }
         } else {
             System.out.println("Данного игрока нет ни в одной лиге!");

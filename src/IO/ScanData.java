@@ -21,6 +21,10 @@ public class ScanData {
         return nextInt;
     }
 
+    public void pressAnyKey(Scanner input){
+        input.nextLine();
+    }
+
     public long inputLong(Scanner input){
         long nextLong = 0;
         boolean incorrectInputCheck = true;
@@ -45,6 +49,24 @@ public class ScanData {
             try {
                 nextString = input.next();
                 input.nextLine();
+                if (nextString != null){
+                    incorrectInputCheck = false;
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Что-то пошло не так...");
+                input.nextLine();
+            }
+        }
+        return nextString;
+    }
+
+    public String inputLine(){
+        Scanner input = new Scanner(System.in);
+        String nextString = null;
+        boolean incorrectInputCheck = true;
+        while(incorrectInputCheck){
+            try {
+                nextString = input.nextLine();
                 if (nextString != null){
                     incorrectInputCheck = false;
                 }
