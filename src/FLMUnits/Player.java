@@ -15,7 +15,7 @@ public class Player implements SockerPlayer, Comparable<Player> {
     private NameLibrary nameLibrary = new NameLibrary();
     private Random random = new Random();
 
-    Player(String nickName, int ratingPoints, League league, Country country) {
+    public Player(String nickName, int ratingPoints, League league, Country country) {
         this.nickName = nickName;
         this.ratingPoints = ratingPoints;
         this.league = league;
