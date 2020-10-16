@@ -16,6 +16,7 @@ public class Console {
     private final int MENU_ITEM_5 = 5;
     private final int MENU_ITEM_6 = 6;
     private final int MENU_ITEM_7 = 7;
+    private final int MENU_ITEM_8 = 8;
     private ScanData scanData = new ScanData();
     private Scanner scanner = new Scanner(System.in);
 
@@ -32,12 +33,14 @@ public class Console {
                     "\n5.Вывести рейтинг игроков лиги" +
                     "\n6.Вывести рейтинг игроков определенной страны" +
                     "\n7.Поднять рейтинг игрока" +
+                    "\n8.Выход" +
                     "\n\nВаш выбор:");
             int menuSelect = console.scanData.inputInt(console.scanner);
             if (menuSelect == console.MENU_ITEM_1) {
-               leagueManager.addPlayer(console.newPlayer());
+                leagueManager.addPlayer(console.newPlayer());
                 continue;
             } else if (menuSelect == console.MENU_ITEM_2) {
+                leagueManager.removePlayer(console.namedPlayer());
                 System.out.println(2);
             } else if (menuSelect == console.MENU_ITEM_3) {
                 System.out.println(3);
@@ -69,8 +72,7 @@ public class Console {
         int selRating;
         System.out.println("Введите имя и фамилию игрока:");
         name = scanData.inputString();
-
-        while(true){
+        while (true) {
             System.out.println("Выберите страну игрока:");
             int i = 1;
             for (Country country : Country.values()) {
@@ -79,16 +81,16 @@ public class Console {
             }
             System.out.println("Ваш выбор: ");
             int menuSelect = scanData.inputInt(scanner);
-            if (menuSelect <= Country.values().length){
-                selCountry = Country.values()[menuSelect-1];
+            if (menuSelect <= Country.values().length) {
+                selCountry = Country.values()[menuSelect - 1];
                 break;
-            } else{
+            } else {
                 System.out.println("Неправильный выбор!");
                 continue;
             }
 
         }
-        while(true){
+        while (true) {
             System.out.println("Выберите футбольную лигу игрока:");
             int i = 1;
             for (League league : League.values()) {
@@ -97,25 +99,29 @@ public class Console {
             }
             System.out.println("Ваш выбор: ");
             int menuSelect = scanData.inputInt(scanner);
-            if (menuSelect <= League.values().length){
-                selLeague = League.values()[menuSelect-1];
+            if (menuSelect <= League.values().length) {
+                selLeague = League.values()[menuSelect - 1];
                 break;
-            } else{
+            } else {
                 System.out.println("Неправильный выбор!");
                 continue;
             }
-
         }
-        while (true){
+        while (true) {
             System.out.println("Введите рейтинг игрока (0...100):");
             int ratio = scanData.inputInt(scanner);
-            if (ratio <= 100 && ratio >=0){
+            if (ratio <= 100 && ratio >= 0) {
                 selRating = ratio;
                 break;
-            } else  {
+            } else {
                 System.out.println("Рейтинг должен быть в пределе от 0 до 100! ");
             }
         }
         return new Player(name, selRating, selLeague, selCountry);
+    }
+
+    private SockerPlayer namedPlayer(){
+        System.out.println("Введите имя и фамилию игрока:");
+        return new Player(scanData.inputString(), 0, null, null);
     }
 }
