@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class NameLibrary {
     private StringBuffer cacheString = new StringBuffer();
-    Random random = new Random();
+    private Random random = new Random();
     private final String[] firstName = {"Дэйв", "Джон", "Стэн", "Чез", "Максимус", "Стэфан", "Люций", "Аарон", "Филл", "Стьюи", "Марк",
             "Ричард", "Зейн", "Карл", "Джек", "Джерард", "Лео", "Бред", "Сэм", "Дин", "Дэймон", "Себастиян", "Килиан", "Боб", "Коул",
             "Люк", "Дракс", "СтарЛорд", "Зак", "Роберт", "Тор", "Роб", "Карим", "Цыган", "Рик", "Морти", "Дон", "Уильям", "Майк",
@@ -17,7 +17,7 @@ public class NameLibrary {
     public String getRandomNickname(){
         cacheString.delete(0,cacheString.length());
         int i = random.nextInt(firstName.length);
-        cacheString.append(firstName[i] + " ");
+        cacheString.append(firstName[i]).append(" ");
         i = random.nextInt(lastName.length);
         cacheString.append(lastName[i]);
         return cacheString.toString();

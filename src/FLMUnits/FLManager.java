@@ -51,11 +51,9 @@ public class FLManager implements LeagueManager {
         if (playerHashSet.contains(sockerPlayer)) {
             for (SockerPlayer player : playerHashSet) {
                 if (player.equals(sockerPlayer)) {
-                    System.out.println(player);
+                    return player;
                 }
             }
-        } else {
-            System.out.println("Данного игрока нет ни в одной лиге!");
         }
         return null;
     }
@@ -65,7 +63,7 @@ public class FLManager implements LeagueManager {
     public SockerPlayer[] getAllPlayers() {
         TreeSet treeSet = new TreeSet(playerHashSet);
         //System.out.println(treeSet);
-        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
+        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[0]);
     }
 
     //вывести рейтинг игроков лиги league
@@ -78,7 +76,7 @@ public class FLManager implements LeagueManager {
             }
         }
 
-        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
+        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[0]);
     }
 
     //вывести рейтинг игроков страны country
@@ -91,7 +89,7 @@ public class FLManager implements LeagueManager {
             }
         }
         System.out.println(treeSet.size());
-        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[treeSet.size()]);
+        return (SockerPlayer[]) treeSet.toArray(new SockerPlayer[0]);
     }
 
     //поднять рейтинг игрока name на points очков
@@ -111,7 +109,7 @@ public class FLManager implements LeagueManager {
                 }
             }
             playerHashSet.remove(updatePlayer);
-            if (playerHashSet.add(updatePlayer)){
+            if (playerHashSet.add(updatePlayer)) {
                 System.out.println("Рейтинг игрока " + updatePlayer.getNickName() + " обновлен!");
             }
         } else {

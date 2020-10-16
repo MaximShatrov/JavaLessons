@@ -12,8 +12,6 @@ public class Player implements SockerPlayer, Comparable<Player> {
     private int ratingPoints;
     private League league;
     private Country country;
-    private NameLibrary nameLibrary = new NameLibrary();
-    private Random random = new Random();
 
     public Player(String nickName, int ratingPoints, League league, Country country) {
         this.nickName = nickName;
@@ -22,10 +20,12 @@ public class Player implements SockerPlayer, Comparable<Player> {
         this.country = country;
     }
 
-    public Player(League league, Country country) {
+    Player(League league, Country country) {
         this.league = league;
         this.country = country;
+        Random random = new Random();
         this.ratingPoints = (random.nextInt(35) + 60);
+        NameLibrary nameLibrary = new NameLibrary();
         this.nickName = nameLibrary.getRandomNickname();
     }
 
@@ -75,13 +75,7 @@ public class Player implements SockerPlayer, Comparable<Player> {
         } else if (this.ratingPoints < comparePlayer.ratingPoints & this.nickName.compareTo(comparePlayer.nickName) > 0) {
             return 1;
         } else {
-            if (this.nickName.compareTo(comparePlayer.nickName) < 0) {
-                return 1;
-            } else if (this.nickName.compareTo(comparePlayer.nickName) > 0) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(0, this.nickName.compareTo(comparePlayer.nickName));
         }
     }
 }

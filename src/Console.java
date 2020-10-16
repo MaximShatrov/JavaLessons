@@ -45,28 +45,31 @@ public class Console {
                 leagueManager.removePlayer(new Player(console.selectName(), 0, null, null));
                 console.pressEnter();
             } else if (menuSelect == console.MENU_PLAYER_INFO) {
-                leagueManager.getPlayer(console.selectName());
+                SockerPlayer player = leagueManager.getPlayer(console.selectName());
+                if (player != null) {
+                    System.out.println(player);
+                } else System.out.println("Данного игрока нет ни в одной лиге!");
                 console.pressEnter();
             } else if (menuSelect == console.MENU_FULL_RAITING) {
-                SockerPlayer sockerPlayer[] = leagueManager.getAllPlayers();
+                SockerPlayer[] sockerPlayer = leagueManager.getAllPlayers();
                 console.printData.printArrayToTable(sockerPlayer, "\n\nМировой рейтинг игроков");
                 console.pressEnter();
             } else if (menuSelect == console.MENU_LEAGUE_RAITING) {
-                SockerPlayer sockerPlayer[] = leagueManager.getPlayers(console.selectLeague());
+                SockerPlayer[] sockerPlayer = leagueManager.getPlayers(console.selectLeague());
                 console.printData.printArrayToTable(sockerPlayer, "\n\nРейтинг игроков лиги");
                 console.pressEnter();
             } else if (menuSelect == console.MENU_COUNTRY_RAITING) {
-                SockerPlayer sockerPlayer[] = leagueManager.getPlayers(console.selectCountry());
+                SockerPlayer[] sockerPlayer = leagueManager.getPlayers(console.selectCountry());
                 console.printData.printArrayToTable(sockerPlayer, "\n\nРейтинг игроков страны");
                 console.pressEnter();
             } else if (menuSelect == console.MENU_PLAYER_ADD_RPOINTS) {
                 leagueManager.addPoints(console.selectName(), console.addPoints());
                 console.pressEnter();
             } else if (menuSelect == console.MENU_EXIT) {
+                System.out.println("Завершение работы.");
                 break;
-            } else {
+            } else
                 System.out.println("Неправильный пункт меню!");
-            }
         }
     }
 
@@ -114,7 +117,6 @@ public class Console {
                 return League.values()[menuSelect - 1];
             } else {
                 System.out.println("Неправильный выбор!");
-                continue;
             }
         }
     }
@@ -133,7 +135,6 @@ public class Console {
                 return Country.values()[menuSelect - 1];
             } else {
                 System.out.println("Неправильный выбор!");
-                continue;
             }
         }
     }

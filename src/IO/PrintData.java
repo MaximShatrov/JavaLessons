@@ -12,14 +12,14 @@ public class PrintData {
         System.out.println(string);
     }
 
-    public void printArrayToTable(SockerPlayer array[], String title){
+    public void printArrayToTable(SockerPlayer[] array, String title){
         System.out.println(title);
         System.out.printf("%-4s","№");
         System.out.printf("%-40s", "Имя");
         System.out.printf("%-16s", "Страна");
         System.out.printf("%-32s", "Лига");
         System.out.printf("%7s", "Рейтинг");
-        System.out.printf("\n");
+        System.out.print("\n");
         System.out.printf("%100s", tabSeparator(100)+"\n");
         for (int i = 0; i < array.length; i++) {
             System.out.printf("%-4s",(i + 1) + ".");
@@ -27,7 +27,7 @@ public class PrintData {
             System.out.printf("%-16s", array[i].getCountry());
             System.out.printf("%-32s", array[i].getLeague());
             System.out.printf("%3d", array[i].getPoints());
-            System.out.printf("\n");
+            System.out.print("\n");
         }
         System.out.println();
     }
