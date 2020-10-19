@@ -45,7 +45,7 @@ class DateHelper {
         //возвращает отформатированную
         //(в формате на ваш выбор) дату и время начала сражения.
         //Дата должна соответствовать текущей минус 1500 лет.
-        return dfTimeOnly.format(battleTime);
+        return dfFull.format(battleTime);
     }
 
     long getFormattedDiff() {                //Возвращает значение равное колличеству прошедших минут боя

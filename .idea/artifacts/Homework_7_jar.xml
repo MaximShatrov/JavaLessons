@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Homework_7:jar">
+    <output-path>$PROJECT_DIR$/src/GUIApp</output-path>
+    <root id="archive" name="Homework_7.jar">
+      <element id="module-output" name="Homework_7" />
+    </root>
+  </artifact>
+</component>

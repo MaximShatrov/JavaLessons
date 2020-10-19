@@ -49,7 +49,7 @@ public class Battle {
     }
 
     public void startBattle() {
-        log.append("Битва началась в " + gettimeLine().getFormattedStartDate() + " года.");
+        log.append("Битва началась в " + gettimeLine().getFormattedStartDate() + " года.\n");
         while (squad1.hasAliveWarriors() && squad2.hasAliveWarriors()) {       // T && T = T
 
             if (attack(squad1, squad2, gettimeLine())) {
