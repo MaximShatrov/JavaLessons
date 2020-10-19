@@ -84,8 +84,8 @@ public class MainWindowController {
 
     @FXML
     void newBattle(ActionEvent event) {
-        firstSquadnameField.clear();
-        secondSquadnameField.clear();
+        //firstSquadnameField.clear();
+        //secondSquadnameField.clear();
         firstSquadSizeField.clear();
         secondSquadSizeField.clear();
         extraUnitsSquad1.setText("0");

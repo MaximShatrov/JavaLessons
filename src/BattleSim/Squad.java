@@ -43,9 +43,9 @@ public class Squad {
         ArrayList<Warrior> arrayList2 = new ArrayList<>(Arrays.asList(massive2));
         arrayList.addAll(arrayList.size() - 1, arrayList2);
         massive = arrayList.toArray(new Warrior[arrayList.size()]);
-        for (Warrior w: massive) {
-            w.setSquadName(squadName);
-        }
+        /*for (int i = 0; i < massive.length ; i++) {
+            massive[i].setSquadName(squadName);
+        }*/
     }
 
     public Squad(Warrior[] warriors, String squadName) {
