@@ -2,6 +2,9 @@ package BattleSim;
 
 import BattleSim.Units.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Squad {
@@ -21,6 +24,18 @@ public class Squad {
         }
     }
 
+    public Squad(String squadName, Warrior[] squad1, Warrior[] squad2) {
+        this.squadName = squadName;
+        List<Warrior> list1 = Arrays.asList(squad1);
+        List<Warrior> list2 = Arrays.asList(squad2);
+        list1.addAll(list2);
+        for (Warrior w : list1) {
+            w.setSquadName(squadName);
+        }
+        massive = list1.toArray(new Warrior[0]);
+    }
+
+
     Warrior getRandomWarrior() {
         int randomUnit = random.nextInt(massive.length - 1);
         while (true) {
@@ -29,24 +44,24 @@ public class Squad {
                 massive[randomUnit] = null;
                 return massive[massive.length - 1];
             } else {
-                randomUnit = random.nextInt(massive.length-1);
+                randomUnit = random.nextInt(massive.length - 1);
             }
         }
 
     }
 
-    void returnRandomWarrior(Warrior warrior){
-        for (int i=0; i<massive.length - 1;i++){
-            if (massive[i]==null){
+    void returnRandomWarrior(Warrior warrior) {
+        for (int i = 0; i < massive.length - 1; i++) {
+            if (massive[i] == null) {
                 massive[i] = warrior;
-                massive[massive.length-1] = null;
+                massive[massive.length - 1] = null;
             }
         }
     }
 
 
     boolean hasAliveWarriors() {
-        for (int i = 0; i < massive.length-1; i++) {
+        for (int i = 0; i < massive.length - 1; i++) {
             if (massive[i].isAlive()) {
                 return true;
             }
@@ -76,8 +91,8 @@ public class Squad {
         return generatedUnit;
     }
 
-    public void squadList( ) {
-        for (int i = 0; i < massive.length-1; i++) {
+    public void squadList() {
+        for (int i = 0; i < massive.length - 1; i++) {
             System.out.println((i + 1) + ". " + massive[i].toString() + " Здоровье: " + massive[i].getHealth());
         }
     }

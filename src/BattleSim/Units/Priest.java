@@ -6,6 +6,11 @@ public class Priest implements Warrior {
     private String squadName;
     private String warriorName;
     private NameList name = new NameList();
+    private String unitType = "Жрец";
+
+    public String getUnitType() {
+        return unitType;
+    }
 
     public Priest(String squadName) {
         this.squadName = squadName;
@@ -41,7 +46,7 @@ public class Priest implements Warrior {
     @Override
     public String toString() {      //Переопределить метод toString() класса Object для бойца, чтобы он выводил его
         // имя, класс и принадлежность к отряду.
-        return ("Прист " + warriorName + " из отряда " + squadName);
+        return (unitType + " " + warriorName + " из отряда " + squadName);
     }
 
 
