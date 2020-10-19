@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BattleSim.Battle;
+import BattleSim.Squad;
 import BattleSim.Units.Warrior;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,14 +28,15 @@ public class MainWindowController {
     private FXMLLoader logLoader;
     private Stage logStage;
     private LogWindowController logWindowController;
-    private Warrior[] extraSquad1;
-    private Warrior[] extraSquad2;
-    private Warrior[] mainSquad1;
-    private Warrior[] mainSquad2;
+    private Squad extraSquad1 = new Squad(0, "empty");
+    private Squad extraSquad2 = new Squad(0, "empty");
+    private Squad mainSquad1;
+    private Squad mainSquad2;
     private String squadName1;
-    private String SquadName2;
+    private String squadName2;
     private int mainSquadQnt1 = 0;
-    private int MainSquadQnt2 = 0;
+    private int mainSquadQnt2 = 0;
+    private StringBuffer log;
 
     @FXML
     private ResourceBundle resources;
@@ -87,18 +90,41 @@ public class MainWindowController {
         secondSquadSizeField.clear();
         extraUnitsSquad1.setText("0");
         extraUnitsSquad2.setText("0");
-        extraSquad1 = new Warrior[0];
-        extraSquad2 = new Warrior[0];
         winLabel.setVisible(false);
         openLogButton.setDisable(true);
         newBattleBtn.setDisable(true);
         startSimulationButton.setDisable(false);
+        extraSquad1 = new Squad(0, "empty");
+        extraSquad2 = new Squad(0, "empty");
     }
 
     @FXML
     void startBattle(ActionEvent event) {
+        mainSquad1 = new Squad(Integer.parseInt(firstSquadSizeField.getText()), firstSquadnameField.getText());
+        mainSquad2 = new Squad(Integer.parseInt(secondSquadSizeField.getText()), secondSquadnameField.getText());
+        Squad squad1;
+        Squad squad2;
+        if (extraSquad1.toString() == "empty"){
+            squad1 = mainSquad1;
+        } else {
+            squad1 = new Squad(mainSquad1, extraSquad1, mainSquad1.toString());
+        }
+        if (extraSquad2.toString() == "empty"){
+            squad2 = mainSquad2;
+        } else {
+            squad2 = new Squad(mainSquad2, extraSquad2, mainSquad2.toString());
+        }
 
+
+        Battle battle = new Battle(squad1, squad2);
+
+        battle.startBattle();
+        battle.getWinSquad();
+        log = battle.getLog();
         openLogButton.setDisable(false);
+        setWinLabel("Победил отряд " + battle.getWinSquad() + "!!!");
+
+
         winLabel.setVisible(true);
         startSimulationButton.setDisable(true);
         newBattleBtn.setDisable(false);
@@ -106,35 +132,7 @@ public class MainWindowController {
 
     @FXML
     void viewLog(ActionEvent event) {
-        logWindowController.setLog("123456789" +
-                "\n1234576fsfsdfsdfdsfsdfsdfsdfsdfsdfds" +
-                "\n3123123123213123123123123123123" +
-                "\n123456789900" +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug \ndebug debug debug debug debug debug debug debug debug debug " +
-                "\ndebug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debugdebug debug debug debug debug debug debug debug debug debugdebug debug debug debug debug debug debug debug debug debugdebug debug debug debug debug debug debug debug debug debug" +
-                "debug debug debug debug debug debug debug debug debug debug");
+        logWindowController.setLog(log.toString());
         runLogStage();
     }
 
@@ -178,9 +176,9 @@ public class MainWindowController {
         exSqWindowController.clearAllValues();
         runStageExtraSquad();
         if (exSqWindowController.isSquadSet()) {
-            extraSquad1 = exSqWindowController.getWarriors();
-            extraUnitsSquad1.setText(extraSquad1.length + "");
-        }
+            extraSquad1 = new Squad(exSqWindowController.getWarriors(), "extraSquad1");
+            extraUnitsSquad1.setText(exSqWindowController.getWarriors().length + "");
+        } else   extraSquad1 = new Squad(0, "empty");
     }
 
 
@@ -188,9 +186,9 @@ public class MainWindowController {
         exSqWindowController.clearAllValues();
         runStageExtraSquad();
         if (exSqWindowController.isSquadSet()) {
-            extraSquad2 = exSqWindowController.getWarriors();
-            extraUnitsSquad2.setText(extraSquad2.length + "");
-        }
+            extraSquad2 = new Squad(exSqWindowController.getWarriors(), "extraSquad2");
+            extraUnitsSquad2.setText(exSqWindowController.getWarriors().length + "");
+        } else extraSquad2 = new Squad(0, "empty");
     }
 
     public void setWinLabel(String string) {

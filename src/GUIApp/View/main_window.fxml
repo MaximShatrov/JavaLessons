@@ -29,11 +29,6 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-      <Label fx:id="winLabel" alignment="CENTER" layoutX="67.0" layoutY="187.0" prefHeight="18.0" prefWidth="567.0" text="Победил отряд такой-то!" textFill="#6ed035" visible="false">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
       <Button fx:id="newBattleBtn" disable="true" layoutX="501.0" layoutY="241.0" mnemonicParsing="false" onAction="#newBattle" prefHeight="42.0" prefWidth="150.0" text="Новая битва" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="45.0">
          <font>
             <Font name="System Bold" size="19.0" />
@@ -126,5 +121,10 @@
             </Text>
          </children>
       </GridPane>
+      <Label fx:id="winLabel" alignment="CENTER" layoutX="67.0" layoutY="187.0" prefHeight="18.0" prefWidth="567.0" text="Победил отряд такой-то!" textFill="#6ed035" visible="false">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

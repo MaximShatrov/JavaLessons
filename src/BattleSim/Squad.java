@@ -24,7 +24,7 @@ public class Squad {
         }
     }
 
-    public Squad(String squadName, Warrior[] squad1, Warrior[] squad2) {
+    /*public Squad(String squadName, Warrior[] squad1, Warrior[] squad2) {
         this.squadName = squadName;
         List<Warrior> list1 = Arrays.asList(squad1);
         List<Warrior> list2 = Arrays.asList(squad2);
@@ -33,10 +33,27 @@ public class Squad {
             w.setSquadName(squadName);
         }
         massive = list1.toArray(new Warrior[0]);
+    }*/
+
+    public Squad(Squad squad1, Squad squad2, String squadName) {
+        this.squadName = squadName;
+        Warrior[] massive1 = squad1.getWarriorMassive();
+        Warrior[] massive2 = squad2.getWarriorMassive();
+        ArrayList<Warrior> arrayList = new ArrayList<>(Arrays.asList(massive1));
+        ArrayList<Warrior> arrayList2 = new ArrayList<>(Arrays.asList(massive2));
+        arrayList.addAll(arrayList.size() - 1, arrayList2);
+        massive = arrayList.toArray(new Warrior[arrayList.size()]);
+        for (Warrior w: massive) {
+            w.setSquadName(squadName);
+        }
     }
 
+    public Squad(Warrior[] warriors, String squadName) {
+        this.massive = warriors;
+        this.squadName = squadName;
+    }
 
-    Warrior getRandomWarrior() {
+    public Warrior getRandomWarrior() {
         int randomUnit = random.nextInt(massive.length - 1);
         while (true) {
             if (massive[randomUnit].isAlive()) {
@@ -89,6 +106,10 @@ public class Squad {
                 break;
         }
         return generatedUnit;
+    }
+
+    private Warrior[] getWarriorMassive() {
+        return massive;
     }
 
     public void squadList() {
