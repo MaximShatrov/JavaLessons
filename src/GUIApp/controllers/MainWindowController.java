@@ -62,6 +62,11 @@ public class MainWindowController {
     private TextField secondSquadSizeField;
 
     @FXML
+    private Button addUnit_1_btn;
+    @FXML
+    private Button addUnit_2_btn;
+
+    @FXML
     private Button showSquad1_btn;
 
     @FXML
@@ -155,6 +160,12 @@ public class MainWindowController {
             battle.startBattle();
             battle.getWinSquad();
             log = battle.getLog();
+            firstSquadnameField.setDisable(true);
+            secondSquadnameField.setDisable(true);
+            firstSquadSizeField.setDisable(true);
+            secondSquadSizeField.setDisable(true);
+            addUnit_1_btn.setDisable(true);
+            addUnit_2_btn.setDisable(true);
             openLogButton.setDisable(false);
             setWinLabel("Победил отряд " + battle.getWinSquad() + "!!!");
             winLabel.setVisible(true);
@@ -229,60 +240,71 @@ public class MainWindowController {
         showSquad1_btn.setDisable(true);
         showSquad2_btn.setDisable(true);
         startSimulationButton.setDisable(false);
+        firstSquadnameField.setDisable(false);
+        secondSquadnameField.setDisable(false);
+        firstSquadSizeField.setDisable(false);
+        secondSquadSizeField.setDisable(false);
+        addUnit_1_btn.setDisable(false);
+        addUnit_2_btn.setDisable(false);
         extraSquad1 = new Squad(0, "empty");
         extraSquad2 = new Squad(0, "empty");
     }
 
     private boolean checkInputFields() {
-        boolean state1 = false;
-        boolean state2 = false;
-        boolean state3 = false;
-        boolean state4 = false;
-        try {
-            if (checkIntField(firstSquadSizeField)) {
-                if (Integer.parseInt(firstSquadSizeField.getText()) <= 0 & extraSquad1.toString() == "empty") {
-                    shakeField(firstSquadSizeField);
-                    state1 = false;
-                } else state1 = true;
-
-            } else
-            {
-                shakeField(firstSquadSizeField);
-                state1 = false;
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("в поле не текст");
-            shakeField(firstSquadSizeField);
-            state1 = false;
-        }
-
+        boolean state1;
+        boolean state2;
+        boolean state3;
+        boolean state4;
         try {
             if (checkIntField(secondSquadSizeField)) {
                 if (Integer.parseInt(secondSquadSizeField.getText()) <= 0 & extraSquad2.toString() == "empty") {
                     shakeField(secondSquadSizeField);
+                    secondSquadSizeField.requestFocus();
                     state2 = false;
                 } else state2 = true;
-
             } else {
                 shakeField(secondSquadSizeField);
+                secondSquadSizeField.requestFocus();
                 state2 = false;
             }
         } catch (NumberFormatException e) {
             System.out.println("в поле не текст");
             shakeField(secondSquadSizeField);
+            secondSquadSizeField.requestFocus();
             state2 = false;
         }
-        if (checkStringField(firstSquadnameField)) state3 = true;
-        else  {
-            shakeField(firstSquadnameField);
-            state3 = false;
+        try {
+            if (checkIntField(firstSquadSizeField)) {
+                if (Integer.parseInt(firstSquadSizeField.getText()) <= 0 & extraSquad1.toString() == "empty") {
+                    shakeField(firstSquadSizeField);
+                    firstSquadSizeField.requestFocus();
+                    state1 = false;
+                } else state1 = true;
+            } else {
+                shakeField(firstSquadSizeField);
+                firstSquadSizeField.requestFocus();
+                state1 = false;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("в поле не текст");
+            shakeField(firstSquadSizeField);
+            firstSquadSizeField.requestFocus();
+            state1 = false;
         }
+
         if (checkStringField(secondSquadnameField)) state4 = true;
         else {
             shakeField(secondSquadnameField);
+            secondSquadnameField.requestFocus();
             state4 = false;
         }
-       return (state1 && state2 && state3 && state4);
+        if (checkStringField(firstSquadnameField)) state3 = true;
+        else {
+            shakeField(firstSquadnameField);
+            firstSquadnameField.requestFocus();
+            state3 = false;
+        }
+        return (state1 && state2 && state3 && state4);
     }
 
     private boolean checkStringField(TextField textField) {

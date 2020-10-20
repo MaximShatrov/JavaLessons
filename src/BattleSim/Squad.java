@@ -110,7 +110,7 @@ public class Squad implements Cloneable {
     public StringBuilder squadList() {
         StringBuilder squadList = new StringBuilder();
         for (int i = 0; i < massive.size(); i++) {
-            squadList.append((i + 1) + ". " + massive.get(i).toString() + " Здоровье: " + massive.get(i).getHealth() + "\n");
+            squadList.append((i + 1) + ".   " + massive.get(i).toString() + ".    Здоровье: " + massive.get(i).getHealth() + "\n");
         }
         return squadList;
     }
