@@ -1,4 +1,4 @@
-package GUIApp.Controllers;
+package GUIApp.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,10 +32,7 @@ public class LogWindowController {
     private Button okBtn;
 
     @FXML
-    void logOkBtn(ActionEvent event) {
-        Stage stage = (Stage) okBtn.getScene().getWindow();
-        stage.close();
-    }
+    private Label titleLabel;
 
     @FXML
     void initialize() {
@@ -44,5 +41,18 @@ public class LogWindowController {
 
     public void setLog(String string){
         logText.setText(string);
+    }
+
+    public void setLog(StringBuilder log){
+        logText.setText(log.toString());
+    }
+
+    public void pressOk(ActionEvent actionEvent) {
+        Stage stage = (Stage) okBtn.getScene().getWindow();
+        stage.close();
+    }
+
+    public void setTitleLabel(String string){
+        titleLabel.setText(string);
     }
 }

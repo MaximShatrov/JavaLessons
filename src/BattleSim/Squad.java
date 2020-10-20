@@ -7,79 +7,69 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Squad {
-    private Warrior[] massive;
+public class Squad implements Cloneable {
+    private ArrayList<Warrior> massive;
     private String squadName;
-    private Random random = new Random();
-    private final int ARCHER = 0;
-    private final int KNIGHT = 1;
-    private final int PRIEST = 2;
-    private final int VIKING = 3;
+
+
+    public Squad(Squad squad) {
+        this.squadName = squad.toString();
+        this.massive = (ArrayList<Warrior>) squad.getWarriorMassive().clone();
+    }
 
     public Squad(int quantity, String squadName) {
         this.squadName = squadName;
-        massive = new Warrior[quantity + 1];
-        for (int i = 0; i < massive.length - 1; i++) {
-            massive[i] = (Warrior) makeRandomUnit(squadName);
+        massive = new ArrayList<>();
+        for (int i = 0; i < quantity; i++) {
+            massive.add((Warrior) makeRandomUnit(squadName));
         }
     }
-
-    /*public Squad(String squadName, Warrior[] squad1, Warrior[] squad2) {
-        this.squadName = squadName;
-        List<Warrior> list1 = Arrays.asList(squad1);
-        List<Warrior> list2 = Arrays.asList(squad2);
-        list1.addAll(list2);
-        for (Warrior w : list1) {
-            w.setSquadName(squadName);
-        }
-        massive = list1.toArray(new Warrior[0]);
-    }*/
 
     public Squad(Squad squad1, Squad squad2, String squadName) {
         this.squadName = squadName;
-        Warrior[] massive1 = squad1.getWarriorMassive();
-        Warrior[] massive2 = squad2.getWarriorMassive();
-        ArrayList<Warrior> arrayList = new ArrayList<>(Arrays.asList(massive1));
-        ArrayList<Warrior> arrayList2 = new ArrayList<>(Arrays.asList(massive2));
-        arrayList.addAll(arrayList.size() - 1, arrayList2);
-        massive = arrayList.toArray(new Warrior[arrayList.size()]);
-        /*for (int i = 0; i < massive.length ; i++) {
-            massive[i].setSquadName(squadName);
-        }*/
+        ArrayList<Warrior> warriors1 = squad1.getWarriorMassive();
+        ArrayList<Warrior> warriors2 = squad2.getWarriorMassive();
+        warriors1.addAll(warriors2);
+        massive = warriors1;
+
+        for (int i = 0; i < massive.size(); i++) {
+            Warrior warrior = massive.get(i);
+            warrior.setSquadName(squadName);
+            massive.set(i, warrior);
+        }
     }
 
-    public Squad(Warrior[] warriors, String squadName) {
+    public Squad(ArrayList<Warrior> warriors, String squadName) {
         this.massive = warriors;
         this.squadName = squadName;
     }
 
     public Warrior getRandomWarrior() {
-        int randomUnit = random.nextInt(massive.length - 1);
+        Random random = new Random();
+        int randomUnit = random.nextInt(massive.size());
         while (true) {
-            if (massive[randomUnit].isAlive()) {
-                massive[massive.length - 1] = massive[randomUnit];
-                massive[randomUnit] = null;
-                return massive[massive.length - 1];
+            if (massive.get(randomUnit).isAlive()) {
+                Warrior randomWarrior = massive.get(randomUnit);
+                //massive[massive.length - 1] = massive[randomUnit];
+                massive.remove(randomUnit);
+                return randomWarrior;
             } else {
-                randomUnit = random.nextInt(massive.length - 1);
+                randomUnit = random.nextInt(massive.size() - 1);
             }
         }
 
     }
 
     void returnRandomWarrior(Warrior warrior) {
-        for (int i = 0; i < massive.length - 1; i++) {
-            if (massive[i] == null) {
-                massive[i] = warrior;
-                massive[massive.length - 1] = null;
-            }
+        if (warrior.getHealth() > 0) {
+            massive.add(warrior);
         }
     }
 
 
     boolean hasAliveWarriors() {
-        for (int i = 0; i < massive.length - 1; i++) {
-            if (massive[i].isAlive()) {
+        for (int i = 0; i < massive.size(); i++) {
+            if (massive.get(i).isAlive()) {
                 return true;
             }
         }
@@ -87,7 +77,12 @@ public class Squad {
     }
 
     private Object makeRandomUnit(String squadName) {
+        final int ARCHER = 0;
+        final int KNIGHT = 1;
+        final int PRIEST = 2;
+        final int VIKING = 3;
         Warrior generatedUnit = null;
+        Random random = new Random();
         switch (random.nextInt(4)) {
             case ARCHER:
                 generatedUnit = new Archer(squadName);
@@ -108,14 +103,16 @@ public class Squad {
         return generatedUnit;
     }
 
-    private Warrior[] getWarriorMassive() {
+    private ArrayList<Warrior> getWarriorMassive() {
         return massive;
     }
 
-    public void squadList() {
-        for (int i = 0; i < massive.length - 1; i++) {
-            System.out.println((i + 1) + ". " + massive[i].toString() + " Здоровье: " + massive[i].getHealth());
+    public StringBuilder squadList() {
+        StringBuilder squadList = new StringBuilder();
+        for (int i = 0; i < massive.size(); i++) {
+            squadList.append((i + 1) + ". " + massive.get(i).toString() + " Здоровье: " + massive.get(i).getHealth() + "\n");
         }
+        return squadList;
     }
 
     @Override
@@ -126,8 +123,13 @@ public class Squad {
 
     @Override                       //Переопределить метод clone(), создающий копию отряда.
     // При этом должен быть создан новый отряд, содержащий новый массив новых бойцов, идентичных исходным.
-    public Object clone() {
-        return null;
+    public Squad clone() throws CloneNotSupportedException {
+        ArrayList<Warrior> clone = new ArrayList<>(this.massive.size());
+        for (Warrior w :this.massive) {
+            clone.add((Warrior) w.clone());
+        }
+        return new Squad(clone, this.squadName);
+
     }
 }
 

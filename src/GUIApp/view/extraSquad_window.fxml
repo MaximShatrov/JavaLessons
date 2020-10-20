@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="300.0" maxWidth="700.0" minHeight="252.0" minWidth="576.0" prefHeight="268.0" prefWidth="580.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIApp.Controllers.ExtraSquadWindowController">
+<AnchorPane maxHeight="300.0" maxWidth="700.0" minHeight="252.0" minWidth="576.0" prefHeight="268.0" prefWidth="580.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIApp.controllers.ExtraSquadWindowController">
    <children>
       <Label layoutX="11.0" layoutY="14.0" prefHeight="26.0" prefWidth="189.0" text="Добавление бойцов" AnchorPane.leftAnchor="15.0">
          <font>

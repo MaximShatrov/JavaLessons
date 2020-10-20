@@ -1,12 +1,19 @@
 package BattleSim.Units;
 
-public class Priest implements Warrior {
+public class Priest implements Warrior, Cloneable {
     private int health = 95;
     private int damage = 16;
     private String squadName;
     private String warriorName;
-    private NameList name = new NameList();
     private String unitType = "Жрец";
+
+    public Priest(int health, int damage, String squadName, String warriorName, String unitType) {
+        this.health = health;
+        this.damage = damage;
+        this.squadName = squadName;
+        this.warriorName = warriorName;
+        this.unitType = unitType;
+    }
 
     public String getUnitType() {
         return unitType;
@@ -14,7 +21,13 @@ public class Priest implements Warrior {
 
     public Priest(String squadName) {
         this.squadName = squadName;
+        NameList name = new NameList();
         warriorName = name.getRandomName();
+    }
+
+    private Priest(String squadName, String warriorName) {
+        this.squadName = squadName;
+        this.warriorName = warriorName;
     }
 
     @Override
@@ -51,7 +64,7 @@ public class Priest implements Warrior {
 
 
     @Override                       //Переопределить метод clone(), создающий копию бойца.
-    public Object clone() {
-        return null;
+    public Priest clone() throws CloneNotSupportedException {
+        return (Priest) super.clone();
     }
 }

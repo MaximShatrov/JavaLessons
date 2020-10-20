@@ -1,15 +1,11 @@
-package GUIApp.Controllers;
+package GUIApp.controllers;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 
 import BattleSim.Units.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -18,24 +14,15 @@ public class ExtraSquadWindowController {
     private int addField2;
     private int addField3;
     private int addField4;
-    private String testString;
     private boolean isSquadSet = false;
-    private Warrior[] warriors;
+    private ArrayList<Warrior> warriors;
+    private String squadName = "NullName";
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Label winLabel;
 
     @FXML
     private Button okButton;
 
-    @FXML
-    private Button cancelButton;
+
 
     @FXML
     private Text className1;
@@ -73,7 +60,6 @@ public class ExtraSquadWindowController {
     @FXML
     private Text hp4;
 
-
     @FXML
     private Text choosen1;
 
@@ -85,30 +71,6 @@ public class ExtraSquadWindowController {
 
     @FXML
     private Text choosen4;
-
-    @FXML
-    private Button increase1;
-
-    @FXML
-    private Button increase2;
-
-    @FXML
-    private Button increase3;
-
-    @FXML
-    private Button increase4;
-
-    @FXML
-    private Button decrease1;
-
-    @FXML
-    private Button decrease2;
-
-    @FXML
-    private Button decrease3;
-
-    @FXML
-    private Button decrease4;
 
     @FXML
     void decrease1(ActionEvent event) {
@@ -165,57 +127,47 @@ public class ExtraSquadWindowController {
         choosen4.setText(addField4 + "");
     }
 
-
     @FXML
     void initialize() {
         Archer archer = new Archer(squadName);
         Knight knight = new Knight(squadName);
         Priest priest = new Priest(squadName);
         Viking viking = new Viking(squadName);
-
         className1.setText(archer.getUnitType());
         damage1.setText(archer.attack() + "");
         hp1.setText(archer.getHealth() + "");
-
         className2.setText(knight.getUnitType());
         damage2.setText(knight.attack() + "");
         hp2.setText(knight.getHealth() + "");
-
         className3.setText(priest.getUnitType());
         damage3.setText(priest.attack() + "");
         hp3.setText(priest.getHealth() + "");
-
         className4.setText(viking.getUnitType());
         damage4.setText(viking.attack() + "");
         hp4.setText(viking.getHealth() + "");
     }
 
-
-
-    private String squadName = "NullName";
-
     public void makeWarriorMassive() {
-        List<Warrior> arrayList = new ArrayList<>();
+        warriors = new ArrayList<>();
         if (addField1 > 0) {
-            for (int i = 0; i < addField1; i++) arrayList.add(new Archer(squadName));
+            for (int i = 0; i < addField1; i++) warriors.add(new Archer(squadName));
             setSquadSet(true);
         }
         if (addField2 > 0) {
-            for (int i = 0; i < addField2; i++) arrayList.add(new Knight(squadName));
+            for (int i = 0; i < addField2; i++) warriors.add(new Knight(squadName));
             setSquadSet(true);
         }
         if (addField3 > 0) {
-            for (int i = 0; i < addField3; i++) arrayList.add(new Priest(squadName));
+            for (int i = 0; i < addField3; i++) warriors.add(new Priest(squadName));
             setSquadSet(true);
         }
         if (addField4 > 0) {
-            for (int i = 0; i < addField4; i++) arrayList.add(new Viking(squadName));
+            for (int i = 0; i < addField4; i++) warriors.add(new Viking(squadName));
             setSquadSet(true);
         }
-        warriors = arrayList.toArray(new Warrior[0]);
     }
 
-    public Warrior[] getWarriors(){
+    public ArrayList<Warrior> getWarriors(){
         return warriors;
     }
 

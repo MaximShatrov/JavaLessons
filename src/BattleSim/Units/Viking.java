@@ -1,12 +1,19 @@
 package BattleSim.Units;
 
-public class Viking implements Warrior {
+public class Viking implements Warrior,Cloneable {
     private int health = 150;
     private int damage = 15;
     private String squadName;
     private String warriorName;
-    private NameList name = new NameList();
     private String unitType = "Викинг";
+
+    public Viking(int health, int damage, String squadName, String warriorName, String unitType) {
+        this.health = health;
+        this.damage = damage;
+        this.squadName = squadName;
+        this.warriorName = warriorName;
+        this.unitType = unitType;
+    }
 
     public String getUnitType() {
         return unitType;
@@ -14,7 +21,13 @@ public class Viking implements Warrior {
 
     public Viking(String squadName) {
         this.squadName = squadName;
+        NameList name = new NameList();
         warriorName = name.getRandomName();
+    }
+
+    private Viking(String squadName, String warriorName){
+        this.squadName = squadName;
+        this.warriorName = warriorName;
     }
 
     @Override
@@ -51,7 +64,7 @@ public class Viking implements Warrior {
 
 
     @Override                       //Переопределить метод clone(), создающий копию бойца.
-    public Object clone() {
-        return null;
+    public Viking clone()throws CloneNotSupportedException {
+        return (Viking) super.clone();
     }
 }

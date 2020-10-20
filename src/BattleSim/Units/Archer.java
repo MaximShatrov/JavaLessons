@@ -1,20 +1,29 @@
 package BattleSim.Units;
 
-public class Archer implements Warrior {
+public class Archer implements Warrior, Cloneable {
     private int health = 90;
     private int damage = 15;
     private String squadName;
     private String warriorName;
-    private NameList name = new NameList();
     private String unitType = "Лучник";
 
-    public String getUnitType() {
-        return unitType;
+    private Archer(int health, int damage, String squadName, String warriorName, String unitType) {
+        this.health = health;
+        this.damage = damage;
+        this.squadName = squadName;
+        this.warriorName = warriorName;
+        this.unitType = unitType;
     }
 
     public Archer(String squadName) {
         this.squadName = squadName;
+        NameList name = new NameList();
         warriorName = name.getRandomName();
+    }
+
+    private Archer(String squadName, String warriorName) {
+        this.squadName = squadName;
+        this.warriorName = warriorName;
     }
 
     @Override
@@ -22,6 +31,11 @@ public class Archer implements Warrior {
         return damage;
     }
 
+    public String getUnitType() {
+        return unitType;
+    }
+
+    @Override
     public int getHealth() {
         return health;
     }
@@ -51,7 +65,8 @@ public class Archer implements Warrior {
 
 
     @Override                       //Переопределить метод clone(), создающий копию бойца.
-    public Object clone() {
-        return null;
+    public Archer clone() throws CloneNotSupportedException {
+    return new Archer(this.health, this.damage, this.squadName, this.warriorName, this.unitType);
+        //return (Archer) super.clone();
     }
 }

@@ -1,20 +1,33 @@
 package BattleSim.Units;
 
-public class Knight implements Warrior {
+public class Knight implements Warrior, Cloneable {
     private int health = 110;
     private int damage = 10;
     private String squadName;
     private String warriorName;
-    private NameList name = new NameList();
     private String unitType = "Рыцарь";
 
     public String getUnitType() {
         return unitType;
     }
 
+    private Knight(int health, int damage, String squadName, String warriorName, String unitType) {
+        this.health = health;
+        this.damage = damage;
+        this.squadName = squadName;
+        this.warriorName = warriorName;
+        this.unitType = unitType;
+    }
+
     public Knight(String squadName) {
         this.squadName = squadName;
+        NameList name = new NameList();
         warriorName = name.getRandomName();
+    }
+
+    private Knight(String squadName, String warriorName) {
+        this.squadName = squadName;
+        this.warriorName = warriorName;
     }
 
     @Override
@@ -51,7 +64,7 @@ public class Knight implements Warrior {
 
 
     @Override                       //Переопределить метод clone(), создающий копию бойца.
-    public Object clone() {
-        return null;
+    public Knight clone() throws CloneNotSupportedException {
+        return (Knight) super.clone();
     }
 }

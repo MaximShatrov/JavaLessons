@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIApp.Controllers.LogWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIApp.controllers.LogWindowController">
    <children>
-      <Label fx:id="logScrollPane" layoutX="14.0" layoutY="14.0" text="Ход битвы">
+      <Label fx:id="titleLabel" layoutX="14.0" layoutY="14.0" text="Ход битвы">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -24,7 +24,7 @@
             </TextFlow>
          </content>
       </ScrollPane>
-      <Button fx:id="okBtn" layoutX="330.0" layoutY="544.0" mnemonicParsing="false" onAction="#logOkBtn" prefHeight="26.0" prefWidth="90.0" text="Ок">
+      <Button fx:id="okBtn" layoutX="330.0" layoutY="544.0" mnemonicParsing="false" onAction="#pressOk" prefHeight="26.0" prefWidth="90.0" text="Ок">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>

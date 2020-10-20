@@ -1,6 +1,6 @@
 package BattleSim.Units;
 
-public interface Warrior {
+public interface Warrior extends Cloneable {
     int attack();
 
     void takeDamage(int damage);
@@ -10,5 +10,7 @@ public interface Warrior {
     void setSquadName(String name);
 
     public int getHealth();
+
+    public Object clone() throws CloneNotSupportedException;
 }
 

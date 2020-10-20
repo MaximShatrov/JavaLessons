@@ -13,13 +13,13 @@ public class Battle {
     private Squad squad1;
     private Squad squad2;
     private DateHelper timeline;
-    private StringBuffer log;
+    private StringBuilder log;
     private String winSquad;
 
     public Battle(Squad squad1, Squad squad2) {
         this.squad1 = squad1;
         this.squad2 = squad2;
-        log = new StringBuffer();
+        log = new StringBuilder();
         timeline = new DateHelper();
     }
 
@@ -31,7 +31,7 @@ public class Battle {
         this.winSquad = winSquad;
     }
 
-    public StringBuffer getLog() {
+    public StringBuilder getLog() {
         return log;
     }
 
@@ -40,8 +40,8 @@ public class Battle {
     }
 
     public static void main(String[] args) {
-        int alphaQntty = 5;
-        int omegaQntty = 5;
+        int alphaQntty = 1000;
+        int omegaQntty = 1000;
         Squad alpha = new Squad(alphaQntty, "Альфа");
         Squad omega = new Squad(omegaQntty, "Омега");
         Battle consoleBattle = new Battle(alpha, omega);
@@ -50,42 +50,65 @@ public class Battle {
 
     public void startBattle() {
         log.append("Битва началась в " + gettimeLine().getFormattedStartDate() + " года.\n");
+        int round = 0;
         while (squad1.hasAliveWarriors() && squad2.hasAliveWarriors()) {       // T && T = T
 
             if (attack(squad1, squad2, gettimeLine())) {
                 break;
             }
+
+            System.out.println("debug1.1 " + round);
+
             log.append("\n\n" + gettimeLine().getFormattedCurrentTime() + "\n");
+            System.out.println("debug1.2 " + round);
+
             gettimeLine().skipTime();
             if (attack(squad2, squad1, gettimeLine())) {
                 break;
             }
+
+            System.out.println("debug2.1 " + round);
+
             log.append("\n\n" + gettimeLine().getFormattedCurrentTime() + "\n");
+            System.out.println("debug2.2 " + round);
+
             gettimeLine().skipTime();
+            round++;
 
         }
-        System.out.println(log);
+        System.out.println(log.toString());
     }
 
 
     private boolean attack(Squad alpha, Squad omega, DateHelper timeLine) {
         Warrior attackWarrior1;
+        System.err.println("debug -5");
         Warrior attackWarrior2;
+        System.err.println("debug -4");
         attackWarrior1 = alpha.getRandomWarrior();
+        System.err.println("debug -3");
         attackWarrior2 = omega.getRandomWarrior();
+        System.err.println("debug -2");
         attackWarrior2.takeDamage(attackWarrior1.attack());
+        System.err.println("debug -1");
         log.append(attackWarrior1.toString() + " проводит атаку, нанося " + attackWarrior1.attack() + " очков урона.\n"
                 + attackWarrior2.toString());
+        System.err.println("debug 0");
         if (attackWarrior2.getHealth() > 0) {
             log.append(" защишается. Его здоровье составляет " + attackWarrior2.getHealth() + "HP.");
         } else {
             log.append(" получает смертельный урон.");
         }
+        System.err.println("debug 1");
         alpha.returnRandomWarrior(attackWarrior1);
+        System.err.println("debug 2");
         omega.returnRandomWarrior(attackWarrior2);
+        System.err.println("debug 3");
         if (!omega.hasAliveWarriors()) {
+            System.err.println("debug 4");
             log.append("\n\nПобедил отряд " + alpha.toString() + "!!!\nПродолжительность битвы составила: "
                     + timeLine.getFormattedDiff() + " минут.");
+            System.err.println("debug 5");
             setWinSquad(alpha.toString());
             return true;
         }
