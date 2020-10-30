@@ -39,16 +39,6 @@ public class Player implements SockerPlayer, Comparable<Player> {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(nickName);
-    }
-
-    @Override
-    public String toString() {
-        return "\n" + nickName + ": рейтинг - " + ratingPoints + ", страна - " + country + ", лига - " + league;
-    }
-
-    @Override
     public String getNickName() {
         return nickName;
     }
@@ -77,5 +67,15 @@ public class Player implements SockerPlayer, Comparable<Player> {
         } else {
             return Integer.compare(0, this.nickName.compareTo(comparePlayer.nickName));
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nickName);
+    }
+
+    @Override
+    public String toString() {
+        return "\n" + nickName + ": рейтинг - " + ratingPoints + ", страна - " + country + ", лига - " + league;
     }
 }

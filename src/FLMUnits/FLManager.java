@@ -97,20 +97,27 @@ public class FLManager implements LeagueManager {
     public void addPoints(String name, int points) {
         Iterator<SockerPlayer> iterator = playerHashSet.iterator();
         SockerPlayer updatePlayer = new Player(name, 0, null, null);
+        boolean isNeedUpdate = true;
         if (playerHashSet.contains(updatePlayer)) {
             while (iterator.hasNext()) {
                 SockerPlayer player = iterator.next();
                 if (player.equals(updatePlayer)) {
-                    if ((player.getPoints() + points) > 100) {
+                    if (player.getPoints() == 100) {
+                        System.out.println("Рейтинг игрока " + updatePlayer.getNickName() + " уже максимальный!");
+                        isNeedUpdate = false;
+                        break;
+                    } else if ((player.getPoints() + points) > 100) {
                         updatePlayer = new Player(player.getNickName(), (100), player.getLeague(), player.getCountry());
                     } else {
                         updatePlayer = new Player(player.getNickName(), (player.getPoints() + points), player.getLeague(), player.getCountry());
                     }
                 }
             }
-            playerHashSet.remove(updatePlayer);
-            if (playerHashSet.add(updatePlayer)) {
-                System.out.println("Рейтинг игрока " + updatePlayer.getNickName() + " обновлен!");
+            if (isNeedUpdate) {
+                playerHashSet.remove(updatePlayer);
+                if (playerHashSet.add(updatePlayer)) {
+                    System.out.println("Рейтинг игрока " + updatePlayer.getNickName() + " обновлен!");
+                }
             }
         } else {
             System.out.println("Данного игрока нет ни в одной лиге!");
