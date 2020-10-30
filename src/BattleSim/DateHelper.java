@@ -12,13 +12,17 @@ class DateHelper {
     private Date battleTime;
     private Date battleBeginTime;
     private Calendar calendar = Calendar.getInstance();
-    private DateFormat dfFull = new SimpleDateFormat("HH:mm, dd MMMM YYY");
-    private DateFormat dfTimeOnly = new SimpleDateFormat("HH:mm");
+    private String fullDatePattern = "HH:mm, dd MMMM YYY";
+    private DateFormat dfFull = new SimpleDateFormat(fullDatePattern);
+    private String timeOnlyPattern = "HH:mm";
+    private DateFormat dfTimeOnly = new SimpleDateFormat(timeOnlyPattern);
+    private int yearDiff = -1500;
+    private int skipTimeMinutes = 45;
     //private DateFormat dfFull = new SimpleDateFormat("dd MMMM YYY");
 
 
     {
-        calendar.add(Calendar.YEAR, -1500);
+        calendar.add(Calendar.YEAR, yearDiff);
         battleTime = calendar.getTime();
         battleBeginTime = battleTime;
     }
@@ -26,21 +30,26 @@ class DateHelper {
     DateHelper() {
 
     }
-
+    /**
+     * @return возвращает дату и время начала сражения в формате {@link DateHelper#fullDatePattern}
+     */
     String getFormattedStartDate() {
-        //возвращает отформатированную
-        //(в формате на ваш выбор) дату и время начала сражения.
-        //Дата должна соответствовать текущей минус 1500 лет.
         return dfFull.format(battleBeginTime);
     }
 
+    /**
+     * проматывает длительность{@link DateHelper#skipTimeMinutes} одного раунда сражения
+     */
     void skipTime() {
-        calendar.add(Calendar.MINUTE, 45);
+        calendar.add(Calendar.MINUTE, skipTimeMinutes);
         battleTime = calendar.getTime();
         //проматывает константное время (длительность)
         // одного раунда сражения, например, 45 минут
     }
 
+    /**
+     * @return возвращает дату и время текущего времени{@link DateHelper#battleTime} в формате {@link DateHelper#fullDatePattern}
+     */
     String getFormattedCurrentTime() {
         //возвращает отформатированную
         //(в формате на ваш выбор) дату и время начала сражения.
@@ -48,10 +57,12 @@ class DateHelper {
         return dfFull.format(battleTime);
     }
 
-    long getFormattedDiff() {                //Возвращает значение равное колличеству прошедших минут боя
+    /**
+     * Функция получения разницы между текущим{@link DateHelper#battleTime} временем и началом боя{@link DateHelper#battleBeginTime}
+     * @return Возвращает значение равное колличеству прошедших минут боя
+     */
+    long getFormattedDiff() {
         TimeUnit timeUnit = TimeUnit.MINUTES;
-        //возвращает отформатированную (в формате на ваш выбор) длительность сражения, как разницу между
-        //временем, на которое проматывалось время сражения, и временем начала сражения.
         return timeUnit.convert(battleTime.getTime()-battleBeginTime.getTime(),TimeUnit.MILLISECONDS);
     }
 }

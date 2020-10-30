@@ -2,6 +2,7 @@ package GUIApp.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,20 +40,37 @@ public class LogWindowController {
 
     }
 
-    public void setLog(String string){
+    /**
+     * Записывает string в {@link LogWindowController#logText}
+     * Используется для вывода лога
+     * @param string входящая строка с логом
+     */
+    public void setLog(String string) {
         logText.setText(string);
     }
 
-    public void setLog(StringBuilder log){
+    /**
+     * Записывает log в {@link LogWindowController#logText}
+     * Используется для вывода состава отряда
+     * @param log входящий StringBuilder
+     */
+    public void setLog(StringBuilder log) {
         logText.setText(log.toString());
     }
 
-    public void pressOk(ActionEvent actionEvent) {
+    /**
+     * Закрывает окно
+     */
+    public void pressOk() {
         Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
     }
 
-    public void setTitleLabel(String string){
+    /**
+     * Устанавливает заголовок окна
+     * @param string заголовок окна
+     */
+    public void setTitleLabel(String string) {
         titleLabel.setText(string);
     }
 }

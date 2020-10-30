@@ -23,7 +23,6 @@ public class ExtraSquadWindowController {
     private Button okButton;
 
 
-
     @FXML
     private Text className1;
 
@@ -127,6 +126,10 @@ public class ExtraSquadWindowController {
         choosen4.setText(addField4 + "");
     }
 
+
+    /**
+     * Инициализация полей окна выбора классов.
+     */
     @FXML
     void initialize() {
         Archer archer = new Archer(squadName);
@@ -147,6 +150,9 @@ public class ExtraSquadWindowController {
         hp4.setText(viking.getHealth() + "");
     }
 
+    /**
+     * Инициализирует ArrayList<Warrior> на основе выбранных пользователем данных
+     */
     public void makeWarriorMassive() {
         warriors = new ArrayList<>();
         if (addField1 > 0) {
@@ -167,43 +173,64 @@ public class ExtraSquadWindowController {
         }
     }
 
-    public ArrayList<Warrior> getWarriors(){
+    /**
+     * @return Возвращает ArrayList<Warrior> {@link ExtraSquadWindowController#warriors}
+     */
+    public ArrayList<Warrior> getWarriors() {
         return warriors;
     }
 
+    /**
+     * Закрывает окно и обнуляет значения полей.
+     */
     public void cancel(ActionEvent actionEvent) {
         clearAllValues();
         closeStage();
     }
 
-
+    /**
+     * Приводит к нулю все значения полей addField#, устанавливает флаг isSquadSet в false
+     */
     public void clearAllValues() {
         addField1 = 0;
-        choosen1.setText(addField1+"");
+        choosen1.setText(addField1 + "");
         addField2 = 0;
-        choosen2.setText(addField2+"");
+        choosen2.setText(addField2 + "");
         addField3 = 0;
-        choosen3.setText(addField3+"");
+        choosen3.setText(addField3 + "");
         addField4 = 0;
-        choosen4.setText(addField4+"");
+        choosen4.setText(addField4 + "");
         setSquadSet(false);
     }
 
+    /**
+     * Создает массив ArrayList<Warrior> {@link ExtraSquadWindowController#warriors}
+     * Закрвает окно.
+     */
     public void pressOk() {
         makeWarriorMassive();
         closeStage();
     }
 
+    /**
+     * Закрвает stage.
+     */
     private void closeStage() {
         Stage stage = (Stage) okButton.getScene().getWindow();
         stage.close();
     }
 
-    public boolean isSquadSet() {
-        return isSquadSet;
-    }
-
+    /**
+     * @param squadSet устанавливаемое значение флага {@link ExtraSquadWindowController#isSquadSet}
+     */
     public void setSquadSet(boolean squadSet) {
         isSquadSet = squadSet;
+    }
+
+    /**
+     * @return возвращает значение флага {@link ExtraSquadWindowController#isSquadSet}
+     */
+    public boolean getSquadStatus() {
+        return isSquadSet;
     }
 }

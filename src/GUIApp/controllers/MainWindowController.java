@@ -36,6 +36,8 @@ public class MainWindowController {
     private Squad squad1Origin;
     private Squad squad2Origin;
     private StringBuilder log;
+    private final int SHAKE_DURATION= 50;
+    private final float SHAKE_Xdf = 5f;
 
     @FXML
     private Button startSimulationButton;
@@ -78,6 +80,10 @@ public class MainWindowController {
     @FXML
     private Text extraUnitsSquad2;
 
+
+    /**
+     * Инициализация окон и элементов окна.
+     */
     @FXML
     void initialize() throws IOException {
         extraSquadLoader = new FXMLLoader();
@@ -129,6 +135,15 @@ public class MainWindowController {
     }
 
 
+    /**
+     * Метод вызываемый по нажатию кнопки "В бой!"
+     * Формирует {@link MainWindowController#mainSquad1} и {@link MainWindowController#mainSquad2} на основе введенных пользователем данных.
+     * Создает новые отряды (squad1 и squad2) из {@link MainWindowController#mainSquad1} {@link MainWindowController#extraSquad1} и {@link MainWindowController#mainSquad2} {@link MainWindowController#extraSquad2}.
+     * Создает новую битву {@link Battle()}, передает в нее (squad1, squad2).
+     * Получает из битвы лог.
+     * Устанавливает активность полей и кнопок.
+     * Выводит строку с именем победившего отряда.
+     */
     @FXML
     void startBattle(ActionEvent event) {
         if (checkInputFields()) {
@@ -176,6 +191,9 @@ public class MainWindowController {
         }
     }
 
+    /**
+     * Открытие окна с логом битвы
+     */
     @FXML
     void viewLog(ActionEvent event) {
         logWindowController.setLog(log.toString());
@@ -183,52 +201,79 @@ public class MainWindowController {
         logStage.showAndWait();
     }
 
+    /**
+     * Метод вызываемый по нажатию кнопки "Новая битва"
+     */
     @FXML
     void newBattle(ActionEvent event) {
         initNodes();
     }
 
+    /**
+     * Метод вызываемый по нажатию кнопки "Добавить" у первого отряда.
+     * Открывает окно Добавления бойцов, ждет ввода данных.
+     * Проверяет создался ли экстра-отряд. Если да - копирует его под именем "extraSquad1".
+     */
     public void addUnit1(ActionEvent actionEvent) {
         exSqWindowController.clearAllValues();
         runStageExtraSquad();
-        if (exSqWindowController.isSquadSet()) {
+        if (exSqWindowController.getSquadStatus()) {
             extraSquad1 = new Squad(exSqWindowController.getWarriors(), "extraSquad1");
             extraUnitsSquad1.setText(exSqWindowController.getWarriors().size() + "");
-        } else extraSquad1 = new Squad(0, "empty");
+        }
     }
 
-
+    /**
+     * Метод вызываемый по нажатию кнопки "Добавить" у первого отряда.
+     * Открывает окно Добавления бойцов, ждет ввода данных.
+     * Проверяет создался ли экстра-отряд. Если да - копирует его под именем "extraSquad2".
+     */
     public void addUnit2(ActionEvent actionEvent) {
         exSqWindowController.clearAllValues();
         runStageExtraSquad();
-        if (exSqWindowController.isSquadSet()) {
+        if (exSqWindowController.getSquadStatus()) {
             extraSquad2 = new Squad(exSqWindowController.getWarriors(), "extraSquad2");
             extraUnitsSquad2.setText(exSqWindowController.getWarriors().size() + "");
-        } else extraSquad2 = new Squad(0, "empty");
+        }
     }
 
+    /**
+     * Показывает состав {@link MainWindowController#extraSquad1} в новом окне.
+     */
     public void showSquad1(ActionEvent actionEvent) {
         squadViewerController.setLog(squad1Origin.squadList());
         squadViewerController.setTitleLabel("Состав отряда " + squad1Origin.toString());
         squadViewerStage.showAndWait();
     }
 
+    /**
+     * Показывает состав {@link MainWindowController#extraSquad2} в новом окне.
+     */
     public void showSquad2(ActionEvent actionEvent) {
         squadViewerController.setLog(squad2Origin.squadList());
         squadViewerController.setTitleLabel("Состав отряда " + squad2Origin.toString());
         squadViewerStage.showAndWait();
     }
 
+    /**
+     * Устанавливает TextField {@link MainWindowController#winLabel} и отображает его.
+     */
     public void setWinLabel(String string) {
         winLabel.setText(string);
         winLabel.setVisible(true);
     }
 
+    /**
+     * Запускает окно добавления бойцов.
+     */
     private void runStageExtraSquad() {
         exSqWindowController = extraSquadLoader.getController();
         extraSquadStage.showAndWait();
     }
 
+    /**
+     * Приводит поля и кнопки к начальному состоянию (состоянию ввода входящих параметров) и инициализирует экстра-отряды пустышки.
+     */
     private void initNodes() {
         firstSquadSizeField.clear();
         secondSquadSizeField.clear();
@@ -250,76 +295,114 @@ public class MainWindowController {
         extraSquad2 = new Squad(0, "empty");
     }
 
+
+    /**
+     * Проверяет текстовые поля программы на корректность введеных/не введенных данных и их соответствие между собой:
+     * 1) Поля не должны быть пустыми
+     * 2) Поля не должны состоять из одних пробелов
+     * 3) Поля численности отряда не должны содержать строк и быть отрицательными
+     * 4) Экстра-отряды и случайно формируемые отряды не должны в сумме давать "ноль".
+     * Указывает пользователю на некорректное поле.
+     * @return Возвращает true если все условия соблюдены.
+     */
     private boolean checkInputFields() {
-        boolean state1;
-        boolean state2;
-        boolean state3;
-        boolean state4;
+        boolean squadSize1FieldIsOk;
+        boolean squadSize2FieldIsOk;
+        boolean squadname1isOk;
+        boolean squadname2isOk;
         try {
             if (checkIntField(secondSquadSizeField)) {
-                if (Integer.parseInt(secondSquadSizeField.getText()) <= 0 & extraSquad2.toString() == "empty") {
-                    shakeField(secondSquadSizeField);
-                    secondSquadSizeField.requestFocus();
-                    state2 = false;
-                } else state2 = true;
+                squadSize2FieldIsOk = !isSquadEmpty(secondSquadSizeField, extraSquad2);
             } else {
-                shakeField(secondSquadSizeField);
-                secondSquadSizeField.requestFocus();
-                state2 = false;
+                focusField(secondSquadSizeField);
+                squadSize2FieldIsOk = false;
             }
         } catch (NumberFormatException e) {
-            System.out.println("в поле не текст");
-            shakeField(secondSquadSizeField);
-            secondSquadSizeField.requestFocus();
-            state2 = false;
+            System.out.println("В поле не текст");
+            focusField(secondSquadSizeField);
+            squadSize2FieldIsOk = false;
         }
+
         try {
             if (checkIntField(firstSquadSizeField)) {
-                if (Integer.parseInt(firstSquadSizeField.getText()) <= 0 & extraSquad1.toString() == "empty") {
-                    shakeField(firstSquadSizeField);
-                    firstSquadSizeField.requestFocus();
-                    state1 = false;
-                } else state1 = true;
+                squadSize1FieldIsOk = !isSquadEmpty(firstSquadSizeField, extraSquad1);
             } else {
-                shakeField(firstSquadSizeField);
-                firstSquadSizeField.requestFocus();
-                state1 = false;
+                focusField(firstSquadSizeField);
+                squadSize1FieldIsOk = false;
             }
         } catch (NumberFormatException e) {
-            System.out.println("в поле не текст");
-            shakeField(firstSquadSizeField);
-            firstSquadSizeField.requestFocus();
-            state1 = false;
+            System.out.println("В поле не текст");
+            focusField(firstSquadSizeField);
+            squadSize1FieldIsOk = false;
         }
 
-        if (checkStringField(secondSquadnameField)) state4 = true;
+        if (checkStringField(secondSquadnameField)) squadname2isOk = true;
         else {
-            shakeField(secondSquadnameField);
-            secondSquadnameField.requestFocus();
-            state4 = false;
+            focusField(secondSquadnameField);
+            squadname2isOk = false;
         }
-        if (checkStringField(firstSquadnameField)) state3 = true;
+        if (checkStringField(firstSquadnameField)) squadname1isOk = true;
         else {
-            shakeField(firstSquadnameField);
-            firstSquadnameField.requestFocus();
-            state3 = false;
+            focusField(firstSquadnameField);
+            squadname1isOk = false;
         }
-        return (state1 && state2 && state3 && state4);
+        return (squadSize1FieldIsOk && squadSize2FieldIsOk && squadname1isOk && squadname2isOk);
     }
 
+    /**
+     * Проверяет текстовое поле чтобы оно
+     * 1) Не было пустым
+     * 2) Не состояло из одних пробелов
+     * @return Возвращает true если все условия соблюдены.
+     */
     private boolean checkStringField(TextField textField) {
         if (textField.getText() == null || textField.getText().trim().isEmpty()) return false;
         else return true;
     }
 
+    /**
+     * Проверяет текстовое поле чтобы оно
+     * 1) Не было пустым
+     * 2) Не состояло из одних пробелов
+     * 3) Значение в поле было больше нуля
+     * @return Возвращает true если все условия соблюдены.
+     */
     private boolean checkIntField(TextField textField) {
         if (textField.getText() == null || textField.getText().trim().isEmpty() || Integer.parseInt(textField.getText()) < 0)
             return false;
         else return true;
     }
 
-    void shakeField(Node node) {
-        Shake shakeNode = new Shake(node, 50, 5f);
+    /**
+     * Проверяет необходимость введения численности отряда в textField.
+     * @param textField поле задающее численностьо формируемого отряда со случаными бойцами
+     * @param squad формируемый вручную отряд 1{@link MainWindowController#extraSquad1} или 2{@link MainWindowController#extraSquad2}. Если он имеет имя "empty" - значит он не создан и не имеет бойцов.
+     * @return Возвращает true если формируемый вручную отряд не создан, а в TextField с численностью отряда введено число меньше нуля.
+     * на {@link MainWindowController#SHAKE_Xdf} пикселей по оси X влево-вправо
+     */
+    boolean isSquadEmpty(TextField textField, Squad squad){
+        if (squad.toString().equals("empty") && Integer.parseInt(textField.getText()) <= 0) {
+            focusField(textField);
+            return true;
+        } else {return false;}
+    }
+
+    /**
+     * "Трясет" переданный в метод node в течение {@link MainWindowController#SHAKE_DURATION} миллисикунд
+     * на {@link MainWindowController#SHAKE_Xdf} пикселей по оси X влево-вправо
+     */
+    void shakeNode(Node node) {
+        Shake shakeNode = new Shake(node, SHAKE_DURATION, SHAKE_Xdf);
         shakeNode.playAnim();
     }
+
+    /**
+     * Воспроизводит анимацию "тряски" у переданного в метода node и перемещает на него фокус.
+     */
+    void focusField(TextField  textField){
+        shakeNode(textField);
+        textField.requestFocus();
+    }
+
+
 }
